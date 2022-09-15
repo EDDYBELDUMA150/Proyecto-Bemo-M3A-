@@ -68,7 +68,6 @@ public class OCconection {
     }
 
     public Connection getConex() {
-                System.out.println("conexion aporbada");
         return conex;
     }
 

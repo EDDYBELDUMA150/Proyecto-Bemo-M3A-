@@ -54,6 +54,14 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         this.btncrudproveedores = btncrudproveedores;
     }
 
+    public JButton getBtProductos() {
+        return btProductos;
+    }
+
+    public void setBtProductos(JButton btProductos) {
+        this.btProductos = btProductos;
+    }
+
     
     
     
@@ -69,6 +77,7 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         btncrudclientes = new javax.swing.JButton();
         btncrudproveedores = new javax.swing.JButton();
+        btProductos = new javax.swing.JButton();
         jdpprincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -102,7 +111,13 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(btncrudproveedores);
 
-        getContentPane().add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 280, 70));
+        btProductos.setText("Productos");
+        btProductos.setFocusable(false);
+        btProductos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btProductos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btProductos);
+
+        getContentPane().add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
 
         jdpprincipal.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -114,10 +129,10 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         );
         jdpprincipalLayout.setVerticalGroup(
             jdpprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGap(0, 760, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jdpprincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1210, 720));
+        getContentPane().add(jdpprincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1210, 760));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -175,6 +190,7 @@ public class vistamenuprincipal extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btProductos;
     private javax.swing.JButton btncrudclientes;
     private javax.swing.JButton btncrudproveedores;
     private javax.swing.JMenu jMenu1;

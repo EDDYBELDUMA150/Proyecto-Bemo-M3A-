@@ -1,7 +1,5 @@
-se Tools | Templates
- * and open the template in the editor.
- */
-package modelo;
+
+package modelo.MConexion;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -7,6 +7,7 @@ package Controlador;
 
 //import modelo.ModeloProveedor;
 
+import VIsta.RegistrosdeFacturasGastosBalances;
 import VIsta.VistaProveedor;
 import VIsta.vistacliente;
 import VIsta.vistamenuprincipal;
@@ -35,6 +36,7 @@ public class ControlPrincipal {
 
         vistamenuprin.getBtncrudclientes().addActionListener(l -> crudclientes());
         vistamenuprin.getBtncrudproveedores().addActionListener(l->crudproveedores());
+        vistamenuprin.getBtProductos().addActionListener(l-> abrirprodcutos());
     }
 
     private void crudclientes() {
@@ -62,6 +64,16 @@ public class ControlPrincipal {
         
         controlproveedor.iniciarcontrol();
 
+    }
+
+    private void abrirprodcutos() {
+        VIsta.RegistrosdeFacturasGastosBalances vistaProd = new RegistrosdeFacturasGastosBalances();
+        modelo.MConexion.ModelProducto modprod = new modelo.MConexion.ModelProducto();
+        vistamenuprin.getJdpprincipal().add(vistaProd);
+        
+        Controlador.ControladorProducto controlpro = new ControladorProducto(modprod, vistaProd);
+        controlpro.iniciaControl();
+        
     }
 
 }

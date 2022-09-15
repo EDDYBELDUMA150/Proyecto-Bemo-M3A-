@@ -1,10 +1,9 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package VIsta;
 
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -18,15 +17,16 @@ import javax.swing.JTextPane;
  *
  * @author OWNER
  */
-public class RegistrosdeFacturasGastosBalances extends javax.swing.JFrame {
+public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form RegistrosdeFacturasGastosBalances
+     * Creates new form RegistrosdeFacturasGastoCorriente1
      */
     public RegistrosdeFacturasGastosBalances() {
         initComponents();
     }
-
+    
+    
     public JButton getBtPrevisualizar() {
         return btPrevisualizar;
     }
@@ -163,30 +163,6 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JFrame {
         this.txtBusqueda = txtBusqueda;
     }
 
-    public JButton getBtAgregarModi() {
-        return btAgregarModi;
-    }
-
-    public void setBtAgregarModi(JButton btAgregarModi) {
-        this.btAgregarModi = btAgregarModi;
-    }
-
-    public JButton getBtSalir() {
-        return btSalir;
-    }
-
-    public void setBtSalir(JButton btSalir) {
-        this.btSalir = btSalir;
-    }
-
-    public ButtonGroup getBtgCodProd() {
-        return btgCodProd;
-    }
-
-    public void setBtgCodProd(ButtonGroup btgCodProd) {
-        this.btgCodProd = btgCodProd;
-    }
-
     public JLabel getLbModificar() {
         return lbModificar;
     }
@@ -201,6 +177,22 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JFrame {
 
     public void setLbNuevo(JLabel lbNuevo) {
         this.lbNuevo = lbNuevo;
+    }
+
+    public JButton getBtAgregarModi() {
+        return btAgregarModi;
+    }
+
+    public void setBtAgregarModi(JButton btAgregarModi) {
+        this.btAgregarModi = btAgregarModi;
+    }
+
+    public JButton getBtSalir() {
+        return btSalir;
+    }
+
+    public void setBtSalir(JButton btSalir) {
+        this.btSalir = btSalir;
     }
     
     /**
@@ -374,11 +366,9 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JFrame {
             }
         });
 
-        btgCodProd.add(rbGenerar);
         rbGenerar.setSelected(true);
         rbGenerar.setText("Generar codigos aut.");
 
-        btgCodProd.add(rbEditar);
         rbEditar.setText("Editar codigo");
 
         lbNuevo.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 20)); // NOI18N
@@ -549,8 +539,6 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JFrame {
                         .addContainerGap())))
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jButton5.setText("Eliminar gast.");
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -619,7 +607,7 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JFrame {
                 .addComponent(jButton12)
                 .addGap(18, 18, 18)
                 .addComponent(jButton15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 504, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 475, Short.MAX_VALUE)
                 .addComponent(jButton11)
                 .addGap(32, 32, 32))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -772,7 +760,7 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JFrame {
                 .addComponent(jButton31)
                 .addGap(18, 18, 18)
                 .addComponent(jButton34)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 504, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton30)
                 .addGap(32, 32, 32))
             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -908,7 +896,7 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JFrame {
                 .addComponent(jButton26)
                 .addGap(18, 18, 18)
                 .addComponent(jButton29)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 504, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 475, Short.MAX_VALUE)
                 .addComponent(jButton25)
                 .addGap(32, 32, 32))
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -1031,7 +1019,7 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JFrame {
                 .addComponent(jButton38)
                 .addGap(18, 18, 18)
                 .addComponent(jButton41)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 504, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 475, Short.MAX_VALUE)
                 .addComponent(jButton37)
                 .addGap(32, 32, 32))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -1149,7 +1137,7 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 2, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1166,9 +1154,6 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAgregarModi;

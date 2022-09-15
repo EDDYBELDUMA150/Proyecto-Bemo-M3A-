@@ -28,9 +28,10 @@ public class ControladorProducto {
 
     private modelo.MConexion.ModelProducto modeloPro;
     private VIsta.RegistrosdeFacturasGastosBalances vistaPro;
+    private modelo.MConexion.ModelCategoria modcate;
     private VIsta.Categorias vistcate = new VIsta.Categorias();
 
-    public ControladorProducto(MConexion.ModelProducto modeloPro, RegistrosdeFacturasGastosBalances vistaPro) {
+    public ControladorProducto(ModelProducto modeloPro, RegistrosdeFacturasGastosBalances vistaPro) {
         this.modeloPro = modeloPro;
         this.vistaPro = vistaPro;
         vistaPro.setVisible(true);
@@ -155,7 +156,6 @@ public class ControladorProducto {
                 modeloPro.setPrd_nombre(nombrePro);
                 modeloPro.setPrd_precio(Double.parseDouble(precio));
                 modeloPro.setPrd_IDCategoria(modeloPro.codProducto(vistaPro.getCbProCate().getSelectedItem().toString()));
-                System.out.println(modeloPro.codProducto(vistaPro.getCbProCate().getSelectedItem().toString()));
 
                 if (modeloPro.uptadeProducto()) {
                     JOptionPane.showMessageDialog(vistaPro, "Categoría modificada con exito!!");
@@ -225,7 +225,6 @@ public class ControladorProducto {
     }
 
     private void abrirCategoria() {
-        modelo.MConexion.ModelCategoria modcate = new modelo.MConexion.ModelCategoria());
 
         ControladorCategoria contcate = new ControladorCategoria(modcate, vistcate);
         contcate.inicioControl();

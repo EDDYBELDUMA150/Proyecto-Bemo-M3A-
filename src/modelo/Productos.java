@@ -14,17 +14,17 @@ public class Productos {
     private int prd_ID;
     private String prd_nombre;
     private double prd_precio;
-    private int prd_nombreCategoria;
+    private int prd_IDCategoria;
+    private String prd_nombreCategoria;
 
     public Productos() {
     }
 
-    
-    
-    public Productos(int prd_ID, String prd_nombre, double prd_precio, int prd_nombreCategoria) {
+    public Productos(int prd_ID, String prd_nombre, double prd_precio, int prd_IDCategoria, String prd_nombreCategoria) {
         this.prd_ID = prd_ID;
         this.prd_nombre = prd_nombre;
         this.prd_precio = prd_precio;
+        this.prd_IDCategoria = prd_IDCategoria;
         this.prd_nombreCategoria = prd_nombreCategoria;
     }
 
@@ -52,20 +52,25 @@ public class Productos {
         this.prd_precio = prd_precio;
     }
 
-    public int getPrd_nombreCategoria() {
+    public int getPrd_IDCategoria() {
+        return prd_IDCategoria;
+    }
+
+    public void setPrd_IDCategoria(int prd_IDCategoria) {
+        this.prd_IDCategoria = prd_IDCategoria;
+    }
+
+    public String getPrd_nombreCategoria() {
         return prd_nombreCategoria;
     }
 
-    public void setPrd_nombreCategoria(int prd_nombreCategoria) {
+    public void setPrd_nombreCategoria(String prd_nombreCategoria) {
         this.prd_nombreCategoria = prd_nombreCategoria;
     }
 
     @Override
     public String toString() {
-        return "Productos{" + "prd_ID=" + prd_ID + ", prd_nombre=" + prd_nombre + ", prd_precio=" + prd_precio + ", prd_nombreCategoria=" + prd_nombreCategoria + '}';
+        return "Productos{" + "prd_ID=" + prd_ID + ", prd_nombre=" + prd_nombre + ", prd_precio=" + prd_precio + ", prd_IDCategoria=" + prd_IDCategoria + ", prd_nombreCategoria=" + prd_nombreCategoria + '}';
     }
-    
-    
-    
 
 }
