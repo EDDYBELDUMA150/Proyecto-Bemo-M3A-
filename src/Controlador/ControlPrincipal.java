@@ -30,6 +30,8 @@ public class ControlPrincipal {
     public ControlPrincipal(vistamenuprincipal vistamenuprin) {
         this.vistamenuprin = vistamenuprin;
         vistamenuprin.setVisible(true);
+        vistamenuprin.setSize(1680,950);
+        
     }
 
     public void iniciaControl() {

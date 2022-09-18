@@ -76,48 +76,71 @@ public class vistamenuprincipal extends javax.swing.JFrame {
 
         jToolBar1 = new javax.swing.JToolBar();
         btncrudclientes = new javax.swing.JButton();
-        btncrudproveedores = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         btProductos = new javax.swing.JButton();
+        btncrudproveedores = new javax.swing.JButton();
         jdpprincipal = new javax.swing.JDesktopPane();
+        jToolBar2 = new javax.swing.JToolBar();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
+        jToolBar1.setBorder(null);
         jToolBar1.setRollover(true);
 
+        btncrudclientes.setBackground(new java.awt.Color(255, 255, 255));
+        btncrudclientes.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
+        btncrudclientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/cliente.png"))); // NOI18N
         btncrudclientes.setText("Cliente");
+        btncrudclientes.setBorderPainted(false);
         btncrudclientes.setFocusable(false);
         btncrudclientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btncrudclientes.setMargin(new java.awt.Insets(2, 14, 2, 16));
         btncrudclientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btncrudclientes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncrudclientesActionPerformed(evt);
-            }
-        });
         jToolBar1.add(btncrudclientes);
 
-        btncrudproveedores.setText("Proveedor");
-        btncrudproveedores.setFocusable(false);
-        btncrudproveedores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btncrudproveedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btncrudproveedores.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btncrudproveedoresActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(btncrudproveedores);
+        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/cootizar.png"))); // NOI18N
+        jButton1.setText("Cootizacion");
+        jButton1.setBorderPainted(false);
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setMargin(new java.awt.Insets(2, 14, 2, 16));
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton1);
 
-        btProductos.setText("Productos");
+        btProductos.setBackground(new java.awt.Color(255, 255, 255));
+        btProductos.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
+        btProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/productos.png"))); // NOI18N
+        btProductos.setText("Registros");
+        btProductos.setBorderPainted(false);
         btProductos.setFocusable(false);
         btProductos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btProductos.setMargin(new java.awt.Insets(2, 14, 2, 16));
         btProductos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btProductos);
 
-        getContentPane().add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
+        btncrudproveedores.setBackground(new java.awt.Color(255, 255, 255));
+        btncrudproveedores.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
+        btncrudproveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/proveedor.png"))); // NOI18N
+        btncrudproveedores.setText("Proveedor");
+        btncrudproveedores.setBorderPainted(false);
+        btncrudproveedores.setFocusable(false);
+        btncrudproveedores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btncrudproveedores.setMargin(new java.awt.Insets(2, 14, 2, 16));
+        btncrudproveedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btncrudproveedores);
+
+        getContentPane().add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 0, 390, 90));
 
         jdpprincipal.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -125,14 +148,42 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         jdpprincipal.setLayout(jdpprincipalLayout);
         jdpprincipalLayout.setHorizontalGroup(
             jdpprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1210, Short.MAX_VALUE)
+            .addGap(0, 1680, Short.MAX_VALUE)
         );
         jdpprincipalLayout.setVerticalGroup(
             jdpprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
+            .addGap(0, 840, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jdpprincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 1210, 760));
+        getContentPane().add(jdpprincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1680, 840));
+
+        jToolBar2.setBackground(new java.awt.Color(255, 255, 255));
+        jToolBar2.setBorder(null);
+        jToolBar2.setRollover(true);
+
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/home.png"))); // NOI18N
+        jButton2.setText("Inicio");
+        jButton2.setBorderPainted(false);
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setMargin(new java.awt.Insets(2, 14, 2, 16));
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(jButton2);
+
+        jButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jButton3.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/salir.png"))); // NOI18N
+        jButton3.setText("Salir");
+        jButton3.setBorderPainted(false);
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setMargin(new java.awt.Insets(2, 14, 2, 16));
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(jButton3);
+
+        getContentPane().add(jToolBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 90));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -145,14 +196,6 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btncrudclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncrudclientesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btncrudclientesActionPerformed
-
-    private void btncrudproveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncrudproveedoresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btncrudproveedoresActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -193,10 +236,14 @@ public class vistamenuprincipal extends javax.swing.JFrame {
     private javax.swing.JButton btProductos;
     private javax.swing.JButton btncrudclientes;
     private javax.swing.JButton btncrudproveedores;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToolBar jToolBar2;
     private javax.swing.JDesktopPane jdpprincipal;
     // End of variables declaration//GEN-END:variables
 }
