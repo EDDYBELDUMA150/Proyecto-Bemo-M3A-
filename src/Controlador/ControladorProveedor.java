@@ -301,7 +301,7 @@ public class ControladorProveedor {
                     ModeloProveedor proveedor = new ModeloProveedor();
                     proveedor.setPrs_ID(idpersona);
 
-                    if (proveedor.removeproveedor() && proveedor.removepersona()) {
+                    if ( proveedor.removepersona()) {
 
                         JOptionPane.showMessageDialog(vista, "Dato Eliminado");
                             limpiardatos();

@@ -40,7 +40,8 @@ public class ModeloProveedor extends Proveedor {
         String sql = "select p.pers_id,p.pers_cedula,p.pers_nombre1,p.pers_nombre2,p.pers_apellido1,p.pers_apellido2,p.pers_direccion,p.pers_telefono,p.pers_email , pro.peove_empresa  "
                 + " from proveedor pro "
                 + " join persona p"
-                + " on (p.pers_id = pro.prove_id)";
+                + " on (p.pers_id = pro.prove_id)"
+                + " where p.pers_estado = 'Activo'";
 
         ResultSet rs = conexion.consulta(sql);
 
@@ -104,8 +105,8 @@ public class ModeloProveedor extends Proveedor {
     }
 
     public boolean setpersona() {
-        String sql = "insert into persona (pers_id,pers_cedula,pers_nombre1,pers_nombre2,pers_apellido1,pers_apellido2,pers_direccion,pers_telefono,pers_email ) "
-                + "VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into persona (pers_id,pers_cedula,pers_nombre1,pers_nombre2,pers_apellido1,pers_apellido2,pers_direccion,pers_telefono,pers_estado,pers_email ) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         try {
             //  PreparedStatement ps = mpgc.
@@ -118,7 +119,8 @@ public class ModeloProveedor extends Proveedor {
             ps.setString(6, getPrs_apellido2());
             ps.setString(7, getPrs_direccion());
             ps.setString(8, getPrs_telefono());
-            ps.setString(9, getPrs_email());
+            ps.setString(9, "Activo");
+            ps.setString(10, getPrs_email());
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -156,7 +158,7 @@ public class ModeloProveedor extends Proveedor {
                 + "pers_direccion = ?,"
                 + "pers_telefono = ?,"
                 + "pers_email= ? "
-                + "where pers_id = " + getPrs_ID() ;
+                + "where pers_id = " + getPrs_ID();
 
         try {
             PreparedStatement ps = conexion.getConex().prepareStatement(sql);
@@ -181,7 +183,7 @@ public class ModeloProveedor extends Proveedor {
     public boolean updateprovedor() {
 
         String sql = " update proveedor set peove_empresa = ? "
-                + " where prove_id = " + getPrs_ID() ;
+                + " where prove_id = " + getPrs_ID();
 
         try {
             PreparedStatement ps = conexion.getConex().prepareStatement(sql);
@@ -196,16 +198,16 @@ public class ModeloProveedor extends Proveedor {
 
     }
 
-    public boolean removeproveedor() {
-
-        String sql = "DELETE FROM  proveedor WHERE  prove_id=" + getPrs_ID() ;
-
-        return conexion.accion(sql);
-    }
+//    public boolean removeproveedor() {
+//
+//        String sql = "DELETE FROM  proveedor WHERE  prove_id=" + getPrs_ID();
+//
+//        return conexion.accion(sql);
+//    }
 
     public boolean removepersona() {
 
-        String sql = "DELETE FROM  persona WHERE  pers_id =" + getPrs_ID() ;
+         String sql = "update persona set pers_estado = 'inactivo' where pers_id =" + getPrs_ID() ;
 
         return conexion.accion(sql);
     }
@@ -218,14 +220,14 @@ public class ModeloProveedor extends Proveedor {
                 + " join persona p"
                 + " on (p.pers_id = pro.prove_id)"
                 + " where "
-                + " UPPER(p.pers_cedula) LIKE UPPER ('" + filtro + "') or"
+                + " (UPPER(p.pers_cedula) LIKE UPPER ('" + filtro + "') or"
                 + " UPPER(p.pers_nombre1) LIKE UPPER ('" + filtro + "') or"
                 + " UPPER(p.pers_nombre2) LIKE UPPER ('" + filtro + "') or "
                 + " UPPER(p.pers_apellido1) LIKE UPPER ('" + filtro + "') or "
                 + " UPPER(p.pers_apellido2) LIKE UPPER ('" + filtro + "') or "
                 + " UPPER(p.pers_direccion) LIKE UPPER ('" + filtro + "') or"
-                + " UPPER(pro.peove_empresa) LIKE UPPER ('" + filtro + "') ";
-
+                + " UPPER(pro.peove_empresa) LIKE UPPER ('" + filtro + "')) and "
+                + " p.pers_estado = 'Activo' ";
 
         ResultSet rs = conexion.consulta(sql);
 

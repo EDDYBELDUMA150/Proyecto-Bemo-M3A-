@@ -162,7 +162,8 @@ public class VistaProveedor extends javax.swing.JInternalFrame {
         jdialogproveedor.getContentPane().add(txtnombreempresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 643, 40));
 
         setClosable(true);
-        setPreferredSize(new java.awt.Dimension(1210, 720));
+        setMaximumSize(new java.awt.Dimension(1680, 840));
+        setPreferredSize(new java.awt.Dimension(1660, 800));
 
         tablaproveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -183,66 +184,85 @@ public class VistaProveedor extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        tablaproveedores.setPreferredSize(new java.awt.Dimension(750, 790));
         jScrollPane1.setViewportView(tablaproveedores);
 
+        txtbuscarproveedor.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/search_40px.png"))); // NOI18N
         jLabel1.setText("Buscar : ");
 
-        btnagregar.setText("Agregar");
+        btnagregar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnagregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/add_user_group_man_man_40px.png"))); // NOI18N
+        btnagregar.setText("Nuevo Proveedor");
 
-        btnmodificar.setText("Modificar");
+        btnmodificar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/update_user_40px.png"))); // NOI18N
+        btnmodificar.setText("Actualizar Proveedor");
 
-        btneleminar.setText("Eliminar");
+        btneleminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btneleminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/delete_user_male_40px.png"))); // NOI18N
+        btneleminar.setText("Eliminar Proveedor");
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         jLabel2.setText("Proveedores");
 
+        btnactualzartabla.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnactualzartabla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/restart_40px.png"))); // NOI18N
         btnactualzartabla.setText("Actualizar Tabla");
+        btnactualzartabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnactualzartablaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(txtbuscarproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnagregar)
-                .addGap(75, 75, 75)
-                .addComponent(btnmodificar)
-                .addGap(56, 56, 56)
-                .addComponent(btneleminar)
-                .addGap(98, 98, 98))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnactualzartabla, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 959, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(390, 390, 390)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(227, Short.MAX_VALUE))
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel1)
+                        .addGap(34, 34, 34)
+                        .addComponent(txtbuscarproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(btnagregar)
+                        .addGap(43, 43, 43)
+                        .addComponent(btnmodificar)
+                        .addGap(32, 32, 32)
+                        .addComponent(btneleminar)
+                        .addGap(0, 109, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(410, 410, 410)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnactualzartabla, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(122, 122, 122))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(149, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtbuscarproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
-                    .addComponent(btnagregar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnmodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btneleminar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(btnactualzartabla, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                    .addComponent(txtbuscarproveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnmodificar)
+                    .addComponent(btneleminar)
+                    .addComponent(btnagregar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnactualzartabla)
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
@@ -251,6 +271,10 @@ public class VistaProveedor extends javax.swing.JInternalFrame {
     private void txtnombreempresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreempresaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombreempresaActionPerformed
+
+    private void btnactualzartablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnactualzartablaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnactualzartablaActionPerformed
 
     public JButton getBtnagregar() {
         return btnagregar;

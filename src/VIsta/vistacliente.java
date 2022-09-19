@@ -231,6 +231,7 @@ public class vistacliente extends javax.swing.JInternalFrame {
         txtbuscarcliente = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         dialogclientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         dialogclientes.getContentPane().add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 149, 250, 34));
@@ -274,14 +275,17 @@ public class vistacliente extends javax.swing.JInternalFrame {
         jLabel9.setText("Email:");
         dialogclientes.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 467, -1, -1));
 
+        btnagregar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/add_40px.png"))); // NOI18N
         btnagregar1.setText("Agregar");
-        dialogclientes.getContentPane().add(btnagregar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 125, 65));
+        dialogclientes.getContentPane().add(btnagregar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, 170, 65));
 
+        btncancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/cancel_40px.png"))); // NOI18N
         btncancelar.setText("Cancelar");
-        dialogclientes.getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 560, 125, 65));
+        dialogclientes.getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 560, 160, 60));
 
+        btnlimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/broom_40px.png"))); // NOI18N
         btnlimpiar.setText("Limpiar Campos");
-        dialogclientes.getContentPane().add(btnlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 560, 125, 65));
+        dialogclientes.getContentPane().add(btnlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 560, 200, 60));
 
         txtidcliente.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         txtidcliente.setText("jTextField2");
@@ -295,41 +299,62 @@ public class vistacliente extends javax.swing.JInternalFrame {
         dialogclientes.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 90, 30, 30));
 
         setClosable(true);
-        setPreferredSize(new java.awt.Dimension(1210, 720));
+        setPreferredSize(new java.awt.Dimension(1660, 800));
 
-        tablaclientes.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        tablaclientes.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tablaclientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "id clientes", "id perona", "cedula", "nombre 1", "nombre2", "apellido", "apelido2", "direccion", "Telefono", "email"
+                "ID", "Cedula", "Primer Nombre ", "Segundo Nombre", "Primer Apellido", "Segundo Apelido", "Direccion", "Telefono", "email"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaclientes.setPreferredSize(new java.awt.Dimension(750, 790));
         jScrollPane1.setViewportView(tablaclientes);
 
-        btnagregar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btnagregar.setText("agregar");
+        btnagregar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btnagregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/add_user_group_man_man_40px.png"))); // NOI18N
+        btnagregar.setText("Nuevo Cliente");
 
-        brnmodificar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        brnmodificar.setText("editar");
+        brnmodificar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        brnmodificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/update_user_40px.png"))); // NOI18N
+        brnmodificar.setText("Actualizar Cliente");
 
-        btneleminar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btneleminar.setText("Eliminar");
+        btneleminar.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btneleminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/delete_user_male_40px.png"))); // NOI18N
+        btneleminar.setText("Eliminar Cliente ");
+        btneleminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneleminarActionPerformed(evt);
+            }
+        });
 
-        btncargardatos.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btncargardatos.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        btncargardatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/restart_40px.png"))); // NOI18N
         btncargardatos.setText("Actualizar Tabla.");
 
-        txtbuscarcliente.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        txtbuscarcliente.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
 
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         jLabel10.setText("Clientes");
 
-        jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/search_40px.png"))); // NOI18N
         jLabel11.setText("Buscar :");
+
+        jLabel12.setText("Buscar por : Cedula , Nombres , Apellidos o Direccion .");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -339,26 +364,30 @@ public class vistacliente extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btncargardatos)
                 .addGap(44, 44, 44))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(680, 680, 680))
             .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jLabel11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel11)
-                        .addGap(39, 39, 39)
-                        .addComponent(txtbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
                         .addComponent(btnagregar)
-                        .addGap(41, 41, 41)
+                        .addGap(56, 56, 56)
                         .addComponent(brnmodificar)
-                        .addGap(49, 49, 49)
-                        .addComponent(btneleminar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(421, 421, 421)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 951, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addGap(37, 37, 37)
+                        .addComponent(btneleminar)))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -366,16 +395,16 @@ public class vistacliente extends javax.swing.JInternalFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel11))
-                    .addComponent(txtbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btneleminar)
                     .addComponent(btnagregar)
-                    .addComponent(brnmodificar)
-                    .addComponent(btneleminar))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+                    .addComponent(txtbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(brnmodificar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btncargardatos)
                 .addGap(15, 15, 15))
@@ -383,6 +412,10 @@ public class vistacliente extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btneleminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneleminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btneleminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -397,6 +430,7 @@ public class vistacliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -21,7 +21,7 @@ import modelo.OCconection;
  */
 public class Modelocliente extends Cliente {
 
-OCconection conexion = new OCconection();
+    OCconection conexion = new OCconection();
 
     public Modelocliente(int cl_ID) {
         super(cl_ID);
@@ -37,10 +37,11 @@ OCconection conexion = new OCconection();
     public List<Cliente> getclientes() {
         List<Cliente> listaclientes = new ArrayList<Cliente>();
 
-        String sql = " select c.cli_id,p.pers_id,p.pers_cedula,p.pers_nombre1,p.pers_nombre2,p.pers_apellido1,p.pers_apellido2,p.pers_direccion,p.pers_telefono,p.pers_email "
+        String sql = " select p.pers_id,p.pers_cedula,p.pers_nombre1,p.pers_nombre2,p.pers_apellido1,p.pers_apellido2,p.pers_direccion,p.pers_telefono,p.pers_email "
                 + " from cliente c "
                 + " join persona p "
-                + " on (p.pers_id = c.pers_id)";
+                + " on (p.pers_id = c.pers_id) "
+                + " where p.pers_estado = 'Activo'";
 
         ResultSet rs = conexion.consulta(sql);
         byte[] bytea;
@@ -48,16 +49,15 @@ OCconection conexion = new OCconection();
             while (rs.next()) {
                 Cliente cliente = new Cliente();
 
-                cliente.setCl_ID(rs.getInt(1));
-                cliente.setPrs_ID(rs.getInt(2));
-                cliente.setPrs_cedula(rs.getString(3));
-                cliente.setPrs_nombre1(rs.getString(4));
-                cliente.setPrs_nombre2(rs.getString(5));
-                cliente.setPrs_apellido1(rs.getString(6));
-                cliente.setPrs_apellido2(rs.getString(7));
-                cliente.setPrs_direccion(rs.getString(8));
-                cliente.setPrs_telefono(rs.getString(9));
-                cliente.setPrs_email(rs.getString(10));
+                cliente.setPrs_ID(rs.getInt(1));
+                cliente.setPrs_cedula(rs.getString(2));
+                cliente.setPrs_nombre1(rs.getString(3));
+                cliente.setPrs_nombre2(rs.getString(4));
+                cliente.setPrs_apellido1(rs.getString(5));
+                cliente.setPrs_apellido2(rs.getString(6));
+                cliente.setPrs_direccion(rs.getString(7));
+                cliente.setPrs_telefono(rs.getString(8));
+                cliente.setPrs_email(rs.getString(9));
 
                 listaclientes.add(cliente);
             }
@@ -132,8 +132,8 @@ OCconection conexion = new OCconection();
     }
 
     public boolean setpersona() {
-        String sql = "insert into persona (pers_id,pers_cedula,pers_nombre1,pers_nombre2,pers_apellido1,pers_apellido2,pers_direccion,pers_telefono,pers_email ) "
-                + "VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into persona (pers_id,pers_cedula,pers_nombre1,pers_nombre2,pers_apellido1,pers_apellido2,pers_direccion,pers_telefono,pers_estado,pers_email ) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         try {
             //  PreparedStatement ps = mpgc.
@@ -146,7 +146,8 @@ OCconection conexion = new OCconection();
             ps.setString(6, getPrs_apellido2());
             ps.setString(7, getPrs_direccion());
             ps.setString(8, getPrs_telefono());
-            ps.setString(9, getPrs_email());
+            ps.setString(9, "Activo");
+            ps.setString(10, getPrs_email());
             ps.executeUpdate();
             return true;
         } catch (SQLException ex) {
@@ -183,7 +184,7 @@ OCconection conexion = new OCconection();
                 + "pers_direccion = ?,"
                 + "pers_telefono = ?,"
                 + "pers_email= ? "
-                + "where pers_id = " + getPrs_ID() ;
+                + "where pers_id = " + getPrs_ID();
 
         try {
             PreparedStatement ps = conexion.getConex().prepareStatement(sql);
@@ -194,6 +195,7 @@ OCconection conexion = new OCconection();
             ps.setString(5, getPrs_apellido2());
             ps.setString(6, getPrs_direccion());
             ps.setString(7, getPrs_telefono());
+
             ps.setString(8, getPrs_email());
 
             ps.executeUpdate();
@@ -205,16 +207,15 @@ OCconection conexion = new OCconection();
 
     }
 
-    public boolean removecliente() {
-
-        String sql = "DELETE FROM  cliente WHERE  cli_id=" + getPrs_ID() ;
-
-        return conexion.accion(sql);
-    }
-
+//    public boolean removecliente() {
+//
+//        String sql = "DELETE FROM  cliente WHERE  cli_id=" + getPrs_ID() ;
+//
+//        return conexion.accion(sql);
+//    }
     public boolean removepersona() {
 
-        String sql = "DELETE FROM  persona WHERE  pers_id =" + getPrs_ID() ;
+        String sql = "update persona set pers_estado = 'inactivo' where pers_id =" + getPrs_ID();
 
         return conexion.accion(sql);
     }
@@ -229,33 +230,32 @@ OCconection conexion = new OCconection();
 //                + " UPPER(nombres) LIKE UPPER ('" + filtro + "') or"
 //                + " UPPER(apellidos) LIKE UPPER ('" + filtro + "') or"
 //                + " UPPER(sexo) LIKE UPPER ('" + filtro + "');";
-        String sql = " select c.cli_id,p.pers_id,p.pers_cedula,p.pers_nombre1,p.pers_nombre2,p.pers_apellido1,p.pers_apellido2,p.pers_direccion,p.pers_telefono,p.pers_email "
+        String sql = " select p.pers_id,p.pers_cedula,p.pers_nombre1,p.pers_nombre2,p.pers_apellido1,p.pers_apellido2,p.pers_direccion,p.pers_telefono,p.pers_email "
                 + " from cliente c "
                 + " join persona p "
                 + " on (p.pers_id = c.pers_id)"
-                + " where "
-                + " UPPER(p.pers_cedula) LIKE UPPER ('" + filtro + "') or"
+                + " where   "
+                + " (UPPER(p.pers_cedula) LIKE UPPER ('" + filtro + "') or"
                 + " UPPER(p.pers_nombre1) LIKE UPPER ('" + filtro + "') or"
                 + " UPPER(p.pers_nombre2) LIKE UPPER ('" + filtro + "') or "
                 + " UPPER(p.pers_apellido1) LIKE UPPER ('" + filtro + "') or "
                 + " UPPER(p.pers_apellido2) LIKE UPPER ('" + filtro + "') or "
-                + " UPPER(p.pers_direccion) LIKE UPPER ('" + filtro + "')  ";
+                + " UPPER(p.pers_direccion) LIKE UPPER ('" + filtro + "')) and"
+                + " p.pers_estado = 'Activo'";
         ResultSet rs = conexion.consulta(sql);
 
         try {
             while (rs.next()) {
                 Cliente cliente = new Cliente();
-
-                cliente.setCl_ID(rs.getInt(1));
-                cliente.setPrs_ID(rs.getInt(2));
-                cliente.setPrs_cedula(rs.getString(3));
-                cliente.setPrs_nombre1(rs.getString(4));
-                cliente.setPrs_nombre2(rs.getString(5));
-                cliente.setPrs_apellido1(rs.getString(6));
-                cliente.setPrs_apellido2(rs.getString(7));
-                cliente.setPrs_direccion(rs.getString(8));
-                cliente.setPrs_telefono(rs.getString(9));
-                cliente.setPrs_email(rs.getString(10));
+                cliente.setPrs_ID(rs.getInt(1));
+                cliente.setPrs_cedula(rs.getString(2));
+                cliente.setPrs_nombre1(rs.getString(3));
+                cliente.setPrs_nombre2(rs.getString(4));
+                cliente.setPrs_apellido1(rs.getString(5));
+                cliente.setPrs_apellido2(rs.getString(6));
+                cliente.setPrs_direccion(rs.getString(7));
+                cliente.setPrs_telefono(rs.getString(8));
+                cliente.setPrs_email(rs.getString(9));
 
                 listaclientes.add(cliente);
             }
@@ -271,6 +271,14 @@ OCconection conexion = new OCconection();
         }
 
         return listaclientes;
+    }
+
+    public boolean verificar_existencia() {
+
+        String sql = "update persona set pers_estado = 'Activo' where pers_cedula ='" + getPrs_cedula() + "'";
+
+        return conexion.accion(sql);
+
     }
 
 }

@@ -78,18 +78,18 @@ public class ControladorCliente {
 
         Holder<Integer> i = new Holder<>(0);
         listaclientes.stream().forEach(cliente -> {
-            estructuratabla.addRow(new Object[10]);
+            estructuratabla.addRow(new Object[9]);
 
-            vista.getTablaclientes().setValueAt(cliente.getCl_ID(), i.value, 0);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_ID(), i.value, 1);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_cedula(), i.value, 2);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_nombre1(), i.value, 3);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_nombre2(), i.value, 4);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_apellido1(), i.value, 5);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_apellido2(), i.value, 6);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_direccion(), i.value, 7);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_telefono(), i.value, 8);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_email(), i.value, 9);
+           
+            vista.getTablaclientes().setValueAt(cliente.getPrs_ID(), i.value, 0);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_cedula(), i.value, 1);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_nombre1(), i.value, 2);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_nombre2(), i.value, 3);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_apellido1(), i.value, 4);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_apellido2(), i.value, 5);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_direccion(), i.value, 6);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_telefono(), i.value, 7);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_email(), i.value, 8);
 
             i.value++;
 
@@ -102,6 +102,7 @@ public class ControladorCliente {
         if (ope == 1) {
             limpiardatos();
             titulo = "Crear Persona";
+               vista.getBtnagregar1().setText("Agregar");
             vista.getLbtitulo().setText("Crear Cliente");
             //   vista.getTxtidpersona().setEnabled(true);
             vista.getDialogclientes().setName("C");
@@ -119,8 +120,9 @@ public class ControladorCliente {
 
             vista.getTxtidcliente().setEnabled(false);
             vista.getDialogclientes().setName("E");
-
+ 
             seleccionarfila();
+            vista.getBtnagregar1().setText("Actualizar");
             //vista.getDlgPersona().setVisible(false);
             vista.getDialogclientes().setTitle(titulo);
             vista.getDialogclientes().setSize(750, 700);
@@ -179,6 +181,7 @@ public class ControladorCliente {
             clienteP.setPrs_telefono(telefono);
             clienteP.setPrs_email(email);
             clienteP.setCl_ID(idperona);
+            
 
 //
 //            Modelocliente cliente = new Modelocliente();
@@ -263,14 +266,14 @@ public class ControladorCliente {
 
             if (fila >= 0) {
                 vista.getTxtidcliente().setText(vista.getTablaclientes().getValueAt(fila, 0).toString());
-                vista.getTxtcedula().setText(vista.getTablaclientes().getValueAt(fila, 2).toString());
-                vista.getTxtnombre().setText(vista.getTablaclientes().getValueAt(fila, 3).toString());
-                vista.getTxtsegundonombre().setText(vista.getTablaclientes().getValueAt(fila, 4).toString());
-                vista.getTxtapellido().setText(vista.getTablaclientes().getValueAt(fila, 5).toString());
-                vista.getTxtsegundoapellido().setText(vista.getTablaclientes().getValueAt(fila, 6).toString());
-                vista.getTxtdireccion().setText(vista.getTablaclientes().getValueAt(fila, 7).toString());
-                vista.getTxttelefono().setText(vista.getTablaclientes().getValueAt(fila, 8).toString());
-                vista.getTxtemail().setText(vista.getTablaclientes().getValueAt(fila, 9).toString());
+                vista.getTxtcedula().setText(vista.getTablaclientes().getValueAt(fila, 1).toString());
+                vista.getTxtnombre().setText(vista.getTablaclientes().getValueAt(fila, 2).toString());
+                vista.getTxtsegundonombre().setText(vista.getTablaclientes().getValueAt(fila, 3).toString());
+                vista.getTxtapellido().setText(vista.getTablaclientes().getValueAt(fila, 4).toString());
+                vista.getTxtsegundoapellido().setText(vista.getTablaclientes().getValueAt(fila, 5).toString());
+                vista.getTxtdireccion().setText(vista.getTablaclientes().getValueAt(fila, 6).toString());
+                vista.getTxttelefono().setText(vista.getTablaclientes().getValueAt(fila, 7).toString());
+                vista.getTxtemail().setText(vista.getTablaclientes().getValueAt(fila, 8).toString());
                 vista.getDialogclientes().setVisible(true);
 
             } else {
@@ -315,7 +318,7 @@ public class ControladorCliente {
                     Modelocliente persona = new Modelocliente();
                     persona.setPrs_ID(idpersona);
 
-                    if (persona.removecliente() && persona.removepersona()) {
+                    if ( persona.removepersona()) {
 
                         JOptionPane.showMessageDialog(vista, "Dato Eliminado");
                         limpiardatos();
@@ -350,18 +353,17 @@ public class ControladorCliente {
 
         Holder<Integer> i = new Holder<>(0);
         listaclientes.stream().forEach(cliente -> {
-            estructuratabla.addRow(new Object[10]);
+            estructuratabla.addRow(new Object[9]);
 
-            vista.getTablaclientes().setValueAt(cliente.getCl_ID(), i.value, 0);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_ID(), i.value, 1);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_cedula(), i.value, 2);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_nombre1(), i.value, 3);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_nombre2(), i.value, 4);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_apellido1(), i.value, 5);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_apellido2(), i.value, 6);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_direccion(), i.value, 7);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_telefono(), i.value, 8);
-            vista.getTablaclientes().setValueAt(cliente.getPrs_email(), i.value, 9);
+           vista.getTablaclientes().setValueAt(cliente.getPrs_ID(), i.value, 0);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_cedula(), i.value, 1);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_nombre1(), i.value, 2);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_nombre2(), i.value, 3);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_apellido1(), i.value, 4);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_apellido2(), i.value, 5);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_direccion(), i.value, 6);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_telefono(), i.value, 7);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_email(), i.value, 8);
 
             i.value++;
 
