@@ -1,4 +1,3 @@
-
 package modelo.MConexion;
 
 import java.sql.PreparedStatement;
@@ -22,14 +21,15 @@ public class ModelProducto extends modelo.Productos {
     public ModelProducto() {
     }
 
-    public ModelProducto(int prd_ID, String prd_nombre, double prd_precio, int prd_IDCategoria, String prd_nombreCategoria) {
-        super(prd_ID, prd_nombre, prd_precio, prd_IDCategoria, prd_nombreCategoria);
+    public ModelProducto(int prd_ID, String prd_nombre, double prd_precio, int prd_IDCategoria, String prd_nombreCategoria, String prd_estado, int NregistrosP) {
+        super(prd_ID, prd_nombre, prd_precio, prd_IDCategoria, prd_nombreCategoria, prd_estado, NregistrosP);
     }
 
     public List<modelo.Productos> getproductos() {
 
         List<modelo.Productos> listaProductos = new ArrayList<>();
-        String sql = "select p.prod_id, p.prod_nombre, p.prod_precio, c.cat_nombre from categoria c, producto p where c.cate_id=p.cate_id order by p.prod_id asc";
+        String sql = "select p.prod_id, p.prod_nombre, p.prod_precio, c.cat_nombre, p.prod_estado from categoria c, producto p where c.cate_id=p.cate_id and prod_estado='ACTIVO'"
+                + "order by p.prod_id asc";
         ResultSet rs = conn.consulta(sql);
         try {
             while (rs.next()) {
@@ -38,6 +38,7 @@ public class ModelProducto extends modelo.Productos {
                 producto.setPrd_nombre(rs.getString(2));
                 producto.setPrd_precio(rs.getDouble(3));
                 producto.setPrd_nombreCategoria(rs.getString(4));
+                producto.setPrd_estado(rs.getString(5));
 
                 listaProductos.add(producto);
             }
@@ -55,8 +56,27 @@ public class ModelProducto extends modelo.Productos {
 
     public boolean setProducto() {
         String sql;
-        sql = "INSERT INTO producto (prod_id, prod_nombre, prod_precio, cate_id)";
-        sql += "VALUES (?,?,?,?)";
+        sql = "INSERT INTO producto (prod_id, prod_nombre, prod_precio, cate_id, prod_estado)";
+        sql += "VALUES (?,?,?,?,?)";
+        try {
+            PreparedStatement ps = conn.conex.prepareStatement(sql);
+            ps.setInt(1, getPrd_ID());
+            ps.setString(2, getPrd_nombre());
+            ps.setDouble(3, getPrd_precio());
+            ps.setInt(4, getPrd_IDCategoria());
+            ps.setString(5, getPrd_estado());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ModelProducto.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
+    public boolean uptadeProducto() {
+        String sql;
+        sql = "UPDATE producto SET prod_id=? ,prod_nombre=?,prod_precio=?,cate_id=? "
+                + "WHERE prod_id='" + getPrd_ID() + "'";
         try {
             PreparedStatement ps = conn.conex.prepareStatement(sql);
             ps.setInt(1, getPrd_ID());
@@ -71,26 +91,8 @@ public class ModelProducto extends modelo.Productos {
         }
     }
 
-    public boolean uptadeProducto() {
-        String sql;
-        sql = "UPDATE producto SET prod_id=? ,prod_nombre=?,prod_precio=?,cate_id=? "
-                + "WHERE prod_id='" + getPrd_ID()+ "'";
-        try {
-            PreparedStatement ps = conn.conex.prepareStatement(sql);
-            ps.setInt(1, getPrd_ID());
-            ps.setString(2, getPrd_nombre());
-            ps.setDouble(3, getPrd_precio());
-            ps.setInt(4, getPrd_IDCategoria());
-            ps.executeUpdate();
-            return true;
-        } catch (SQLException ex) {
-            Logger.getLogger(ModelProducto.class.getName()).log(Level.SEVERE, null, ex);
-            return false;  
-        }
-    }
-
-    public boolean deleteProducto() {
-        String sql = "DELETE FROM producto where prod_id='" + getPrd_ID() + "'";
+    public boolean desactivarProducto() {
+        String sql = "UPDATE producto SET prod_estado='INACTIVO' where prod_id='" + getPrd_ID() + "'";
         return conn.accion(sql);
     }
 
@@ -102,7 +104,7 @@ public class ModelProducto extends modelo.Productos {
 
     public void cargarCategoriaCB(JComboBox cb_categoria) {
 
-        String sql = "select cate_id, cat_nombre from categoria order by cate_id asc";
+        String sql = "select cate_id, cat_nombre from categoria where cate_estado='ACTIVO' order by cate_id asc";
         cb_categoria.removeAllItems();
         try {
             PreparedStatement pst = conn.getConex().prepareStatement(sql);
@@ -132,21 +134,19 @@ public class ModelProducto extends modelo.Productos {
         return Mproducto.getPrd_IDCategoria();
     }
 
-//    public String nombreCategoria() {
-//        List<Productos> nombresCat = new ArrayList<>();
-//        String sql = "select c.cat_nombre from categoria c, producto p where c.cate_id=p.cate_id order by p.prod_id asc";
-//        ResultSet rs = conn.consulta(sql);
-//        try {
-//            while (rs.next()) {
-//                Productos producto = new Productos();
-//                producto.setPrd_nombreCategoria(rs.getString(1));
-//                
-//                nombresCat.add(producto);
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ModelProducto.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return 
-//    }
+    public int countRegistros() {
+        String sql = "select count(*) from producto";
+
+        try {
+            PreparedStatement pst = conn.getConex().prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Mproducto.setNregistrosP(rs.getInt(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ModelCategoria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return Mproducto.getNregistrosP();
+    }
 
 }

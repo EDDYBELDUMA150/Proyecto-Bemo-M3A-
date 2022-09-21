@@ -46,7 +46,7 @@ public class ControladorCategoria {
         vistaCat.getBtCancelarcat().addActionListener(l -> vistaCat.getJdlCat().dispose());
         vistaCat.getBtEliminarCat().addActionListener(l -> eliminarCategoria());
         vistaCat.getBtBuscar().addActionListener(l -> busqueda(vistaCat.getTxtBuscarCat().getText()));
-        vistaCat.getBtSalirProductos().addActionListener(l -> cerrarVentana());
+        vistaCat.getBtSalirProductos().addActionListener(l -> vistaCat.dispose());
         vistaCat.getRbGenerar().addActionListener(l -> vistaCat.getTxtCodigocat().setEnabled(false));
         vistaCat.getRbEditar().addActionListener(l -> vistaCat.getTxtCodigocat().setEnabled(true));
         vistaCat.getJtbCate().addMouseListener(new MouseAdapter() {
@@ -70,27 +70,25 @@ public class ControladorCategoria {
         estucturaTabla = (DefaultTableModel) vistaCat.getJtbCate().getModel();
         estucturaTabla.setNumRows(0);
 
-        List<Categoria> listcate = modeloCat.getcategorias();
-        
+        List<Categoria> listcate = modeloCat.getCategorias();
+
         Holder<Integer> i = new Holder<>(0);
         listcate.stream().forEach(cat -> {
-            estucturaTabla.addRow(new Object[2]);
+            estucturaTabla.addRow(new Object[3]);
             vistaCat.getJtbCate().setValueAt(cat.getCtg_ID(), i.value, 0);
             vistaCat.getJtbCate().setValueAt(cat.getCtg_nombre(), i.value, 1);
+            vistaCat.getJtbCate().setValueAt(cat.getCtg_estado(), i.value, 2);
             i.value++;
         });
-        
     }
 
     private void abrirdialog(int opcion) {
-        TableModel modelo = vistaCat.getJtbCate().getModel();
-        int indiceUltimaFila = modelo.getRowCount() - 1;
-        int id_categoria;
-        if (indiceUltimaFila == -1) {
-            id_categoria = 1;
+        int CRg = modeloCat.countRegistros();
+        
+        if (CRg == 0) {
+            CRg = 1;
         } else {
-            id_categoria = Integer.parseInt(modelo.getValueAt(indiceUltimaFila, 0).toString());
-            id_categoria++;
+            CRg++;
         }
 
         if (opcion == 1) {
@@ -99,12 +97,12 @@ public class ControladorCategoria {
             vistaCat.getJdlCat().setName("C");
             vistaCat.getJdlCat().setVisible(true);;
             vistaCat.getJdlCat().setSize(600, 250);
-            vistaCat.getTxtCodigocat().setText(String.valueOf(id_categoria));
+            vistaCat.getTxtCodigocat().setText(String.valueOf(CRg));
             vistaCat.getBtAgregarCAT().setText("Agregar");
             vistaCat.getJdlCat().setLocationRelativeTo(vistaCat);
-            vaciasCampos();
+            vistaCat.getTxtNombrecat().setText("");
         } else {
-            
+
             vistaCat.getJdlCat().setName("E");
 
             int fila = vistaCat.getJtbCate().getSelectedRow();
@@ -131,14 +129,14 @@ public class ControladorCategoria {
             int id = Integer.parseInt(vistaCat.getTxtCodigocat().getText().toString());
             String nombreCat = vistaCat.getTxtNombrecat().getText().toString().toUpperCase();
 
-            modelo.MConexion.ModelCategoria categoria = new modelo.MConexion.ModelCategoria();
-            categoria.setCtg_ID(id);
-            categoria.setCtg_nombre(nombreCat);
+            modeloCat.setCtg_ID(id);
+            modeloCat.setCtg_nombre(nombreCat);
+            modeloCat.setCtg_estado("ACTIVO");
 
-            if (categoria.setCategoria()) {
+            if (modeloCat.setCategoria()) {
                 JOptionPane.showMessageDialog(vistaCat, "Categoría creado!!");
-                vaciasCampos();
                 cargarDatosCat();
+                vistaCat.getJdlCat().dispose();
             } else {
                 JOptionPane.showMessageDialog(vistaCat, "Error: verifique que los campos no estén vacios");
             }
@@ -147,11 +145,10 @@ public class ControladorCategoria {
                 int id = Integer.parseInt(vistaCat.getTxtCodigocat().getText().toString());
                 String nombreCat = vistaCat.getTxtNombrecat().getText().toString().toUpperCase();
 
-                modelo.MConexion.ModelCategoria categoria = new modelo.MConexion.ModelCategoria();
-                categoria.setCtg_ID(id);
-                categoria.setCtg_nombre(nombreCat);
+                modeloCat.setCtg_ID(id);
+                modeloCat.setCtg_nombre(nombreCat);
 
-                if (categoria.uptadeCategoria()) {
+                if (modeloCat.uptadeCategoria()) {
                     JOptionPane.showMessageDialog(vistaCat, "Categoría modificada con exito!!");
                     cargarDatosCat();
                 } else {
@@ -159,7 +156,6 @@ public class ControladorCategoria {
                 }
             }
         }
-
     }
 
     public void eliminarCategoria() {
@@ -169,14 +165,13 @@ public class ControladorCategoria {
             if (fila >= 0) {
                 int id = Integer.parseInt(vistaCat.getJtbCate().getValueAt(fila, 0).toString());
 
-                ModelCategoria categ = new ModelCategoria();
-                categ.setCtg_ID(id);
+                modeloCat.setCtg_ID(id);
 
                 if (vistaCat.getJtbCate().getRowSelectionAllowed()) {
 
                     int a = JOptionPane.showConfirmDialog(null, "Deseas eliminar " + vistaCat.getTxtNombrecat().getText().toString());
                     if (a == 0) {
-                        categ.deleteCategoria();
+                        modeloCat.desactivarProducto();
                         JOptionPane.showMessageDialog(vistaCat, "Se eliminado " + vistaCat.getTxtNombrecat().getText().toString());
                         cargarDatosCat();
                     }
@@ -194,18 +189,16 @@ public class ControladorCategoria {
 
         String nombre = vistaCat.getTxtBuscarCat().getText();
 
-        ModelCategoria categ = new ModelCategoria();
+        modeloCat.setCtg_nombre(nombre);
+        modeloCat.buscarCategoria();
 
-        categ.setCtg_nombre(nombre);
-        categ.buscarCategoria();
-
-        List<Categoria> listcat = categ.getcategorias();
+        List<Categoria> listcat = modeloCat.getCategorias();
 
         Stream<Categoria> catgr = listcat.stream().filter(c -> {
             return c.getCtg_nombre().equalsIgnoreCase(nombre);
         });
 
-        listcat = (ArrayList<Categoria>) catgr.collect(Collectors.toList());
+        listcat = catgr.collect(Collectors.toList());
         llenar(listcat);
 
     }
@@ -239,15 +232,4 @@ public class ControladorCategoria {
         }
     }
 
-    public void vaciasCampos() {
-        vistaCat.getTxtNombrecat().setText("");
-        int sumar = Integer.parseInt(vistaCat.getTxtCodigocat().getText()) + 1;
-        vistaCat.getTxtCodigocat().setText(String.valueOf(sumar));
-        
-    }
-
-    public void cerrarVentana() {
-        Categorias vcat = new Categorias();
-        vcat.dispose();
-    }
 }

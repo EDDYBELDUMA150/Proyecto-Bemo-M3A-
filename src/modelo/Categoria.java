@@ -13,15 +13,17 @@ public class Categoria {
     
     private int ctg_ID;
     private String ctg_nombre;
+    private String ctg_estado;
+    private int Nregistros;
 
     public Categoria() {
     }
 
-    
-
-    public Categoria(int ctg_ID, String ctg_nombre) {
+    public Categoria(int ctg_ID, String ctg_nombre, String ctg_estado, int Nregistros) {
         this.ctg_ID = ctg_ID;
         this.ctg_nombre = ctg_nombre;
+        this.ctg_estado = ctg_estado;
+        this.Nregistros = Nregistros;
     }
 
     public int getCtg_ID() {
@@ -39,7 +41,21 @@ public class Categoria {
     public void setCtg_nombre(String ctg_nombre) {
         this.ctg_nombre = ctg_nombre;
     }
-    
-    
+
+    public String getCtg_estado() {
+        return ctg_estado;
+    }
+
+    public void setCtg_estado(String ctg_estado) {
+        this.ctg_estado = ctg_estado;
+    }
+
+    public int getNregistros() {
+        return Nregistros;
+    }
+
+    public void setNregistros(int Nregistros) {
+        this.Nregistros = Nregistros;
+    }
     
 }

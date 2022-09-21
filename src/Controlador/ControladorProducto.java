@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.xml.ws.Holder;
 import modelo.Categoria;
+import modelo.MConexion.ModelCategoria;
 import modelo.MConexion.ModelProducto;
 import modelo.MConexion.ModelProducto;
 import modelo.OCconection;
@@ -29,11 +30,13 @@ public class ControladorProducto {
     private modelo.MConexion.ModelProducto modeloPro;
     private VIsta.RegistrosdeFacturasGastosBalances vistaPro;
     private modelo.MConexion.ModelCategoria modcate;
-    private VIsta.Categorias vistcate = new VIsta.Categorias();
+    private VIsta.Categorias vistcate;
 
-    public ControladorProducto(ModelProducto modeloPro, RegistrosdeFacturasGastosBalances vistaPro) {
+    public ControladorProducto(ModelProducto modeloPro, RegistrosdeFacturasGastosBalances vistaPro, ModelCategoria modcate, Categorias vistcate) {
         this.modeloPro = modeloPro;
         this.vistaPro = vistaPro;
+        this.modcate = modcate;
+        this.vistcate = vistcate;
         vistaPro.setVisible(true);
         cargarDatos();
         habilitarBotones();
@@ -41,6 +44,7 @@ public class ControladorProducto {
         GenerarEditarCodigo();
     }
 
+   
     public void iniciaControl() {
         vistaPro.getBtPrevisualizar().addActionListener(l-> previa());
         vistaPro.getBtVerCategoria().addActionListener(l -> abrirCategoria());
@@ -74,25 +78,24 @@ public class ControladorProducto {
 
         Holder<Integer> i = new Holder<>(0);
         listPro.stream().forEach(Pro -> {
-            estucturaTabla.addRow(new Object[4]);
+            estucturaTabla.addRow(new Object[5]);
             vistaPro.getTbProductos().setValueAt(Pro.getPrd_ID(), i.value, 0);
             vistaPro.getTbProductos().setValueAt(Pro.getPrd_nombre(), i.value, 1);
             vistaPro.getTbProductos().setValueAt(Pro.getPrd_precio(), i.value, 2);
             vistaPro.getTbProductos().setValueAt(Pro.getPrd_nombreCategoria(), i.value, 3);
+            vistaPro.getTbProductos().setValueAt(Pro.getPrd_estado(), i.value, 4);
 
             i.value++;
         });
     }
-
+    
     private void abrirdialog(int opcion) {
-        TableModel modelo = vistaPro.getTbProductos().getModel();
-        int indiceUltimaFila = modelo.getRowCount() - 1;
-        int id_producto;
-        if (indiceUltimaFila == -1) {
-            id_producto = 1;
+        int CRg = modeloPro.countRegistros();
+        
+        if (CRg == 0) {
+            CRg = 1;
         } else {
-            id_producto = Integer.parseInt(modelo.getValueAt(indiceUltimaFila, 0).toString());
-            id_producto++;
+            CRg++;
         }
 
         if (opcion == 1) {
@@ -101,7 +104,7 @@ public class ControladorProducto {
             vistaPro.getJdProductos().setName("C");
             vistaPro.getJdProductos().setVisible(true);
             vistaPro.getJdProductos().setSize(600, 500);
-            vistaPro.getTxtCodPro().setText(String.valueOf(id_producto));
+            vistaPro.getTxtCodPro().setText(String.valueOf(CRg));
             vistaPro.getBtAgregarModi().setText("Agregar");
             vaciasCampos();
         } else {
@@ -127,7 +130,7 @@ public class ControladorProducto {
         }
         vistaPro.getRbGenerar().setSelected(true);
     }
-
+    
     public void crearEditarProducto() {
         if (vistaPro.getJdProductos().getName().contentEquals("C")) {
             int id = Integer.parseInt(vistaPro.getTxtCodPro().getText());
@@ -138,6 +141,7 @@ public class ControladorProducto {
             modeloPro.setPrd_nombre(nombrePro);
             modeloPro.setPrd_precio(Double.parseDouble(precio));
             modeloPro.setPrd_IDCategoria(modeloPro.codProducto(vistaPro.getCbProCate().getSelectedItem().toString()));
+            modeloPro.setPrd_estado("ACTIVO");
 
             if (modeloPro.setProducto()) {
                 JOptionPane.showMessageDialog(vistaPro, "Categoría creado!!");
@@ -167,7 +171,7 @@ public class ControladorProducto {
         }
 
     }
-
+    
     public void eliminarProducto() {
         try {
             int fila = vistaPro.getTbProductos().getSelectedRow();
@@ -181,7 +185,7 @@ public class ControladorProducto {
 
                     int a = JOptionPane.showConfirmDialog(null, "Deseas eliminar " + vistaPro.getTxtPronombre().getText().toString());
                     if (a == 0) {
-                        modeloPro.deleteProducto();
+                        modeloPro.desactivarProducto();
                         JOptionPane.showMessageDialog(vistaPro, "Se eliminado " + vistaPro.getTxtPronombre().getText().toString());
                         cargarDatos();
                     }
@@ -194,15 +198,15 @@ public class ControladorProducto {
             JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }
     }
-
-    private void llenar(List<Categoria> lista) {
+    
+    private void llenar(List<Productos> lista) {
         DefaultTableModel estucturaTabla;
         estucturaTabla = (DefaultTableModel) vistaPro.getTbProductos().getModel();
         estucturaTabla.setRowCount(0);
 
         lista.stream().forEach(p1 -> {
-            String[] persona1 = {String.valueOf(p1.getCtg_ID()), p1.getCtg_nombre()};
-            estucturaTabla.addRow(persona1);
+            String[] product1 = {String.valueOf(p1.getPrd_ID()), p1.getPrd_nombre(), String.valueOf(p1.getPrd_precio()), p1.getPrd_nombreCategoria(), p1.getPrd_estado()};
+            estucturaTabla.addRow(product1);
         });
     }
 
@@ -223,13 +227,12 @@ public class ControladorProducto {
             vistaPro.getBtProModif().setEnabled(false);
         }
     }
-
+    
     private void abrirCategoria() {
-
-        ControladorCategoria contcate = new ControladorCategoria(modcate, vistcate);
+        Controlador.ControladorCategoria contcate = new Controlador.ControladorCategoria(modcate, vistcate);
         contcate.inicioControl();
     }
-
+    
     private void vaciasCampos() {
         vistaPro.getTxtPronombre().setText("");
         vistaPro.getTxtProprecio().setText("");
@@ -241,5 +244,4 @@ public class ControladorProducto {
                 + ""+vistaPro.getTxtProprecio().getText()+", "+vistaPro.getCbProCate().getSelectedItem().toString();
         vistaPro.getTxtPrevista().setText(pv);
     }
-
 }

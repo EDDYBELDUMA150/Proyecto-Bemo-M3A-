@@ -70,10 +70,13 @@ public class ControlPrincipal {
 
     private void abrirprodcutos() {
         VIsta.RegistrosdeFacturasGastosBalances vistaProd = new RegistrosdeFacturasGastosBalances();
+        VIsta.Categorias vistaCTG = new VIsta.Categorias();
+        
+        modelo.MConexion.ModelCategoria modCtg = new modelo.MConexion.ModelCategoria();
         modelo.MConexion.ModelProducto modprod = new modelo.MConexion.ModelProducto();
         vistamenuprin.getJdpprincipal().add(vistaProd);
         
-        Controlador.ControladorProducto controlpro = new ControladorProducto(modprod, vistaProd);
+        Controlador.ControladorProducto controlpro = new ControladorProducto(modprod, vistaProd, modCtg, vistaCTG);
         controlpro.iniciaControl();
         
     }
