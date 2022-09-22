@@ -9,9 +9,11 @@ package Controlador;
 
 import VIsta.RegistrosdeFacturasGastosBalances;
 import VIsta.VistaProveedor;
+import VIsta.Vista_pedidoPastel;
 import VIsta.vistacliente;
 import VIsta.vistamenuprincipal;
 import modelo.MConexion.ModeloProveedor;
+import modelo.MConexion.Modelo_PedidoPastel;
 import modelo.MConexion.Modelocliente;
 
 //import modelo.Modelocliente;
@@ -39,6 +41,7 @@ public class ControlPrincipal {
         vistamenuprin.getBtncrudclientes().addActionListener(l -> crudclientes());
         vistamenuprin.getBtncrudproveedores().addActionListener(l->crudproveedores());
         vistamenuprin.getBtProductos().addActionListener(l-> abrirprodcutos());
+        vistamenuprin.getBtn_pedido_pastel().addActionListener(l-> crud_pedido());
     }
 
     private void crudclientes() {
@@ -81,4 +84,12 @@ public class ControlPrincipal {
         
     }
 
+     private void crud_pedido() {
+
+        Modelo_PedidoPastel model_pastel = new Modelo_PedidoPastel();
+        Vista_pedidoPastel vista_pedidos = new Vista_pedidoPastel();
+        vistamenuprin.getJdpprincipal().add(vista_pedidos);
+        Controlador_pedidopastel controler_pastel = new Controlador_pedidopastel(model_pastel, vista_pedidos);
+        controler_pastel.iniciarcontrol();
+    }
 }
