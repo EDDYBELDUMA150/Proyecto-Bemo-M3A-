@@ -38,6 +38,14 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         this.jToolBar1 = jToolBar1;
     }
 
+    public JButton getBtn_pedido_pastel() {
+        return btn_pedido_pastel;
+    }
+
+    public void setBtn_pedido_pastel(JButton btn_pedido_pastel) {
+        this.btn_pedido_pastel = btn_pedido_pastel;
+    }
+
     public JDesktopPane getJdpprincipal() {
         return jdpprincipal;
     }
@@ -75,10 +83,11 @@ public class vistamenuprincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        btncrudclientes = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         btProductos = new javax.swing.JButton();
         btncrudproveedores = new javax.swing.JButton();
+        btncrudclientes = new javax.swing.JButton();
+        btn_pedido_pastel = new javax.swing.JButton();
         jdpprincipal = new javax.swing.JDesktopPane();
         jToolBar2 = new javax.swing.JToolBar();
         jButton2 = new javax.swing.JButton();
@@ -95,17 +104,6 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar1.setBorder(null);
         jToolBar1.setRollover(true);
-
-        btncrudclientes.setBackground(new java.awt.Color(255, 255, 255));
-        btncrudclientes.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        btncrudclientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/cliente.png"))); // NOI18N
-        btncrudclientes.setText("Cliente");
-        btncrudclientes.setBorderPainted(false);
-        btncrudclientes.setFocusable(false);
-        btncrudclientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btncrudclientes.setMargin(new java.awt.Insets(2, 14, 2, 16));
-        btncrudclientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btncrudclientes);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
@@ -140,7 +138,24 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         btncrudproveedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btncrudproveedores);
 
-        getContentPane().add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 0, 390, 90));
+        btncrudclientes.setBackground(new java.awt.Color(255, 255, 255));
+        btncrudclientes.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
+        btncrudclientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/cliente.png"))); // NOI18N
+        btncrudclientes.setText("Cliente");
+        btncrudclientes.setBorderPainted(false);
+        btncrudclientes.setFocusable(false);
+        btncrudclientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btncrudclientes.setMargin(new java.awt.Insets(2, 14, 2, 16));
+        btncrudclientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btncrudclientes);
+
+        btn_pedido_pastel.setText("Pedidos");
+        btn_pedido_pastel.setFocusable(false);
+        btn_pedido_pastel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_pedido_pastel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btn_pedido_pastel);
+
+        getContentPane().add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 0, 560, 90));
 
         jdpprincipal.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -183,7 +198,7 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(jButton3);
 
-        getContentPane().add(jToolBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1290, 90));
+        getContentPane().add(jToolBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 90));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -234,6 +249,7 @@ public class vistamenuprincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btProductos;
+    private javax.swing.JButton btn_pedido_pastel;
     private javax.swing.JButton btncrudclientes;
     private javax.swing.JButton btncrudproveedores;
     private javax.swing.JButton jButton1;
