@@ -100,8 +100,12 @@ public class ModelCategoria extends modelo.Categoria {
     }
     
     public int countRegistros() {
-        String sql = "select count(*) from categoria";
-
+        String sql = "select cate_id "
+                + "from categoria "
+                + "where cate_id ="
+                + " ("
+                + "   select max(cate_id) from categoria"
+                + " )";
         try {
             PreparedStatement pst = conn.getConex().prepareStatement(sql);
             ResultSet rs = pst.executeQuery();
