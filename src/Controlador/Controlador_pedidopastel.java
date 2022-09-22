@@ -8,6 +8,8 @@ package Controlador;
 import VIsta.Vista_pedidoPastel;
 import VIsta.vistacliente;
 import java.awt.Image;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
@@ -69,8 +71,38 @@ public class Controlador_pedidopastel {
         vista_pedido.getBtn_buscar_cliente().addActionListener(l -> abrirDialogocliente());
         vista_pedido.getBtn_buscar_producto().addActionListener(l -> abrirDialogoProducto());
         vista_pedido.getBtn_aceptar_producto().addActionListener(l -> cargar_producto());
-//        vista_pedido.getBtn_actualizar_tabla().addActionListener(l -> actualizar_tabla());
+       vista_pedido.getBtn_actualizar_tabla().addActionListener(l -> cargardatos());
 //        vista_pedido.getBtn_nuevo_cliente().addActionListener(l -> abrirDialogocliente(1));
+
+        vista_pedido.getTxt_busquedapedido().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+
+                buscarPedido();
+            }
+
+        });
+        
+        vista_pedido.getTxt_buscar_producto().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+
+                buscarProducto();
+            }
+
+        });
+        
+        vista_pedido.getTxt_buscar_cliente().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyReleased(KeyEvent ke) {
+
+                busqueda_cliente();
+            }
+
+        });
     }
 
     public void cargardatos() {
@@ -350,7 +382,7 @@ public class Controlador_pedidopastel {
             int cantidad = Integer.parseInt(vista_pedido.getTxt_cantidad().getText());
             String especificacion = vista_pedido.getTxt_area_especificacion().getText();
             double abono = Double.parseDouble(vista_pedido.getTxt_abono().getText());
-            String estado = "Pendiente";
+            String estado = "Activo";
             try {
                 FileInputStream img = new FileInputStream(jfc.getSelectedFile());
                 int largo = (int) jfc.getSelectedFile().length();
@@ -443,5 +475,82 @@ public class Controlador_pedidopastel {
         }
     }
      
-     
+      public void buscarPedido() {
+
+        String filtro = vista_pedido.getTxt_busquedapedido().getText() + "%";
+        DefaultTableModel estructuratabla;
+        estructuratabla = (DefaultTableModel) vista_pedido.getTabla_pedido().getModel();
+        estructuratabla.setNumRows(0);
+        List<PedidoPastel> listaPedido = modelo_pedido.buscarpedido(filtro);
+
+        Holder<Integer> i = new Holder<>(0);
+        listaPedido.stream().forEach(pedido -> {
+            estructuratabla.addRow(new Object[10]);
+
+           vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_ID(), i.value, 0);
+            vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_fechapedido(), i.value, 1);
+            vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_fechaentrga(), i.value, 2);
+            vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_nombrecliente(), i.value, 3);
+            vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_nombreproducto(), i.value, 4);
+            vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_cantidad(), i.value, 5);
+            vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_especificacion(), i.value, 6);
+            vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_abono(), i.value, 7);
+            vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_estado(), i.value, 8);
+            vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_fotopastel(), i.value, 9);
+            i.value++;
+
+        });
+
+    }
+      
+      public void buscarProducto() {
+
+        String filtro = vista_pedido.getTxt_buscar_producto().getText() + "%";
+        DefaultTableModel estructuratabla;
+        estructuratabla = (DefaultTableModel) vista_pedido.getTabla_productos().getModel();
+        estructuratabla.setNumRows(0);
+        List<Productos> listaproducto = modelo_pedido.busquedaProducto(filtro);
+
+        Holder<Integer> i = new Holder<>(0);
+        listaproducto.stream().forEach(produ -> {
+            estructuratabla.addRow(new Object[3]);
+
+           vista_pedido.getTabla_productos().setValueAt(produ.getPrd_ID(), i.value, 0);
+            vista_pedido.getTabla_productos().setValueAt(produ.getPrd_nombre(), i.value, 1);
+            vista_pedido.getTabla_productos().setValueAt(produ.getPrd_precio(), i.value, 2);
+            
+            i.value++;
+
+        });
+        
+        
+
+    }
+      
+      public void busqueda_cliente() {
+       String filtro = vista_pedido.getTxt_buscar_cliente().getText() + "%";
+          DefaultTableModel estructuraTabla;
+        estructuraTabla = (DefaultTableModel) vista_pedido.getTabla_cliente_pedido().getModel();
+        estructuraTabla.setNumRows(0);
+        List<Cliente> listap = modelo_pedido.busqueda_cliente(filtro);
+        i = 0;
+
+        if (!listap.isEmpty()) {
+            listap.stream().forEach(pe -> {
+                estructuraTabla.addRow(new Object[4]);
+
+                vista_pedido.getTabla_cliente_pedido().setValueAt(pe.getCl_ID(), i, 0);
+                vista_pedido.getTabla_cliente_pedido().setValueAt(pe.getPrs_cedula(), i, 1);
+                vista_pedido.getTabla_cliente_pedido().setValueAt(pe.getPrs_nombre1(), i, 2);
+                vista_pedido.getTabla_cliente_pedido().setValueAt(pe.getPrs_apellido1(), i, 3);
+
+                i = i + 1;
+
+            });
+
+        } else {
+//            JOptionPane.showMessageDialog(vista_pedido, "No se encuentra el registro");
+        }
+
+    }
 }
