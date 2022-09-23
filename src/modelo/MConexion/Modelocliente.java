@@ -272,13 +272,23 @@ public class Modelocliente extends Cliente {
 
         return listaclientes;
     }
+    
+    
 
     public boolean verificar_existencia() {
 
-        String sql = "update persona set pers_estado = 'Activo' where pers_cedula ='" + getPrs_cedula() + "'";
+        String sql = "update persona  set "
+                + "    pers_nombre1 = '" + getPrs_nombre1() + "',"
+                + "    pers_nombre2 ='" + getPrs_nombre2() + "',"
+                + "    pers_apellido1 = '" + getPrs_apellido1() + "',"
+                + "     pers_apellido2 = '" + getPrs_apellido2() + "',"
+                + "     pers_direccion = '" + getPrs_direccion() + "',"
+                + "      pers_telefono ='" + getPrs_telefono() + "',"
+                + "    pers_email= '" + getPrs_email() + "',"
+                + "     pers_estado = 'Activo'"
+                + "     where pers_cedula = '" + getPrs_cedula() + "'";
 
         return conexion.accion(sql);
-
     }
 
 }

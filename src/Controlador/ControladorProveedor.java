@@ -18,6 +18,7 @@ import modelo.MConexion.ModeloProveedor;
 //import modelo.ModeloProveedor;
 //import modelo.Modelocliente;
 import modelo.Proveedor;
+import modelo.Validaciones;
 //import vistas.VistaProveedor;
 
 /**
@@ -28,6 +29,7 @@ public class ControladorProveedor {
 
     private ModeloProveedor modelo;
     private VistaProveedor vista;
+    Validaciones validar = new Validaciones();
 
     public ControladorProveedor(ModeloProveedor modelo, VistaProveedor vista) {
         this.modelo = modelo;
@@ -44,7 +46,7 @@ public class ControladorProveedor {
         vista.getBtncancelar().addActionListener(l -> btncancelar());
         vista.getBtnagregar1().addActionListener(l -> crearEditarproveedor());
         vista.getBtneleminar().addActionListener(l -> eleiminarprovvedor());
-        vista.getBtnlimpiar().addActionListener(l->limpiardatos());
+        vista.getBtnlimpiar().addActionListener(l -> limpiardatos());
         vista.getTxtbuscarproveedor().addKeyListener(new KeyAdapter() {
 
             @Override
@@ -91,7 +93,7 @@ public class ControladorProveedor {
     private void abrirDialogo(int ope) {
         String titulo;
         if (ope == 1) {
-             limpiardatos();
+            limpiardatos();
             titulo = "Crear Proveedor";
             vista.getLbtitulo().setText("Crear Proveedor");
             //   vista.getTxtidpersona().setEnabled(true);
@@ -130,12 +132,10 @@ public class ControladorProveedor {
     }
 
     private void crearEditarproveedor() {
-        
-        
+
         int idperona = 0;
-       // int idcliente = 0;
+        // int idcliente = 0;
         if (vista.getJdialogproveedor().getName().contentEquals("C")) {
-            
 
             if (modelo.numeroidperona() == 0) {
                 idperona = 1;
@@ -176,27 +176,21 @@ public class ControladorProveedor {
             proveedor.setPrv_ID(idperona);
             proveedor.setPrv_empresa(nombreempresa);
 
-//
-//            Modelocliente cliente = new Modelocliente();
-//            cliente.setCl_ID(3);
-//            cliente.setPrs_ID(3);
-            if (proveedor.setpersona() && proveedor.setproveedor()) {
-                JOptionPane.showMessageDialog(vista, "Proveedor registrado exitosamente");
-                vista.setVisible(true);
-                vista.getJdialogproveedor().setVisible(false);
-                cargardatos();
-                limpiardatos();
-                     
-//                if (clienteP.setcliente()) {
-//                    JOptionPane.showMessageDialog(vista, "Cliente registrada exitosamente");
-//                    vista.setVisible(true);
-//                    vista.getDialogclientes().setVisible(false);
-//                } else {
-//                    JOptionPane.showMessageDialog(vista, "fallo cliente");
-//                }
+            if (espacios_vacios() == true) {
+                if (validado() == true) {
+                    if (proveedor.setpersona() && proveedor.setproveedor()) {
+                        JOptionPane.showMessageDialog(vista, "Proveedor registrado exitosamente");
+                        vista.setVisible(true);
+                        vista.getJdialogproveedor().setVisible(false);
+                        cargardatos();
+                        limpiardatos();
 
-            } else {
-                JOptionPane.showMessageDialog(vista, "fallo persona");
+                    } else {
+                        JOptionPane.showMessageDialog(vista, "fallo persona");
+
+                    }
+
+                }
 
             }
 
@@ -231,19 +225,24 @@ public class ControladorProveedor {
                     proveedor.setPrs_email(email);
                     proveedor.setPrv_ID(id);
                     proveedor.setPrv_empresa(nombreempresa);
+                    if (espacios_vacios() == true) {
+                        if (validado() == true) {
+                            if (proveedor.updatepersonaprovee() && proveedor.updateprovedor()) {
 
-                    if (proveedor.updatepersonaprovee() && proveedor.updateprovedor()) {
+                                JOptionPane.showMessageDialog(vista, "Proveedor Actualizada");
+                                limpiardatos();
 
-                        JOptionPane.showMessageDialog(vista, "Proveedor Actualizada");
-                         limpiardatos();
+                                cargardatos();
 
-                        cargardatos();
+                                vista.getJdialogproveedor().setVisible(false);
 
-                        vista.getJdialogproveedor().setVisible(false);
+                            } else {
+                                JOptionPane.showMessageDialog(vista, "Error , datos No Actualizados");
+                                //   JOptionPane.showConfirmDialog(vista, "Error , datos No guardados");
+                            }
 
-                    } else {
-                        JOptionPane.showMessageDialog(vista, "Error , datos No Actualizados");
-                        //   JOptionPane.showConfirmDialog(vista, "Error , datos No guardados");
+                        }
+
                     }
 
                 }
@@ -301,10 +300,10 @@ public class ControladorProveedor {
                     ModeloProveedor proveedor = new ModeloProveedor();
                     proveedor.setPrs_ID(idpersona);
 
-                    if ( proveedor.removepersona()) {
+                    if (proveedor.removepersona()) {
 
                         JOptionPane.showMessageDialog(vista, "Dato Eliminado");
-                            limpiardatos();
+                        limpiardatos();
                         cargardatos();
                         vista.getJdialogproveedor().setVisible(false);
 
@@ -368,6 +367,92 @@ public class ControladorProveedor {
         vista.getTxttelefono().setText("");
         vista.getTxtemail().setText("");
         vista.getTxtnombreempresa().setText("");
+
+    }
+
+    public boolean validado() {
+        boolean vali = true;
+
+        if (!validar.Validarcedula(vista.getTxtcedula().getText()) || (vista.getTxtcedula().getText().length() < 10) || (vista.getTxtcedula().getText().length() > 10)) {
+            JOptionPane.showMessageDialog(null, "Cedula Invalida ");
+            vali = false;
+
+        }
+        if (!validar.Validarnombreapellido(vista.getTxtnombre().getText()) || !validar.Validarnombreapellido(vista.getTxtsegundonombre().getText())) {
+            JOptionPane.showMessageDialog(null, "El Nombre debe comensar con Una letra Mayuscula, No se permiten Espacios");
+            vali = false;
+
+        }
+        if (!validar.Validarnombreapellido(vista.getTxtapellido().getText()) || !validar.Validarnombreapellido(vista.getTxtsegundoapellido().getText())) {
+            JOptionPane.showMessageDialog(null, "El Apellido debe comensar con Una letra Mayuscula, No se permiten Espacios");
+            vali = false;
+
+        }
+        if (!validar.Validarcorreo(vista.getTxtemail().getText())) {
+            JOptionPane.showMessageDialog(null, "Correo  Invalido ");
+            vali = false;
+
+        }
+        if (!validar.validartelefono(vista.getTxttelefono().getText())) {
+            JOptionPane.showMessageDialog(null, "Numero de Telefono  Invalido, maximo  10 numeros");
+            vali = false;
+
+        }
+
+        return vali;
+
+    }
+
+    public boolean espacios_vacios() {
+
+        boolean espacio = true;
+
+        if (vista.getTxtcedula().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Cedula  Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxtnombre().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Primer Nombre  Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxtsegundonombre().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Segundo Nombre  Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxtapellido().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Primer Apellido  Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxtsegundoapellido().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Segundo Apellido  Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxttelefono().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Telefono o Celular Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxtdireccion().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Direccion  Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxtemail().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Email  Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxtnombreempresa().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo  Nombre Empresa Vacio");
+
+            espacio = false;
+        }
+        return espacio;
 
     }
 

@@ -234,44 +234,60 @@ public class vistacliente extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
 
         dialogclientes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtnombre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dialogclientes.getContentPane().add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 149, 250, 34));
+
+        txtsegundonombre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dialogclientes.getContentPane().add(txtsegundonombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 149, 250, 34));
+
+        txtapellido.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dialogclientes.getContentPane().add(txtapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 220, 250, 34));
+
+        txtsegundoapellido.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dialogclientes.getContentPane().add(txtsegundoapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 220, 250, 34));
+
+        txtcedula.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dialogclientes.getContentPane().add(txtcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 322, 250, 34));
+
+        txttelefono.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dialogclientes.getContentPane().add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 322, 250, 34));
+
+        txtdireccion.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dialogclientes.getContentPane().add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 414, 654, 34));
+
+        txtemail.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         dialogclientes.getContentPane().add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 492, 356, 34));
 
-        jLabel1.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel1.setText("Nombre:");
         dialogclientes.getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 124, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setText("Segundo nombre:");
         dialogclientes.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 124, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setText("Apellido:");
         dialogclientes.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 195, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setText("Segundo apellido:");
         dialogclientes.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 195, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel6.setText("Cedula/RUC/RISE:");
         dialogclientes.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 297, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
-        jLabel7.setText("Teléfono:");
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel7.setText(" Celular :");
         dialogclientes.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 297, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel8.setText("Dirección:");
         dialogclientes.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 389, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("STXihei", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel9.setText("Email:");
         dialogclientes.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 467, -1, -1));
 
@@ -287,16 +303,17 @@ public class vistacliente extends javax.swing.JInternalFrame {
         btnlimpiar.setText("Limpiar Campos");
         dialogclientes.getContentPane().add(btnlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 560, 200, 60));
 
-        txtidcliente.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtidcliente.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         txtidcliente.setText("jTextField2");
-        dialogclientes.getContentPane().add(txtidcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
+        dialogclientes.getContentPane().add(txtidcliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 69, 50, 50));
 
         lbtitulo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lbtitulo.setText("jLabel2");
-        dialogclientes.getContentPane().add(lbtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 250, 60));
+        dialogclientes.getContentPane().add(lbtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 0, 250, 60));
 
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setText("ID ;");
-        dialogclientes.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 90, 30, 30));
+        dialogclientes.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 30, 30));
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(1660, 800));

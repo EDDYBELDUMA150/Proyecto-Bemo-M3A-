@@ -72,88 +72,91 @@ public class VistaProveedor extends javax.swing.JInternalFrame {
 
         lbtitulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lbtitulo.setText("jLabel3");
-        jdialogproveedor.getContentPane().add(lbtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 270, 47));
+        jdialogproveedor.getContentPane().add(lbtitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, 270, 47));
 
-        txtnombre.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtnombre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jdialogproveedor.getContentPane().add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 149, 250, 34));
 
-        txtsegundonombre.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtsegundonombre.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jdialogproveedor.getContentPane().add(txtsegundonombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 149, 250, 34));
 
-        txtapellido.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtapellido.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jdialogproveedor.getContentPane().add(txtapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 220, 250, 34));
 
-        txtsegundoapellido.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtsegundoapellido.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jdialogproveedor.getContentPane().add(txtsegundoapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 220, 250, 34));
 
-        txtcedula.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtcedula.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jdialogproveedor.getContentPane().add(txtcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 322, 250, 34));
 
-        txttelefono.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txttelefono.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jdialogproveedor.getContentPane().add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 322, 250, 34));
 
-        txtdireccion.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtdireccion.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jdialogproveedor.getContentPane().add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 414, 654, 34));
 
-        txtemail.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtemail.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jdialogproveedor.getContentPane().add(txtemail, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 492, 356, 34));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel3.setText("Nombre:");
         jdialogproveedor.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 124, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel4.setText("Segundo nombre:");
         jdialogproveedor.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 124, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel5.setText("Apellido:");
         jdialogproveedor.getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 195, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel6.setText("Segundo apellido:");
         jdialogproveedor.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 195, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel7.setText("Cedula/RUC/RISE:");
         jdialogproveedor.getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 297, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel8.setText("Teléfono:");
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel8.setText("Celular");
         jdialogproveedor.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(437, 297, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel9.setText("Dirección:");
         jdialogproveedor.getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 389, -1, -1));
 
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel10.setText("Email:");
         jdialogproveedor.getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 467, -1, -1));
 
         btnagregar1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnagregar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/add_40px.png"))); // NOI18N
         btnagregar1.setText("Agregar");
-        jdialogproveedor.getContentPane().add(btnagregar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 680, 125, 65));
+        jdialogproveedor.getContentPane().add(btnagregar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 680, 160, 65));
 
         btncancelar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btncancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/cancel_40px.png"))); // NOI18N
         btncancelar.setText("Cancelar");
-        jdialogproveedor.getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 690, 125, 65));
+        jdialogproveedor.getContentPane().add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(615, 680, 180, 65));
 
         btnlimpiar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        btnlimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/broom_40px.png"))); // NOI18N
         btnlimpiar.setText("Limpiar Campos");
-        jdialogproveedor.getContentPane().add(btnlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 690, 170, 65));
+        jdialogproveedor.getContentPane().add(btnlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 680, 220, 65));
 
-        txtidproveedor.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jdialogproveedor.getContentPane().add(txtidproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 50, -1));
+        txtidproveedor.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jdialogproveedor.getContentPane().add(txtidproveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 50, 50));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel11.setText("ID :");
-        jdialogproveedor.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 60, 30, 30));
+        jdialogproveedor.getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 30, 30));
 
-        jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel12.setText("Nombre de Empresa ");
         jdialogproveedor.getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 570, -1, -1));
 
-        txtnombreempresa.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        txtnombreempresa.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         txtnombreempresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtnombreempresaActionPerformed(evt);

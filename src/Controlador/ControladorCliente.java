@@ -6,6 +6,7 @@
 package Controlador;
 
 import VIsta.vistacliente;
+
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -24,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.xml.ws.Holder;
 import modelo.Cliente;
 import modelo.MConexion.Modelocliente;
+import modelo.Validaciones;
 //import modelo.Modelocliente;
 //import vistas.vistacliente;
 
@@ -35,6 +37,7 @@ public class ControladorCliente {
 
     private Modelocliente modelo;
     private vistacliente vista;
+    Validaciones validar = new Validaciones();
 
     public ControladorCliente(Modelocliente modelo, vistacliente vista) {
         this.modelo = modelo;
@@ -54,8 +57,8 @@ public class ControladorCliente {
         vista.getBtncancelar().addActionListener(l -> btncancelar());
         vista.getBtnagregar1().addActionListener(l -> crearEditarcliente());
         vista.getBtneleminar().addActionListener(l -> eleiminarcliente());
-        vista.getBtnlimpiar().addActionListener(l->limpiardatos());
-          vista.getTxtbuscarcliente().addKeyListener(new KeyAdapter() {
+        vista.getBtnlimpiar().addActionListener(l -> limpiardatos());
+        vista.getTxtbuscarcliente().addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyReleased(KeyEvent ke) {
@@ -80,7 +83,6 @@ public class ControladorCliente {
         listaclientes.stream().forEach(cliente -> {
             estructuratabla.addRow(new Object[9]);
 
-           
             vista.getTablaclientes().setValueAt(cliente.getPrs_ID(), i.value, 0);
             vista.getTablaclientes().setValueAt(cliente.getPrs_cedula(), i.value, 1);
             vista.getTablaclientes().setValueAt(cliente.getPrs_nombre1(), i.value, 2);
@@ -102,7 +104,7 @@ public class ControladorCliente {
         if (ope == 1) {
             limpiardatos();
             titulo = "Crear Persona";
-               vista.getBtnagregar1().setText("Agregar");
+            vista.getBtnagregar1().setText("Agregar");
             vista.getLbtitulo().setText("Crear Cliente");
             //   vista.getTxtidpersona().setEnabled(true);
             vista.getDialogclientes().setName("C");
@@ -120,7 +122,7 @@ public class ControladorCliente {
 
             vista.getTxtidcliente().setEnabled(false);
             vista.getDialogclientes().setName("E");
- 
+
             seleccionarfila();
             vista.getBtnagregar1().setText("Actualizar");
             //vista.getDlgPersona().setVisible(false);
@@ -181,36 +183,44 @@ public class ControladorCliente {
             clienteP.setPrs_telefono(telefono);
             clienteP.setPrs_email(email);
             clienteP.setCl_ID(idperona);
-            
 
-//
-//            Modelocliente cliente = new Modelocliente();
-//            cliente.setCl_ID(3);
-//            cliente.setPrs_ID(3);
-            if (clienteP.setpersona() && clienteP.setcliente()) {
-                JOptionPane.showMessageDialog(vista, "Cliente registrada exitosamente");
-                vista.setVisible(true);
-                vista.getDialogclientes().setVisible(false);
-                cargardatos();
-//                if (clienteP.setcliente()) {
-//                    JOptionPane.showMessageDialog(vista, "Cliente registrada exitosamente");
-//                    vista.setVisible(true);
-//                    vista.getDialogclientes().setVisible(false);
-//                } else {
-//                    JOptionPane.showMessageDialog(vista, "fallo cliente");
-//                }
+            if (espacios_vacios() == true) {
+                if (validado() == true) {
+                    if (clienteP.setpersona() && clienteP.setcliente()) {
+                        JOptionPane.showMessageDialog(vista, "Cliente registrada exitosamente");
+                        vista.setVisible(true);
+                        vista.getDialogclientes().setVisible(false);
+                        cargardatos();
 
-            } else {
-                JOptionPane.showMessageDialog(vista, "fallo  en Guardar Cliente");
+                    } else {
+                        JOptionPane.showMessageDialog(vista, "fallo  en Guardar Cliente");
+
+                    }
+
+                }
 
             }
 
+//            if (validado() == true ) {
+//                if (clienteP.setpersona() && clienteP.setcliente()) {
+//                    JOptionPane.showMessageDialog(vista, "Cliente registrada exitosamente");
+//                    vista.setVisible(true);
+//                    vista.getDialogclientes().setVisible(false);
+//                    cargardatos();
+//
+//                } else {
+//                    JOptionPane.showMessageDialog(vista, "fallo  en Guardar Cliente");
+//
+//                }
+//
+//            }
         }//
         else {
             int respuesta = JOptionPane.showConfirmDialog(vista, "Seguro Desea Actualizar este Registro?");
 
             if (respuesta == JOptionPane.YES_OPTION) {
                 if (vista.getDialogclientes().getName().contentEquals("E")) {
+
                     int id = Integer.valueOf(vista.getTxtidcliente().getText());
                     String cedula = vista.getTxtcedula().getText();
                     String nombre1 = vista.getTxtnombre().getText();
@@ -235,18 +245,24 @@ public class ControladorCliente {
                     clienteP.setPrs_email(email);
                     clienteP.setCl_ID(idcliente);
 
-                    if (clienteP.updatecliente()) {
+                    if (espacios_vacios() == true) {
+                        if (validado() == true) {
+                            if (clienteP.updatecliente()) {
 
-                        JOptionPane.showMessageDialog(vista, "Cliente Actualizada");
-                        limpiardatos();
+                                JOptionPane.showMessageDialog(vista, "Cliente Actualizada");
+                                limpiardatos();
 
-                        cargardatos();
+                                cargardatos();
 
-                        vista.getDialogclientes().setVisible(false);
+                                vista.getDialogclientes().setVisible(false);
 
-                    } else {
-                        JOptionPane.showMessageDialog(vista, "Error , datos No Actualizados");
-                        //   JOptionPane.showConfirmDialog(vista, "Error , datos No guardados");
+                            } else {
+                                JOptionPane.showMessageDialog(vista, "Error , datos No Actualizados");
+                                //   JOptionPane.showConfirmDialog(vista, "Error , datos No guardados");
+                            }
+
+                        }
+
                     }
 
                 }
@@ -318,7 +334,7 @@ public class ControladorCliente {
                     Modelocliente persona = new Modelocliente();
                     persona.setPrs_ID(idpersona);
 
-                    if ( persona.removepersona()) {
+                    if (persona.removepersona()) {
 
                         JOptionPane.showMessageDialog(vista, "Dato Eliminado");
                         limpiardatos();
@@ -355,7 +371,7 @@ public class ControladorCliente {
         listaclientes.stream().forEach(cliente -> {
             estructuratabla.addRow(new Object[9]);
 
-           vista.getTablaclientes().setValueAt(cliente.getPrs_ID(), i.value, 0);
+            vista.getTablaclientes().setValueAt(cliente.getPrs_ID(), i.value, 0);
             vista.getTablaclientes().setValueAt(cliente.getPrs_cedula(), i.value, 1);
             vista.getTablaclientes().setValueAt(cliente.getPrs_nombre1(), i.value, 2);
             vista.getTablaclientes().setValueAt(cliente.getPrs_nombre2(), i.value, 3);
@@ -368,6 +384,88 @@ public class ControladorCliente {
             i.value++;
 
         });
+
+    }
+
+    public boolean validado() {
+        boolean vali = true;
+
+        if (!validar.Validarcedula(vista.getTxtcedula().getText()) || (vista.getTxtcedula().getText().length() < 10) || (vista.getTxtcedula().getText().length() > 10)) {
+                 
+          JOptionPane.showMessageDialog(null, "Cedula Invalida");
+            vali = false;
+
+        }
+        if (!validar.Validarnombreapellido(vista.getTxtnombre().getText()) || !validar.Validarnombreapellido(vista.getTxtsegundonombre().getText())) {
+            JOptionPane.showMessageDialog(null, "El Nombre debe comensar con Una letra Mayuscula, No se permiten Espacios");
+            vali = false;
+
+        }
+        if (!validar.Validarnombreapellido(vista.getTxtapellido().getText()) || !validar.Validarnombreapellido(vista.getTxtsegundoapellido().getText())) {
+            JOptionPane.showMessageDialog(null, "El Apellido debe comensar con Una letra Mayuscula, No se permiten Espacios");
+            vali = false;
+
+        }
+        if (!validar.Validarcorreo(vista.getTxtemail().getText())) {
+            JOptionPane.showMessageDialog(null, "Correo  Invalido ");
+            vali = false;
+
+        }
+        if (!validar.validartelefono(vista.getTxttelefono().getText())) {
+            JOptionPane.showMessageDialog(null, "Numero de Telefono  Invalido, maximo  10 numeros");
+            vali = false;
+
+        }
+
+        return vali;
+
+    }
+
+    public boolean espacios_vacios() {
+
+        boolean espacio = true;
+
+        if (vista.getTxtcedula().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Cedula  Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxtnombre().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Primer Nombre  Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxtsegundonombre().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Segundo Nombre  Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxtapellido().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Primer Apellido  Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxtsegundoapellido().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Segundo Apellido  Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxttelefono().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Telefono o Celular Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxtdireccion().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Direccion  Vacio");
+
+            espacio = false;
+        }
+        if (vista.getTxtemail().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Campo Email  Vacio");
+
+            espacio = false;
+        }
+        return espacio;
 
     }
 
