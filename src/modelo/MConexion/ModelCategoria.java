@@ -32,14 +32,13 @@ public class ModelCategoria extends modelo.Categoria {
     public java.util.List<modelo.Categoria> getCategorias() {
         
         java.util.List<modelo.Categoria> listaCategorias = new ArrayList<>();
-        String sql = "select cate_id, cat_nombre, cate_estado from categoria where cate_estado='ACTIVO' order by cate_id ASC";
+        String sql = "select cate_id, cat_nombre from categoria where cate_estado='ACTIVO' order by cate_id ASC";
         ResultSet rs = conn.consulta(sql);
         try {
             while (rs.next()) {
                 modelo.Categoria categoria = new modelo.Categoria();
                 categoria.setCtg_ID(rs.getInt(1));
                 categoria.setCtg_nombre(rs.getString(2));
-                categoria.setCtg_estado(rs.getString(3));
               
                 listaCategorias.add(categoria);
             }

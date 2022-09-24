@@ -74,10 +74,9 @@ public class ControladorCategoria {
 
         Holder<Integer> i = new Holder<>(0);
         listcate.stream().forEach(cat -> {
-            estucturaTabla.addRow(new Object[3]);
+            estucturaTabla.addRow(new Object[2]);
             vistaCat.getJtbCate().setValueAt(cat.getCtg_ID(), i.value, 0);
             vistaCat.getJtbCate().setValueAt(cat.getCtg_nombre(), i.value, 1);
-            vistaCat.getJtbCate().setValueAt(cat.getCtg_estado(), i.value, 2);
             i.value++;
         });
     }
