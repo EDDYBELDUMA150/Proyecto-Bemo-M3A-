@@ -104,4 +104,24 @@ public class Validaciones {
 
     }
 
+    public boolean validarprecio(String precio) {
+
+        try {
+            Double.parseDouble(precio);
+            // System.out.println("It is numerical string");
+            return true;
+        } catch (NumberFormatException e) {
+            // System.out.println("It is not numerical string");
+            return false;
+        }
+
+    }
+    
+    public boolean validarsololetras(String cadena){
+    
+         return cadena.matches("^[a-zA-Z]*$");
+    
+    
+    }
+
 }

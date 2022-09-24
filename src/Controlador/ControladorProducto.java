@@ -20,6 +20,7 @@ import modelo.MConexion.ModelProducto;
 import modelo.MConexion.ModelProducto;
 import modelo.OCconection;
 import modelo.Productos;
+import modelo.Validaciones;
 
 /**
  *
@@ -31,6 +32,8 @@ public class ControladorProducto {
     private VIsta.RegistrosdeFacturasGastosBalances vistaPro;
     private modelo.MConexion.ModelCategoria modcate;
     private VIsta.Categorias vistcate;
+
+    Validaciones validar = new Validaciones();
 
     public ControladorProducto(ModelProducto modeloPro, RegistrosdeFacturasGastosBalances vistaPro, ModelCategoria modcate, Categorias vistcate) {
         this.modeloPro = modeloPro;
@@ -44,9 +47,8 @@ public class ControladorProducto {
         GenerarEditarCodigo();
     }
 
-   
     public void iniciaControl() {
-        vistaPro.getBtPrevisualizar().addActionListener(l-> previa());
+        vistaPro.getBtPrevisualizar().addActionListener(l -> previa());
         vistaPro.getBtVerCategoria().addActionListener(l -> abrirCategoria());
         vistaPro.getBtPronuevo().addActionListener(l -> abrirdialog(1));
         vistaPro.getBtProModif().addActionListener(l -> abrirdialog(2));
@@ -88,10 +90,10 @@ public class ControladorProducto {
             i.value++;
         });
     }
-    
+
     private void abrirdialog(int opcion) {
         int CRg = modeloPro.countRegistros();
-        
+
         if (CRg == 0) {
             CRg = 1;
         } else {
@@ -103,8 +105,9 @@ public class ControladorProducto {
             vistaPro.getLbNuevo().setVisible(true);
             vistaPro.getJdProductos().setName("C");
             vistaPro.getJdProductos().setVisible(true);
-            vistaPro.getJdProductos().setSize(600, 500);
+            vistaPro.getJdProductos().setSize(700, 600);
             vistaPro.getTxtCodPro().setText(String.valueOf(CRg));
+            vistaPro.getJdProductos().setLocationRelativeTo(vistaPro);
             vistaPro.getBtAgregarModi().setText("Agregar");
             vaciasCampos();
         } else {
@@ -118,9 +121,9 @@ public class ControladorProducto {
                 vistaPro.getTxtPronombre().setText(vistaPro.getTbProductos().getValueAt(fila, 1).toString());
                 vistaPro.getTxtProprecio().setText(vistaPro.getTbProductos().getValueAt(fila, 2).toString());
                 vistaPro.getCbProCate().setSelectedIndex(modeloPro.codProducto(vistaPro.getTbProductos().getValueAt(fila, 3).toString()));
-
+                vistaPro.getJdProductos().setLocationRelativeTo(vistaPro);
                 vistaPro.getJdProductos().setVisible(true);
-                vistaPro.getJdProductos().setSize(600, 500);
+                vistaPro.getJdProductos().setSize(700, 500);
                 vistaPro.getLbModificar().setVisible(true);
                 vistaPro.getLbNuevo().setVisible(false);
 
@@ -130,48 +133,68 @@ public class ControladorProducto {
         }
         vistaPro.getRbGenerar().setSelected(true);
     }
-    
+
     public void crearEditarProducto() {
         if (vistaPro.getJdProductos().getName().contentEquals("C")) {
-            int id = Integer.parseInt(vistaPro.getTxtCodPro().getText());
-            String nombrePro = vistaPro.getTxtPronombre().getText().toString();
-            String precio = vistaPro.getTxtProprecio().getText();
 
-            modeloPro.setPrd_ID(id);
-            modeloPro.setPrd_nombre(nombrePro);
-            modeloPro.setPrd_precio(Double.parseDouble(precio));
-            modeloPro.setPrd_IDCategoria(modeloPro.codProducto(vistaPro.getCbProCate().getSelectedItem().toString()));
-            modeloPro.setPrd_estado("ACTIVO");
+            if (casillasvacias() == true) {
 
-            if (modeloPro.setProducto()) {
-                JOptionPane.showMessageDialog(vistaPro, "Categoría creado!!");
-                vaciasCampos();
-                cargarDatos();
-            } else {
-                JOptionPane.showMessageDialog(vistaPro, "Error: verifique que los campos no estén vacios");
+                if (validarcasillas() == true) {
+                    int id = Integer.parseInt(vistaPro.getTxtCodPro().getText());
+                    String nombrePro = vistaPro.getTxtPronombre().getText();
+                    String precio = vistaPro.getTxtProprecio().getText();
+
+                    modeloPro.setPrd_ID(id);
+                    modeloPro.setPrd_nombre(nombrePro);
+                    modeloPro.setPrd_precio(Double.parseDouble(precio));
+                    modeloPro.setPrd_IDCategoria(modeloPro.codProducto(vistaPro.getCbProCate().getSelectedItem().toString()));
+                    modeloPro.setPrd_estado("ACTIVO");
+                    if (modeloPro.setProducto()) {
+
+                        JOptionPane.showMessageDialog(vistaPro, "Categoría creado!!");
+                        vaciasCampos();
+                        cargarDatos();
+                        vistaPro.getJdProductos().setVisible(false);
+                    } else {
+                        JOptionPane.showMessageDialog(vistaPro, "Error: verifique que los campos.");
+                    }
+
+                }
+
             }
+
         } else {
             if (vistaPro.getJdProductos().getName().contentEquals("E")) {
-                int id = Integer.parseInt(vistaPro.getTxtCodPro().getText());
-                String nombrePro = vistaPro.getTxtPronombre().getText().toString();
-                String precio = vistaPro.getTxtProprecio().getText();
 
-                modeloPro.setPrd_ID(id);
-                modeloPro.setPrd_nombre(nombrePro);
-                modeloPro.setPrd_precio(Double.parseDouble(precio));
-                modeloPro.setPrd_IDCategoria(modeloPro.codProducto(vistaPro.getCbProCate().getSelectedItem().toString()));
+                if (casillasvacias() == true) {
+                    if (validarcasillas() == true) {
+                        int id = Integer.parseInt(vistaPro.getTxtCodPro().getText());
+                        String nombrePro = vistaPro.getTxtPronombre().getText();
+                        String precio = vistaPro.getTxtProprecio().getText();
 
-                if (modeloPro.uptadeProducto()) {
-                    JOptionPane.showMessageDialog(vistaPro, "Categoría modificada con exito!!");
-                    cargarDatos();
-                } else {
-                    JOptionPane.showMessageDialog(vistaPro, "Error: revise si los datos ingresados son correctos!");
+                        modeloPro.setPrd_ID(id);
+                        modeloPro.setPrd_nombre(nombrePro);
+                        modeloPro.setPrd_precio(Double.parseDouble(precio));
+                        modeloPro.setPrd_IDCategoria(modeloPro.codProducto(vistaPro.getCbProCate().getSelectedItem().toString()));
+
+                        if (modeloPro.uptadeProducto()) {
+                            JOptionPane.showMessageDialog(vistaPro, "Categoría modificada con exito!!");
+                            cargarDatos();
+                            vaciasCampos();
+                            vistaPro.getJdProductos().setVisible(false);
+                        } else {
+                            JOptionPane.showMessageDialog(vistaPro, "Error: revise si los datos ingresados son correctos!");
+                        }
+
+                    }
+
                 }
+
             }
         }
 
     }
-    
+
     public void eliminarProducto() {
         try {
             int fila = vistaPro.getTbProductos().getSelectedRow();
@@ -198,7 +221,7 @@ public class ControladorProducto {
             JOptionPane.showMessageDialog(null, "Error: " + e.toString());
         }
     }
-    
+
     private void llenar(List<Productos> lista) {
         DefaultTableModel estucturaTabla;
         estucturaTabla = (DefaultTableModel) vistaPro.getTbProductos().getModel();
@@ -227,21 +250,61 @@ public class ControladorProducto {
             vistaPro.getBtProModif().setEnabled(false);
         }
     }
-    
+
     private void abrirCategoria() {
         Controlador.ControladorCategoria contcate = new Controlador.ControladorCategoria(modcate, vistcate);
         contcate.inicioControl();
     }
-    
+
     private void vaciasCampos() {
         vistaPro.getTxtPronombre().setText("");
         vistaPro.getTxtProprecio().setText("");
         vistaPro.getTxtPrevista().setText("");
     }
-    
-    private void previa(){
-        String pv = vistaPro.getTxtCodPro().getText()+", "+vistaPro.getTxtPronombre().getText()+", "
-                + ""+vistaPro.getTxtProprecio().getText()+", "+vistaPro.getCbProCate().getSelectedItem().toString();
+
+    private void previa() {
+        String pv = vistaPro.getTxtCodPro().getText() + ", " + vistaPro.getTxtPronombre().getText() + ", "
+                + "" + vistaPro.getTxtProprecio().getText() + ", " + vistaPro.getCbProCate().getSelectedItem().toString();
         vistaPro.getTxtPrevista().setText(pv);
+    }
+
+    public boolean validarcasillas() {
+        boolean validado = true;
+
+        if (!validar.validarsololetras(vistaPro.getTxtPronombre().getText())) {
+            JOptionPane.showMessageDialog(vistaPro, "Asegurese de que el Nombre solo tenga letras .  Por Favor");
+            validado = false;
+
+        }
+
+        if (!validar.validarprecio(vistaPro.getTxtProprecio().getText())) {
+            JOptionPane.showMessageDialog(vistaPro, "Asegurese de que el precion sea un numero y use el punto para decimales .  Por Favor");
+            validado = false;
+
+        }
+
+        return validado;
+
+    }
+
+    public boolean casillasvacias() {
+
+        boolean validado = true;
+
+        if (vistaPro.getTxtPronombre().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(vistaPro, "Casilla Nombre del Producto Vacia.");
+            validado = false;
+
+        }
+        if (vistaPro.getTxtProprecio().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(vistaPro, "Casilla Precio del Producto Vacio");
+            validado = false;
+        }
+        if (!(vistaPro.getCbProCate().getSelectedIndex() > 0)) {
+            JOptionPane.showMessageDialog(vistaPro, "Escoja una Categoria, Por favor");
+            validado = false;
+
+        }
+        return validado;
     }
 }

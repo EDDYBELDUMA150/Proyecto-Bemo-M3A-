@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.Validaciones;
 
 /**
  *
@@ -21,6 +22,8 @@ public class ModelCategoria extends modelo.Categoria {
 
     modelo.OCconection conn = new modelo.OCconection();
     modelo.Categoria mcat = new modelo.Categoria();
+    
+
 
     public ModelCategoria() {
     }
@@ -116,4 +119,6 @@ public class ModelCategoria extends modelo.Categoria {
         }
         return mcat.getNregistros();
     }
+    
+   
 }

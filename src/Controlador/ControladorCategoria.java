@@ -18,6 +18,7 @@ import javax.swing.table.TableModel;
 import javax.xml.ws.Holder;
 import modelo.Categoria;
 import modelo.MConexion.ModelCategoria;
+import modelo.Validaciones;
 
 /**
  *
@@ -27,6 +28,8 @@ public class ControladorCategoria {
 
     private modelo.MConexion.ModelCategoria modeloCat;
     private VIsta.Categorias vistaCat;
+
+    Validaciones validar = new Validaciones();
 
     public ControladorCategoria(ModelCategoria modeloCat, Categorias vistaCat) {
         this.modeloCat = modeloCat;
@@ -39,7 +42,7 @@ public class ControladorCategoria {
 
     public void inicioControl() {
         habilitarBotones();
-        vistaCat.getBtSalirProductos().addActionListener(l-> vistaCat.dispose());
+        vistaCat.getBtSalirProductos().addActionListener(l -> vistaCat.dispose());
         vistaCat.getBtNuevoCat().addActionListener(l -> abrirdialog(1));
         vistaCat.getBtmodiCat().addActionListener(l -> abrirdialog(2));
         vistaCat.getBtAgregarCAT().addActionListener(l -> crearEditarCategoria());
@@ -83,7 +86,7 @@ public class ControladorCategoria {
 
     private void abrirdialog(int opcion) {
         int CRg = modeloCat.countRegistros();
-        
+
         if (CRg == 0) {
             CRg = 1;
         } else {
@@ -132,27 +135,41 @@ public class ControladorCategoria {
             modeloCat.setCtg_nombre(nombreCat);
             modeloCat.setCtg_estado("ACTIVO");
 
-            if (modeloCat.setCategoria()) {
-                JOptionPane.showMessageDialog(vistaCat, "Categoría creado!!");
-                cargarDatosCat();
-                vistaCat.getJdlCat().dispose();
-            } else {
-                JOptionPane.showMessageDialog(vistaCat, "Error: verifique que los campos no estén vacios");
+            if (casillasvacias() == true) {
+                if (modeloCat.setCategoria()) {
+                    JOptionPane.showMessageDialog(vistaCat, "Categoría creado!!");
+                    cargarDatosCat();
+                    vistaCat.getJdlCat().dispose();
+
+                    vistaCat.getTxtNombrecat().setText("");
+                    vistaCat.getTxtCodigocat().setText("");
+                } else {
+                    JOptionPane.showMessageDialog(vistaCat, "Error: verifique que los campos no estén vacios");
+                }
+
             }
+
         } else {
             if (vistaCat.getJdlCat().getName().contentEquals("E")) {
-                int id = Integer.parseInt(vistaCat.getTxtCodigocat().getText().toString());
-                String nombreCat = vistaCat.getTxtNombrecat().getText().toString().toUpperCase();
+                if (casillasvacias() == true) {
+                    int id = Integer.parseInt(vistaCat.getTxtCodigocat().getText().toString());
+                    String nombreCat = vistaCat.getTxtNombrecat().getText().toString().toUpperCase();
 
-                modeloCat.setCtg_ID(id);
-                modeloCat.setCtg_nombre(nombreCat);
+                    modeloCat.setCtg_ID(id);
+                    modeloCat.setCtg_nombre(nombreCat);
 
-                if (modeloCat.uptadeCategoria()) {
-                    JOptionPane.showMessageDialog(vistaCat, "Categoría modificada con exito!!");
-                    cargarDatosCat();
-                } else {
-                    JOptionPane.showMessageDialog(vistaCat, "Error: revise si los datos ingresados son correctos!");
+                    if (modeloCat.uptadeCategoria()) {
+                        JOptionPane.showMessageDialog(vistaCat, "Categoría modificada con exito!!");
+                        cargarDatosCat();
+                        vistaCat.getJdlCat().setVisible(false);
+                        vistaCat.getTxtNombrecat().setText("");
+                        vistaCat.getTxtCodigocat().setText("");
+                    } else {
+                        JOptionPane.showMessageDialog(vistaCat, "Error: revise si los datos ingresados son correctos!");
+                    }
+
                 }
+
             }
         }
     }
@@ -229,6 +246,20 @@ public class ControladorCategoria {
             vistaCat.getBtEliminarCat().setEnabled(false);
             vistaCat.getBtmodiCat().setEnabled(false);
         }
+    }
+
+    public boolean casillasvacias() {
+
+        boolean validado = true;
+
+        if (vistaCat.getTxtNombrecat().getText().isEmpty() || !validar.validarsololetras(vistaCat.getTxtNombrecat().getText())) {
+            JOptionPane.showMessageDialog(vistaCat, "Ingrese solo letras ,por favor ");
+            validado = false;
+
+        }
+
+        return validado;
+
     }
 
 }

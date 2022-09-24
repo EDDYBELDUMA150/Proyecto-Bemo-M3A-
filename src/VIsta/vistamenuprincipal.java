@@ -140,7 +140,7 @@ public class vistamenuprincipal extends javax.swing.JFrame {
 
         btncrudclientes.setBackground(new java.awt.Color(255, 255, 255));
         btncrudclientes.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        btncrudclientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/cliente.png"))); // NOI18N
+        btncrudclientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/user_group_50px.png"))); // NOI18N
         btncrudclientes.setText("Cliente");
         btncrudclientes.setBorderPainted(false);
         btncrudclientes.setFocusable(false);

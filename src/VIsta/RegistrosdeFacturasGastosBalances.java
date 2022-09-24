@@ -539,6 +539,7 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
                         .addContainerGap())))
         );
 
+        setClosable(true);
         setPreferredSize(new java.awt.Dimension(1660, 800));
 
         jTabbedPane1.setToolTipText("");
