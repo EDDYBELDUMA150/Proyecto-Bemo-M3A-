@@ -1,0 +1,406 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controlador;
+
+import VIsta.vista_factura;
+import VIsta.vista_registro_facturas;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.PrintJob;
+import java.awt.Toolkit;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import modelo.Cliente;
+import modelo.FacturaVenta;
+import modelo.MConexion.Modelo_PedidoPastel;
+import modelo.MConexion.Modelo_factura_venta;
+import modelo.OCconection;
+import modelo.Productos;
+
+/**
+ *
+ * @author carlos
+ */
+public class Controlador_factura_venta implements Printable {
+
+    private Modelo_factura_venta modelo_venta;
+    private vista_factura vis_factura;
+    private vista_registro_facturas vista_regis_factur;
+    int id_cuerpo;
+    ArrayList<FacturaVenta> lista_factura = new ArrayList<>();
+    Modelo_factura_venta mi_factura = new Modelo_factura_venta();
+    OCconection conexion = new OCconection();
+
+    public Controlador_factura_venta() {
+
+        cargarTablaregistrofactura();
+    }
+
+    public Controlador_factura_venta(Modelo_factura_venta modelo_venta, vista_factura vis_factura) {
+        this.modelo_venta = modelo_venta;
+        this.vis_factura = vis_factura;
+        vis_factura.setVisible(true);
+        vis_factura.getTxt_id_factura().setEnabled(false);
+    }
+
+    public Controlador_factura_venta(Modelo_factura_venta modelo_venta, vista_registro_facturas vista_regis_factur) {
+        this.modelo_venta = modelo_venta;
+        this.vista_regis_factur = vista_regis_factur;
+        vista_regis_factur.setVisible(true);
+        actualizar_totalesregis();
+    }
+
+    public void iniciarcontrol() {
+        cargarTablacliente();
+        cargartablaProducto();
+
+        vis_factura.getTxt_id_factura().setText(String.valueOf(modelo_venta.numeroidfactura() + 1));
+        vis_factura.getBtn_abrir_dialog_cliente().addActionListener(l -> abrirDialogocliente());
+        vis_factura.getBtn_abrir_dialog_producto().addActionListener(l -> abrirDialogoProducto());
+        vis_factura.getBtb_cargar_cliente().addActionListener(l -> cargar_cliente());
+        vis_factura.getBtn_aceptar_producto().addActionListener(l -> cargar_producto());
+        vis_factura.getBtn_agregar_producto().addActionListener(l -> llenar_factura());
+        vis_factura.getBtn_quitar_producto().addActionListener(l -> quitar_producto());
+        vis_factura.getBtn_guardar_factura().addActionListener(l -> guar_todo_factu());
+        vis_factura.getBtn_imprimir().addActionListener(l -> imprimirfactura());
+//        vis_factura.getBtn_guardar_cliente().addActionListener(l-> guardar_cabecera());
+    }
+
+    public void iniciarcontrol2() {
+        cargarTablaregistrofactura();
+        actualizar_totalesregis();
+    }
+
+    public void cargarTablacliente() {
+        DefaultTableModel tb = (DefaultTableModel) vis_factura.getTabla_cliente_pedido().getModel();
+        tb.setNumRows(0);
+        List<Cliente> com = modelo_venta.lista_cli();
+        com.stream().forEach(p -> {
+            String[] cami = {String.valueOf(p.getCl_ID()), p.getPrs_cedula(), p.getPrs_nombre1(), p.getPrs_apellido1(), p.getPrs_direccion()};
+            tb.addRow(cami);
+        });
+    }
+
+    public void cargartablaProducto() {
+        DefaultTableModel tb = (DefaultTableModel) vis_factura.getTabla_productos().getModel();
+        tb.setNumRows(0);
+        List<Productos> com = modelo_venta.list_producto();
+        com.stream().forEach(p -> {
+            String[] cami = {String.valueOf(p.getPrd_ID()), p.getPrd_nombre(), String.valueOf(p.getPrd_precio())};
+            tb.addRow(cami);
+        });
+    }
+
+    public void cargar_producto() {
+        int seleccion = vis_factura.getTabla_productos().getSelectedRow();
+
+        if (seleccion == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+            int codigo = Integer.parseInt(vis_factura.getTabla_productos().getValueAt(seleccion, 0).toString());
+            modelo_venta.list_producto().forEach((p) -> {
+                if (p.getPrd_ID() == codigo) {
+
+                    vis_factura.getTxt_codigo_producto().setText(String.valueOf(p.getPrd_ID()));
+                    vis_factura.getTxt_nombre_producto().setText(p.getPrd_nombre());
+                    vis_factura.getTxt_precio_unitario().setText(String.valueOf(p.getPrd_precio()));
+                    vis_factura.getDialog_buscar_producto().dispose();
+                }
+            });
+        }
+    }
+
+    public void cargar_cliente() {
+        int seleccion = vis_factura.getTabla_cliente_pedido().getSelectedRow();
+
+        if (seleccion == -1) {
+            JOptionPane.showMessageDialog(null, "Aun no ha seleccionado una fila");
+        } else {
+            int codigo = Integer.parseInt(vis_factura.getTabla_cliente_pedido().getValueAt(seleccion, 0).toString());
+            modelo_venta.lista_cli().forEach((p) -> {
+                if (p.getCl_ID() == codigo) {
+                    vis_factura.getTxt_id_cliente().setText(String.valueOf(p.getCl_ID()));
+
+                    vis_factura.getTxt_nombre_cliente().setText(p.getPrs_nombre1() + " " + p.getPrs_apellido1());
+                    vis_factura.getTxt_cedula_cliente().setText(p.getPrs_cedula());
+                    vis_factura.getTxt_direccion().setText(p.getPrs_direccion());
+                    vis_factura.getDialog_buscar_cliente().dispose();
+                }
+            });
+        }
+    }
+
+    private void abrirDialogocliente() {
+
+        vis_factura.getDialog_buscar_cliente().setVisible(true);
+        vis_factura.getDialog_buscar_cliente().setSize(650, 500);
+        vis_factura.getDialog_buscar_cliente().setLocationRelativeTo(vis_factura);
+
+    }
+
+    public void cargarTablaregistrofactura() {
+        DefaultTableModel tb = (DefaultTableModel) vista_regis_factur.getTabla_factura_registro().getModel();
+        tb.setNumRows(0);
+        List<FacturaVenta> com = modelo_venta.consulta_factura();
+        com.stream().forEach(p -> {
+            String[] cami = {String.valueOf(p.getFactura_id()), String.valueOf(p.getCliente_id()), p.getNombre_cliente() + " " + p.getApellido_cliente(),
+                p.getCedula_cliente(), String.valueOf(p.getFecha_factura()), String.valueOf(p.getTotal())};
+            tb.addRow(cami);
+        });
+    }
+
+    private void abrirDialogoProducto() {
+
+        vis_factura.getDialog_buscar_producto().setVisible(true);
+        vis_factura.getDialog_buscar_producto().setSize(650, 500);
+        vis_factura.getDialog_buscar_producto().setLocationRelativeTo(vis_factura);
+
+    }
+
+    private void llenar_factura() {
+        double suma_total = 0;
+        DefaultTableModel estructuratabla;
+        estructuratabla = (DefaultTableModel) vis_factura.getTabla_factura().getModel();
+//        estructuratabla.setNumRows(0);
+        int cantidad = Integer.parseInt(vis_factura.getTxt_cantidad().getText());
+        double precio_unit = Double.parseDouble(vis_factura.getTxt_precio_unitario().getText());
+        double sub_to = cantidad * precio_unit;
+
+        String cod_prod = vis_factura.getTxt_codigo_producto().getText();
+        String nomb_prod = vis_factura.getTxt_nombre_producto().getText();
+        String pre_uni = vis_factura.getTxt_precio_unitario().getText();
+        String can = vis_factura.getTxt_cantidad().getText();
+        String sub_tota = String.valueOf(sub_to);
+
+        Object[] lista = new Object[5];
+        lista[0] = cod_prod;
+        lista[1] = nomb_prod;
+        lista[2] = pre_uni;
+        lista[3] = can;
+        lista[4] = sub_tota;
+        estructuratabla.addRow(lista);
+        actualizar_totales();
+        limpiar_produ();
+
+    }
+
+    private void actualizar_totales() {
+        vis_factura.getTxt_iva().setText("0");
+        vis_factura.getTxt_subtotal().setText("0");
+
+        int ta = vis_factura.getTabla_factura().getRowCount();
+        int c = 0;
+        do {
+            try {
+                int f = c++;
+                Double n1 = Double.parseDouble(vis_factura.getTabla_factura().getValueAt(f, 4).toString());
+                String nu = vis_factura.getTxt_subtotal().getText();
+                double nu2 = Double.parseDouble(nu);
+                double re = (n1 + nu2);
+                vis_factura.getTxt_subtotal().setText(String.valueOf(re));
+                double sub = Double.parseDouble(vis_factura.getTxt_subtotal().getText());
+                int iva = Integer.parseInt(vis_factura.getTxt_iva().getText());
+                double gasto_total = sub + (sub * iva);
+                vis_factura.getTxt_total().setText(String.valueOf(gasto_total));
+
+            } catch (Exception e) {
+
+            }
+
+        } while (c < ta);
+
+    }
+
+    public void quitar_producto() {
+        DefaultTableModel estructuratabla;
+        estructuratabla = (DefaultTableModel) vis_factura.getTabla_factura().getModel();
+        int fila = vis_factura.getTabla_factura().getSelectedRow();
+        if (fila >= 0) {
+            estructuratabla.removeRow(vis_factura.getTabla_factura().getSelectedRow());
+            actualizar_totales();
+        } else {
+            JOptionPane.showMessageDialog(vis_factura, "Seleccione el producto que desea eliminar");
+        }
+    }
+
+    public void guardar_cuerpo_factura() {
+
+        double ivita = 0;
+
+        for (int i = 0; i < vis_factura.getTabla_factura().getRowCount(); i++) {
+
+            int id_cabe = modelo_venta.consultar_id_cabecera();
+            double iva = ivita;
+            int cod_prod1 = Integer.parseInt(vis_factura.getTabla_factura().getValueAt(i, 0).toString());
+            String nom_prod = vis_factura.getTabla_factura().getValueAt(i, 1).toString();
+            double prec_uni = Double.parseDouble(vis_factura.getTabla_factura().getValueAt(i, 2).toString());
+            int cantid = Integer.parseInt(vis_factura.getTabla_factura().getValueAt(i, 3).toString());
+            double montito = Double.parseDouble(vis_factura.getTabla_factura().getValueAt(i, 4).toString());
+            double sub_to = Double.parseDouble(vis_factura.getTxt_subtotal().getText());
+            double total = Double.parseDouble(vis_factura.getTxt_total().getText());
+            FacturaVenta mi_venta = new FacturaVenta();
+            Modelo_factura_venta mi_facturita1 = new Modelo_factura_venta();
+
+            mi_venta.setProducto_id(cod_prod1);
+            mi_venta.setNombre_producto(nom_prod);
+            mi_venta.setCantidad_producto(cantid);
+            mi_venta.setIva(iva);
+            mi_venta.setSubtotal(sub_to);
+            mi_venta.setTotal(total);
+            mi_venta.setPrecio_unitario_producto(prec_uni);
+            mi_venta.setMonto(montito);
+            mi_venta.setCabecera_id(id_cabe);
+            mi_facturita1.Insertcuerpito(mi_venta);
+
+        }
+//        if (mi_facturita1.setCabecerita()) {
+//            JOptionPane.showMessageDialog(vis_factura, "Factura registrada exitosamente");
+//        }
+    }
+
+    public void guardar_cabecera() {
+        int id_cabecera = 0;
+
+        if (modelo_venta.numeroidcabecera() == 0) {
+            id_cabecera = 1;
+        } else {
+            id_cabecera = modelo_venta.numeroidcabecera() + 1;
+        }
+
+        int id_cli = Integer.parseInt(vis_factura.getTxt_id_cliente().getText());
+        String cabe_est = "Activo";
+
+        Date date = vis_factura.getDate_fecha().getDate(); //ic es la interfaz, jDate el JDatechooser
+        long d = date.getTime(); //guardamos en un long el tiempo
+        java.sql.Date fecha_factura1 = new java.sql.Date(d);// parseamos al formato del sql  
+        Modelo_factura_venta mi_facturita1 = new Modelo_factura_venta();
+
+        mi_facturita1.setCabecera_id(id_cabecera);
+        mi_facturita1.setCliente_id(id_cli);
+        mi_facturita1.setFecha_factura(fecha_factura1);
+        mi_facturita1.setCabecera_estado(cabe_est);
+
+        if (mi_facturita1.setCabecerita()) {
+            JOptionPane.showMessageDialog(vis_factura, "Factura registrada exitosamente");
+        }
+    }
+
+    public void guardar_facturita() {
+        int id_factura = 0;
+        if (modelo_venta.numeroidfactura() == 0) {
+            id_factura = 1;
+        } else {
+            id_factura = modelo_venta.numeroidfactura() + 1;
+        }
+        int id_factu = Integer.parseInt(vis_factura.getTxt_id_factura().getText());
+        int id_cabe = modelo_venta.consultar_id_cabecera();
+        int id_cue = modelo_venta.consultar_id_cuerpo();
+        Modelo_factura_venta mi_facturita1 = new Modelo_factura_venta();
+
+        mi_facturita1.setFactura_id(id_factu);
+        mi_facturita1.setCabecera_id(id_cabe);
+        mi_facturita1.setCuerpo_id(id_cue);
+        if (mi_facturita1.setFacturita()) {
+            JOptionPane.showMessageDialog(vis_factura, "Factura registrada exitosamente");
+        }
+    }
+
+    public void guar_todo_factu() {
+        guardar_cabecera();
+        guardar_cuerpo_factura();
+        guardar_facturita();
+        limpiar_todo();
+    }
+
+    public void limpiar_produ() {
+        vis_factura.getTxt_nombre_producto().setText("");
+        vis_factura.getTxt_precio_unitario().setText("");
+        vis_factura.getTxt_codigo_producto().setText("");
+        vis_factura.getTxt_cantidad().setText("");
+    }
+
+    public void limpiar_todo() {
+        vis_factura.getTxt_nombre_producto().setText("");
+        vis_factura.getTxt_precio_unitario().setText("");
+        vis_factura.getTxt_codigo_producto().setText("");
+        vis_factura.getTxt_cantidad().setText("");
+        vis_factura.getTxt_nombre_cliente().setText("");
+        vis_factura.getTxt_cedula_cliente().setText("");
+        vis_factura.getTxt_direccion().setText("");
+        vis_factura.getDate_fecha().setDate(null);
+
+    }
+
+    private void imprimirfactura() {
+
+        try {
+            // Open printer dialog and pass JPanel to print
+            PrinterJob job = PrinterJob.getPrinterJob();
+            job.setPrintable(this);
+
+            if (job.printDialog()) {
+                job.print();
+            }
+
+        } catch (PrinterException ex) {
+            Logger.getLogger(Controlador_factura_venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
+
+        if (pageIndex > 0) {
+            /* We have only one page, and 'page' is zero-based */
+            return NO_SUCH_PAGE;
+        }
+
+        Graphics2D g2d = (Graphics2D) graphics;
+        g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+        vis_factura.printAll(graphics);
+
+        return PAGE_EXISTS;
+
+    }
+
+    private void actualizar_totalesregis() {
+
+        int ta = vista_regis_factur.getTabla_factura_registro().getRowCount();
+        int c = 0;
+        do {
+            try {
+                int f = c++;
+                Double n1 = Double.parseDouble(vista_regis_factur.getTabla_factura_registro().getValueAt(f, 5).toString());
+                String nu = vista_regis_factur.getTxt_total_factu_registro().getText();
+                double nu2 = Double.parseDouble(nu);
+                double re = (n1 + nu2);
+                vista_regis_factur.getTxt_total_factu_registro().setText(String.valueOf(re));
+
+            } catch (Exception e) {
+
+            }
+
+        } while (c < ta);
+
+    }
+
+}
