@@ -74,4 +74,27 @@ public class OCconection {
     public void setConex(Connection conex) {
         this.conex = conex;
     }
+    
+    
+    public static Connection getConetion(){
+
+        try {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+           
+            String myBD="jdbc:oracle:thin:@localhost:1521:XE";
+            String usuario="EDDY";
+            String pass="1234";
+          
+            Connection cnx=DriverManager.getConnection(myBD, usuario, pass);
+            
+            System.out.println("si conecta");
+            return cnx;
+         
+        }catch(SQLException ex){
+            System.out.println(ex.getMessage());  
+        }catch (ClassNotFoundException ex) {
+            Logger.getLogger(OCconection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }
