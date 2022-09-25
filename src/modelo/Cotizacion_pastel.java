@@ -11,64 +11,74 @@ package modelo;
  */
 public class Cotizacion_pastel {
     
-    
-    private String ctzp_nombreproducto;
-    private int ctzp_cantidad;
-    private String ctzp_descripcionextra;
-    private double cztp_costoextra;
-    private double cztp_totalcotizado;
+      
+   private String nombre_producto;
+   private double precio_unitario;
+   private int cantidad;
+   private String nom_extra;
+   private double subtotal;
+   private double total;
 
     public Cotizacion_pastel() {
     }
 
-    public Cotizacion_pastel(String ctzp_nombreproducto, int ctzp_cantidad, String ctzp_descripcionextra, double cztp_costoextra, double cztp_totalcotizado) {
-        this.ctzp_nombreproducto = ctzp_nombreproducto;
-        this.ctzp_cantidad = ctzp_cantidad;
-        this.ctzp_descripcionextra = ctzp_descripcionextra;
-        this.cztp_costoextra = cztp_costoextra;
-        this.cztp_totalcotizado = cztp_totalcotizado;
+    public Cotizacion_pastel(String nombre_producto, double precio_unitario, int cantidad, String nom_extra, double subtotal, double total) {
+        this.nombre_producto = nombre_producto;
+        this.precio_unitario = precio_unitario;
+        this.cantidad = cantidad;
+        this.nom_extra = nom_extra;
+        this.subtotal = subtotal;
+        this.total = total;
     }
 
-    public String getCtzp_nombreproducto() {
-        return ctzp_nombreproducto;
+    public String getNombre_producto() {
+        return nombre_producto;
     }
 
-    public void setCtzp_nombreproducto(String ctzp_nombreproducto) {
-        this.ctzp_nombreproducto = ctzp_nombreproducto;
+    public void setNombre_producto(String nombre_producto) {
+        this.nombre_producto = nombre_producto;
     }
 
-    public int getCtzp_cantidad() {
-        return ctzp_cantidad;
+    public double getPrecio_unitario() {
+        return precio_unitario;
     }
 
-    public void setCtzp_cantidad(int ctzp_cantidad) {
-        this.ctzp_cantidad = ctzp_cantidad;
+    public void setPrecio_unitario(double precio_unitario) {
+        this.precio_unitario = precio_unitario;
     }
 
-    public String getCtzp_descripcionextra() {
-        return ctzp_descripcionextra;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setCtzp_descripcionextra(String ctzp_descripcionextra) {
-        this.ctzp_descripcionextra = ctzp_descripcionextra;
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
-    public double getCztp_costoextra() {
-        return cztp_costoextra;
+    public String getNom_extra() {
+        return nom_extra;
     }
 
-    public void setCztp_costoextra(double cztp_costoextra) {
-        this.cztp_costoextra = cztp_costoextra;
+    public void setNom_extra(String nom_extra) {
+        this.nom_extra = nom_extra;
     }
 
-    public double getCztp_totalcotizado() {
-        return cztp_totalcotizado;
+    public double getSubtotal() {
+        return subtotal;
     }
 
-    public void setCztp_totalcotizado(double cztp_totalcotizado) {
-        this.cztp_totalcotizado = cztp_totalcotizado;
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
     }
-    
-    
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+   
+   
     
 }
