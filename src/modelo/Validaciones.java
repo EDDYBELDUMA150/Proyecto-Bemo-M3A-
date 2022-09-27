@@ -90,7 +90,7 @@ public class Validaciones {
     }
 
     public boolean Validarnombreapellido(String nombre) {
-        return nombre.matches("^([A-Z]{1}[a-z]*){1}$");
+        return nombre.matches("^[A-Za-z]{1,}");
     }
 
     public boolean Validarcorreo(String correo) {
@@ -119,7 +119,7 @@ public class Validaciones {
     
     public boolean validarsololetras(String cadena){
     
-         return cadena.matches("^[a-zA-Z]*$");
+         return cadena.matches("^[a-zA-Z]{1,}[a-zA-Z ]{2,254}");
     
     
     }

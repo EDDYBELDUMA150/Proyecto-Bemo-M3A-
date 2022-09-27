@@ -6,7 +6,6 @@
 package Controlador;
 
 import VIsta.vista_factura;
-import VIsta.vista_registro_facturas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.PrintJob;
@@ -44,11 +43,12 @@ public class Controlador_factura_venta implements Printable {
 
     private Modelo_factura_venta modelo_venta;
     private vista_factura vis_factura;
-    private vista_registro_facturas vista_regis_factur;
+    private VIsta.RegistrosdeFacturasGastosBalances vista_regis_factur;
     int id_cuerpo;
     ArrayList<FacturaVenta> lista_factura = new ArrayList<>();
     Modelo_factura_venta mi_factura = new Modelo_factura_venta();
     OCconection conexion = new OCconection();
+    Date fechaActual = new Date();
 
     public Controlador_factura_venta() {
 
@@ -62,17 +62,17 @@ public class Controlador_factura_venta implements Printable {
         vis_factura.getTxt_id_factura().setEnabled(false);
     }
 
-    public Controlador_factura_venta(Modelo_factura_venta modelo_venta, vista_registro_facturas vista_regis_factur) {
+    public Controlador_factura_venta(Modelo_factura_venta modelo_venta, VIsta.RegistrosdeFacturasGastosBalances vista_regis_factur) {
         this.modelo_venta = modelo_venta;
         this.vista_regis_factur = vista_regis_factur;
         vista_regis_factur.setVisible(true);
-        actualizar_totalesregis();
     }
 
     public void iniciarcontrol() {
         cargarTablacliente();
         cargartablaProducto();
-
+        vis_factura.getDate_fecha().setDate(fechaActual);
+        
         vis_factura.getTxt_id_factura().setText(String.valueOf(modelo_venta.numeroidfactura() + 1));
         vis_factura.getBtn_abrir_dialog_cliente().addActionListener(l -> abrirDialogocliente());
         vis_factura.getBtn_abrir_dialog_producto().addActionListener(l -> abrirDialogoProducto());
@@ -87,7 +87,6 @@ public class Controlador_factura_venta implements Printable {
 
     public void iniciarcontrol2() {
         cargarTablaregistrofactura();
-        actualizar_totalesregis();
     }
 
     public void cargarTablacliente() {
@@ -379,27 +378,6 @@ public class Controlador_factura_venta implements Printable {
         vis_factura.printAll(graphics);
 
         return PAGE_EXISTS;
-
-    }
-
-    private void actualizar_totalesregis() {
-
-        int ta = vista_regis_factur.getTabla_factura_registro().getRowCount();
-        int c = 0;
-        do {
-            try {
-                int f = c++;
-                Double n1 = Double.parseDouble(vista_regis_factur.getTabla_factura_registro().getValueAt(f, 5).toString());
-                String nu = vista_regis_factur.getTxt_total_factu_registro().getText();
-                double nu2 = Double.parseDouble(nu);
-                double re = (n1 + nu2);
-                vista_regis_factur.getTxt_total_factu_registro().setText(String.valueOf(re));
-
-            } catch (Exception e) {
-
-            }
-
-        } while (c < ta);
 
     }
 

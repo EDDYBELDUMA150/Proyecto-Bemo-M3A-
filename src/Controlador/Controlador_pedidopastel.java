@@ -47,6 +47,7 @@ public class Controlador_pedidopastel {
     private Modelocliente modelo_cliente;
     private int i;
     DefaultTableModel estructuraTabla;
+    Date fechaActual = new Date();
 
     public Controlador_pedidopastel() {
     }
@@ -62,6 +63,7 @@ public class Controlador_pedidopastel {
         cargardatos();
         cargarTablacliente();
         cargartablaProducto();
+        vista_pedido.getDate_fecha_pedido().setDate(fechaActual);
         vista_pedido.getBtn_aagregar_pedido().addActionListener(l -> abrirDialogo(1));
         vista_pedido.getBtn_aceptar().addActionListener(l -> crear_editar_pedido());
         vista_pedido.getBtn_modificar_pedido().addActionListener(l -> abrirDialogo(2));
@@ -360,7 +362,7 @@ public class Controlador_pedidopastel {
             }
         }
     } 
-     private void crear_editar_pedido() {
+    private void crear_editar_pedido() {
         int id_pedido = 0;
         if (vista_pedido.getDialog_pedido().getName().contentEquals("C")) {
             if (modelo_pedido.numeroidpedido()== 0) {
@@ -382,7 +384,7 @@ public class Controlador_pedidopastel {
             int cantidad = Integer.parseInt(vista_pedido.getTxt_cantidad().getText());
             String especificacion = vista_pedido.getTxt_area_especificacion().getText();
             double abono = Double.parseDouble(vista_pedido.getTxt_abono().getText());
-            String estado = "Activo";
+            String estado = "Activo";           
             try {
                 FileInputStream img = new FileInputStream(jfc.getSelectedFile());
                 int largo = (int) jfc.getSelectedFile().length();
@@ -470,7 +472,6 @@ public class Controlador_pedidopastel {
                 } else {
                     JOptionPane.showMessageDialog(vista_pedido, "El Pedido no se pudo modificar");
                 }
-
             }
         }
     }

@@ -11,7 +11,6 @@ import VIsta.VistaProveedor;
 import VIsta.Vista_pedidoPastel;
 import VIsta.vista_cotizacion;
 import VIsta.vista_factura;
-import VIsta.vista_registro_facturas;
 import VIsta.vistacliente;
 import VIsta.vistamenuprincipal;
 import modelo.MConexion.ModeloProveedor;
@@ -47,7 +46,6 @@ public class ControlPrincipal {
         vistamenuprin.getBtn_pedido_pastel().addActionListener(l -> crud_pedido());
         vistamenuprin.getBtn_factura().addActionListener(l -> crud_factura());
         vistamenuprin.getBtn_cotizacion().addActionListener(l -> crud_cotizacion());
-        vistamenuprin.getBtn_registro_factu().addActionListener(l -> crud_registro_factu());
 
     }
 
@@ -81,12 +79,13 @@ public class ControlPrincipal {
     private void abrirprodcutos() {
         VIsta.RegistrosdeFacturasGastosBalances vistaProd = new RegistrosdeFacturasGastosBalances();
         VIsta.Categorias vistaCTG = new VIsta.Categorias();
-
+        
         modelo.MConexion.ModelCategoria modCtg = new modelo.MConexion.ModelCategoria();
         modelo.MConexion.ModelProducto modprod = new modelo.MConexion.ModelProducto();
+        modelo.MConexion.Modelo_factura_venta modventa= new modelo.MConexion.Modelo_factura_venta();
         vistamenuprin.getJdpprincipal().add(vistaProd);
 
-        Controlador.ControladorProducto controlpro = new ControladorProducto(modprod, vistaProd, modCtg, vistaCTG);
+        Controlador.ControladorProducto controlpro = new ControladorProducto(modprod, vistaProd, modCtg, vistaCTG, modventa);
         controlpro.iniciaControl();
 
     }
@@ -116,7 +115,7 @@ private void crud_factura() {
     }
       private void crud_registro_factu() {
         Modelo_factura_venta modelo_venta = new Modelo_factura_venta();
-    vista_registro_facturas vista_regis_factur=new vista_registro_facturas();
+        VIsta.RegistrosdeFacturasGastosBalances vista_regis_factur=new VIsta.RegistrosdeFacturasGastosBalances();
         vistamenuprin.getJdpprincipal().add(vista_regis_factur);
         Controlador_factura_venta control=new Controlador_factura_venta(modelo_venta,vista_regis_factur);
         control.iniciarcontrol2();

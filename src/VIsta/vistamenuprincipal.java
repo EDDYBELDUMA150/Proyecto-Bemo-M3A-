@@ -5,6 +5,9 @@
  */
 package VIsta;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
 import javax.swing.JToolBar;
@@ -62,15 +65,6 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         this.btn_factura = btn_factura;
     }
 
-
-    public JButton getBtn_registro_factu() {
-        return btn_registro_factu;
-    }
-
-    public void setBtn_registro_factu(JButton btn_registro_factu) {
-        this.btn_registro_factu = btn_registro_factu;
-    }
-
     public JDesktopPane getJdpprincipal() {
         return jdpprincipal;
     }
@@ -108,14 +102,19 @@ public class vistamenuprincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        btn_cotizacion = new javax.swing.JButton();
         btProductos = new javax.swing.JButton();
-        btncrudproveedores = new javax.swing.JButton();
-        btncrudclientes = new javax.swing.JButton();
-        btn_pedido_pastel = new javax.swing.JButton();
         btn_factura = new javax.swing.JButton();
-        btn_registro_factu = new javax.swing.JButton();
-        jdpprincipal = new javax.swing.JDesktopPane();
+        btn_cotizacion = new javax.swing.JButton();
+        btncrudclientes = new javax.swing.JButton();
+        btncrudproveedores = new javax.swing.JButton();
+        btn_pedido_pastel = new javax.swing.JButton();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/IconoseImagenes/fondo_pBM.png"));
+        Image image = icon.getImage();
+        jdpprincipal = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jToolBar2 = new javax.swing.JToolBar();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -132,17 +131,6 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         jToolBar1.setBorder(null);
         jToolBar1.setRollover(true);
 
-        btn_cotizacion.setBackground(new java.awt.Color(255, 255, 255));
-        btn_cotizacion.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        btn_cotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/cootizar.png"))); // NOI18N
-        btn_cotizacion.setText("Cootizacion");
-        btn_cotizacion.setBorderPainted(false);
-        btn_cotizacion.setFocusable(false);
-        btn_cotizacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_cotizacion.setMargin(new java.awt.Insets(2, 14, 2, 16));
-        btn_cotizacion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btn_cotizacion);
-
         btProductos.setBackground(new java.awt.Color(255, 255, 255));
         btProductos.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
         btProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/productos.png"))); // NOI18N
@@ -154,16 +142,28 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         btProductos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btProductos);
 
-        btncrudproveedores.setBackground(new java.awt.Color(255, 255, 255));
-        btncrudproveedores.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        btncrudproveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/proveedor.png"))); // NOI18N
-        btncrudproveedores.setText("Proveedor");
-        btncrudproveedores.setBorderPainted(false);
-        btncrudproveedores.setFocusable(false);
-        btncrudproveedores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btncrudproveedores.setMargin(new java.awt.Insets(2, 14, 2, 16));
-        btncrudproveedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btncrudproveedores);
+        btn_factura.setBackground(new java.awt.Color(255, 255, 255));
+        btn_factura.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
+        btn_factura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/factura.png"))); // NOI18N
+        btn_factura.setText("Factura");
+        btn_factura.setBorderPainted(false);
+        btn_factura.setFocusable(false);
+        btn_factura.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_factura.setMargin(new java.awt.Insets(2, 14, 2, 16));
+        btn_factura.setPreferredSize(new java.awt.Dimension(89, 83));
+        btn_factura.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btn_factura);
+
+        btn_cotizacion.setBackground(new java.awt.Color(255, 255, 255));
+        btn_cotizacion.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
+        btn_cotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/cootizar.png"))); // NOI18N
+        btn_cotizacion.setText("Cootizacion");
+        btn_cotizacion.setBorderPainted(false);
+        btn_cotizacion.setFocusable(false);
+        btn_cotizacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_cotizacion.setMargin(new java.awt.Insets(2, 14, 2, 16));
+        btn_cotizacion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btn_cotizacion);
 
         btncrudclientes.setBackground(new java.awt.Color(255, 255, 255));
         btncrudclientes.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
@@ -176,25 +176,30 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         btncrudclientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btncrudclientes);
 
+        btncrudproveedores.setBackground(new java.awt.Color(255, 255, 255));
+        btncrudproveedores.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
+        btncrudproveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/proveedor.png"))); // NOI18N
+        btncrudproveedores.setText("Proveedor");
+        btncrudproveedores.setBorderPainted(false);
+        btncrudproveedores.setFocusable(false);
+        btncrudproveedores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btncrudproveedores.setMargin(new java.awt.Insets(2, 14, 2, 16));
+        btncrudproveedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btncrudproveedores);
+
+        btn_pedido_pastel.setBackground(new java.awt.Color(255, 255, 255));
+        btn_pedido_pastel.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
+        btn_pedido_pastel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/pedidos.png"))); // NOI18N
         btn_pedido_pastel.setText("Pedidos");
+        btn_pedido_pastel.setBorderPainted(false);
         btn_pedido_pastel.setFocusable(false);
         btn_pedido_pastel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_pedido_pastel.setMargin(new java.awt.Insets(2, 14, 2, 16));
+        btn_pedido_pastel.setMaximumSize(new java.awt.Dimension(89, 83));
         btn_pedido_pastel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btn_pedido_pastel);
 
-        btn_factura.setText("factura");
-        btn_factura.setFocusable(false);
-        btn_factura.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_factura.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btn_factura);
-
-        btn_registro_factu.setText("Registro de facturas");
-        btn_registro_factu.setFocusable(false);
-        btn_registro_factu.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_registro_factu.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btn_registro_factu);
-
-        getContentPane().add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 0, 720, 90));
+        getContentPane().add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 0, 610, 90));
 
         jdpprincipal.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -237,7 +242,7 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(jButton3);
 
-        getContentPane().add(jToolBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1120, 90));
+        getContentPane().add(jToolBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 90));
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -291,7 +296,6 @@ public class vistamenuprincipal extends javax.swing.JFrame {
     private javax.swing.JButton btn_cotizacion;
     private javax.swing.JButton btn_factura;
     private javax.swing.JButton btn_pedido_pastel;
-    private javax.swing.JButton btn_registro_factu;
     private javax.swing.JButton btncrudclientes;
     private javax.swing.JButton btncrudproveedores;
     private javax.swing.JButton jButton2;

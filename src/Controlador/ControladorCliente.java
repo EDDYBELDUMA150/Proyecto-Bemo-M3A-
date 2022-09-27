@@ -162,12 +162,12 @@ public class ControladorCliente {
 //            }
 
             String cedula = vista.getTxtcedula().getText();
-            String nombre1 = vista.getTxtnombre().getText();
-            String nombre2 = vista.getTxtsegundonombre().getText();
-            String apellido1 = vista.getTxtapellido().getText();
-            String apellido2 = vista.getTxtsegundoapellido().getText();
+            String nombre1 = vista.getTxtnombre().getText().toUpperCase().trim();
+            String nombre2 = vista.getTxtsegundonombre().getText().toUpperCase().trim();
+            String apellido1 = vista.getTxtapellido().getText().toUpperCase().trim();
+            String apellido2 = vista.getTxtsegundoapellido().getText().toUpperCase().trim();
             String telefono = vista.getTxttelefono().getText();
-            String direccion = vista.getTxtdireccion().getText();
+            String direccion = vista.getTxtdireccion().getText().toUpperCase();
             String email = vista.getTxtemail().getText();
 
             Modelocliente clienteP = new Modelocliente();
@@ -223,10 +223,10 @@ public class ControladorCliente {
 
                     int id = Integer.valueOf(vista.getTxtidcliente().getText());
                     String cedula = vista.getTxtcedula().getText();
-                    String nombre1 = vista.getTxtnombre().getText();
-                    String nombre2 = vista.getTxtsegundonombre().getText();
-                    String apellido1 = vista.getTxtapellido().getText();
-                    String apellido2 = vista.getTxtsegundoapellido().getText();
+                    String nombre1 = vista.getTxtnombre().getText().toUpperCase().trim();
+                    String nombre2 = vista.getTxtsegundonombre().getText().toUpperCase().trim();
+                    String apellido1 = vista.getTxtapellido().getText().toUpperCase().trim();
+                    String apellido2 = vista.getTxtsegundoapellido().getText().toUpperCase().trim();
                     String telefono = vista.getTxttelefono().getText();
                     String direccion = vista.getTxtdireccion().getText();
                     String email = vista.getTxtemail().getText();
@@ -396,13 +396,13 @@ public class ControladorCliente {
             vali = false;
 
         }
-        if (!validar.Validarnombreapellido(vista.getTxtnombre().getText()) || !validar.Validarnombreapellido(vista.getTxtsegundonombre().getText())) {
-            JOptionPane.showMessageDialog(null, "El Nombre debe comensar con Una letra Mayuscula, No se permiten Espacios");
+        if (!validar.Validarnombreapellido(vista.getTxtnombre().getText())) {
+            JOptionPane.showMessageDialog(null, "No se permiten Espacios entre letras");
             vali = false;
 
         }
-        if (!validar.Validarnombreapellido(vista.getTxtapellido().getText()) || !validar.Validarnombreapellido(vista.getTxtsegundoapellido().getText())) {
-            JOptionPane.showMessageDialog(null, "El Apellido debe comensar con Una letra Mayuscula, No se permiten Espacios");
+        if (!validar.Validarnombreapellido(vista.getTxtapellido().getText())) {
+            JOptionPane.showMessageDialog(null, "No se permiten Espacios entrre letras");
             vali = false;
 
         }
@@ -435,18 +435,8 @@ public class ControladorCliente {
 
             espacio = false;
         }
-        if (vista.getTxtsegundonombre().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campo Segundo Nombre  Vacio");
-
-            espacio = false;
-        }
         if (vista.getTxtapellido().getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Campo Primer Apellido  Vacio");
-
-            espacio = false;
-        }
-        if (vista.getTxtsegundoapellido().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campo Segundo Apellido  Vacio");
 
             espacio = false;
         }

@@ -15,9 +15,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.xml.ws.Holder;
 import modelo.Categoria;
+import modelo.FacturaVenta;
 import modelo.MConexion.ModelCategoria;
 import modelo.MConexion.ModelProducto;
 import modelo.MConexion.ModelProducto;
+import modelo.MConexion.Modelo_factura_venta;
 import modelo.OCconection;
 import modelo.Productos;
 import modelo.Validaciones;
@@ -32,22 +34,26 @@ public class ControladorProducto {
     private VIsta.RegistrosdeFacturasGastosBalances vistaPro;
     private modelo.MConexion.ModelCategoria modcate;
     private VIsta.Categorias vistcate;
+    private Modelo_factura_venta modelo_venta;
 
     Validaciones validar = new Validaciones();
 
-    public ControladorProducto(ModelProducto modeloPro, RegistrosdeFacturasGastosBalances vistaPro, ModelCategoria modcate, Categorias vistcate) {
+    public ControladorProducto(ModelProducto modeloPro, RegistrosdeFacturasGastosBalances vistaPro, ModelCategoria modcate, Categorias vistcate, Modelo_factura_venta modelo_venta) {
         this.modeloPro = modeloPro;
         this.vistaPro = vistaPro;
         this.modcate = modcate;
         this.vistcate = vistcate;
+        this.modelo_venta = modelo_venta;
         vistaPro.setVisible(true);
         cargarDatos();
         habilitarBotones();
         modeloPro.cargarCategoriaCB(vistaPro.getCbProCate());
         GenerarEditarCodigo();
+        cargarTablaregistrofactura();
     }
 
     public void iniciaControl() {
+        actualizar_totalesregis();
         vistaPro.getBtPrevisualizar().addActionListener(l -> previa());
         vistaPro.getBtVerCategoria().addActionListener(l -> abrirCategoria());
         vistaPro.getBtPronuevo().addActionListener(l -> abrirdialog(1));
@@ -260,6 +266,7 @@ public class ControladorProducto {
         vistaPro.getTxtPronombre().setText("");
         vistaPro.getTxtProprecio().setText("");
         vistaPro.getTxtPrevista().setText("");
+        vistaPro.getCbProCate().setSelectedIndex(0);
     }
 
     private void previa() {
@@ -306,5 +313,37 @@ public class ControladorProducto {
 
         }
         return validado;
+    }
+
+    public void cargarTablaregistrofactura() {
+        DefaultTableModel tb = (DefaultTableModel) vistaPro.getTabla_factura_registro().getModel();
+        tb.setNumRows(0);
+        List<FacturaVenta> com = modelo_venta.consulta_factura();
+        com.stream().forEach(p -> {
+            String[] cami = {String.valueOf(p.getFactura_id()), String.valueOf(p.getCliente_id()), p.getNombre_cliente() + " " + p.getApellido_cliente(),
+                p.getCedula_cliente(), String.valueOf(p.getFecha_factura()), String.valueOf(p.getTotal())};
+            tb.addRow(cami);
+        });
+    }
+    
+    
+    private void actualizar_totalesregis() {
+
+        vistaPro.getTxt_total_factu_registro().setText("0");
+
+        int ta = vistaPro.getTabla_factura_registro().getRowCount();
+        int c = 0;
+        do {
+            try {
+                        int f = c++;
+                Double n1 = Double.parseDouble(vistaPro.getTabla_factura_registro().getValueAt(f, 5).toString());
+                String nu = vistaPro.getTxt_total_factu_registro().getText();
+                double nu2 = Double.parseDouble(nu);
+                double re = (n1 + nu2);
+                vistaPro.getTxt_total_factu_registro().setText(String.valueOf(re));                
+            } catch (Exception e) {
+                
+            }
+        } while (c < ta);
     }
 }
