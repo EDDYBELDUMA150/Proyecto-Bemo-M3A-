@@ -8,19 +8,16 @@ import VIsta.Categorias;
 import VIsta.RegistrosdeFacturasGastosBalances;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.DecimalFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import javax.xml.ws.Holder;
-import modelo.Categoria;
 import modelo.FacturaVenta;
 import modelo.MConexion.ModelCategoria;
-import modelo.MConexion.ModelProducto;
+import modelo.MConexion.ModelGastoCorriente;
 import modelo.MConexion.ModelProducto;
 import modelo.MConexion.Modelo_factura_venta;
-import modelo.OCconection;
 import modelo.Productos;
 import modelo.Validaciones;
 
@@ -35,32 +32,48 @@ public class ControladorProducto {
     private modelo.MConexion.ModelCategoria modcate;
     private VIsta.Categorias vistcate;
     private Modelo_factura_venta modelo_venta;
+    private modelo.MConexion.ModelGastoCorriente modGasto;
+    Date fechaActual = new Date();
 
     Validaciones validar = new Validaciones();
 
-    public ControladorProducto(ModelProducto modeloPro, RegistrosdeFacturasGastosBalances vistaPro, ModelCategoria modcate, Categorias vistcate, Modelo_factura_venta modelo_venta) {
+    public ControladorProducto(ModelProducto modeloPro, RegistrosdeFacturasGastosBalances vistaPro, ModelCategoria modcate, Categorias vistcate, Modelo_factura_venta modelo_venta, ModelGastoCorriente modGasto) {
         this.modeloPro = modeloPro;
         this.vistaPro = vistaPro;
         this.modcate = modcate;
         this.vistcate = vistcate;
         this.modelo_venta = modelo_venta;
+        this.modGasto = modGasto;
         vistaPro.setVisible(true);
+        inicarGastos();
         cargarDatos();
         habilitarBotones();
         modeloPro.cargarCategoriaCB(vistaPro.getCbProCate());
         GenerarEditarCodigo();
         cargarTablaregistrofactura();
+        vistaPro.getDtDesdeVentas().setVisible(false);
+        vistaPro.getDtHastaVentas().setVisible(false);
+        vistaPro.getLbHastaVentas().setVisible(false);
+        vistaPro.getLblDesdeVentas().setVisible(false);
+        vistaPro.getDtDesdeGasato().setVisible(false);
+        vistaPro.getDtHastaGasto().setVisible(false);
+        vistaPro.getLbdesdeGastos().setVisible(false);
+        vistaPro.getLbhastaGastos().setVisible(false);
     }
 
     public void iniciaControl() {
         actualizar_totalesregis();
+        actualizar_totalesregisFact();
+        actualizar_totalesvendiFact();
+        vistaPro.getLbErrores().setVisible(false);
         vistaPro.getBtPrevisualizar().addActionListener(l -> previa());
         vistaPro.getBtVerCategoria().addActionListener(l -> abrirCategoria());
-        vistaPro.getBtPronuevo().addActionListener(l -> abrirdialog(1));
-        vistaPro.getBtProModif().addActionListener(l -> abrirdialog(2));
+        vistaPro.getBtPronuevo().addActionListener(l1 -> abrirdialogProd(1));
+        vistaPro.getBtProModif().addActionListener(l1 -> abrirdialogProd(2));
         vistaPro.getBtAgregarModi().addActionListener(l -> crearEditarProducto());
         vistaPro.getBtProdelete().addActionListener(l -> eliminarProducto());
         vistaPro.getBtSalir().addActionListener(l -> vistaPro.getJdProductos().dispose());
+        vistaPro.getBtFecha().addActionListener(l -> cargarTablaregistrofacturaPorfecha());
         vistaPro.getTbProductos().addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
@@ -73,8 +86,11 @@ public class ControladorProducto {
                     vistaPro.getBtProdelete().setEnabled(false);
                     vistaPro.getBtProModif().setEnabled(false);
                 }
+
             }
         });
+        vistaPro.getCbFechasVentas().addActionListener(l -> esconderDesdeHastaVts());
+        vistaPro.getCbFechasGastos().addActionListener(l -> esconderDesdeHastaGastos());
     }
 
     private void cargarDatos() {
@@ -97,7 +113,7 @@ public class ControladorProducto {
         });
     }
 
-    private void abrirdialog(int opcion) {
+    public void abrirdialogProd(int opcion) {
         int CRg = modeloPro.countRegistros();
 
         if (CRg == 0) {
@@ -157,7 +173,7 @@ public class ControladorProducto {
                     modeloPro.setPrd_estado("ACTIVO");
                     if (modeloPro.setProducto()) {
 
-                        JOptionPane.showMessageDialog(vistaPro, "Categoría creado!!");
+                        JOptionPane.showMessageDialog(vistaPro, "Producto creado!!");
                         vaciasCampos();
                         cargarDatos();
                         vistaPro.getJdProductos().setVisible(false);
@@ -184,7 +200,7 @@ public class ControladorProducto {
                         modeloPro.setPrd_IDCategoria(modeloPro.codProducto(vistaPro.getCbProCate().getSelectedItem().toString()));
 
                         if (modeloPro.uptadeProducto()) {
-                            JOptionPane.showMessageDialog(vistaPro, "Categoría modificada con exito!!");
+                            JOptionPane.showMessageDialog(vistaPro, "Producto modificada con exito!!");
                             cargarDatos();
                             vaciasCampos();
                             vistaPro.getJdProductos().setVisible(false);
@@ -325,25 +341,202 @@ public class ControladorProducto {
             tb.addRow(cami);
         });
     }
-    
-    
+
+    public void cargarTablaregistrofacturaPorfecha() {
+
+        int opcF = vistaPro.getCbFechasVentas().getSelectedIndex();
+
+        DefaultTableModel tb = (DefaultTableModel) vistaPro.getTabla_factura_registro().getModel();
+        tb.setNumRows(0);
+        if (fechasVacias()==false) {
+            vistaPro.getLbErrores().setText("Ingrese una fecha.");
+            vistaPro.getLbErrores().setVisible(true);
+        } else {
+            switch (opcF) {
+                case 0:
+                    List<FacturaVenta> com = modelo_venta.consulta_facturaHOY();
+                    com.stream().forEach(p -> {
+                        String[] cami = {String.valueOf(p.getFactura_id()), String.valueOf(p.getCliente_id()), p.getNombre_cliente() + " " + p.getApellido_cliente(),
+                            p.getCedula_cliente(), String.valueOf(p.getFecha_factura()), String.valueOf(p.getTotal())};
+                        tb.addRow(cami);
+                    });
+                    break;
+                case 1:
+                    List<FacturaVenta> com1 = modelo_venta.consulta_facturaESTASEMANA();
+                    com1.stream().forEach(p -> {
+                        String[] cami = {String.valueOf(p.getFactura_id()), String.valueOf(p.getCliente_id()), p.getNombre_cliente() + " " + p.getApellido_cliente(),
+                            p.getCedula_cliente(), String.valueOf(p.getFecha_factura()), String.valueOf(p.getTotal())};
+                        tb.addRow(cami);
+                    });
+                    break;
+                case 2:
+                    List<FacturaVenta> com2 = modelo_venta.consulta_facturaESTEMES();
+                    com2.stream().forEach(p -> {
+                        String[] cami = {String.valueOf(p.getFactura_id()), String.valueOf(p.getCliente_id()), p.getNombre_cliente() + " " + p.getApellido_cliente(),
+                            p.getCedula_cliente(), String.valueOf(p.getFecha_factura()), String.valueOf(p.getTotal())};
+                        tb.addRow(cami);
+                    });
+                    break;
+                case 3:
+                    Date date = vistaPro.getDtDesdeVentas().getDate(); //ic es la interfaz, jDate el JDatechooser
+                    long d = date.getTime(); //guardamos en un long el tiempo
+                    java.sql.Date fechaDesde = new java.sql.Date(d);
+
+                    Date dateh = vistaPro.getDtHastaVentas().getDate(); //ic es la interfaz, jDate el JDatechooser
+                    long dh = dateh.getTime(); //guardamos en un long el tiempo
+                    java.sql.Date fechaHasta = new java.sql.Date(dh);
+
+                    List<FacturaVenta> com3 = modelo_venta.consulta_facturaDesdeHasta(fechaDesde.toString(), fechaHasta.toString());
+                    com3.stream().forEach(p -> {
+                        String[] cami = {String.valueOf(p.getFactura_id()), String.valueOf(p.getCliente_id()), p.getNombre_cliente() + " " + p.getApellido_cliente(),
+                            p.getCedula_cliente(), String.valueOf(p.getFecha_factura()), String.valueOf(p.getTotal())};
+                        tb.addRow(cami);
+                    });
+                    break;
+                case 4:
+                    Date dateD = vistaPro.getDtDesdeVentas().getDate(); //ic es la interfaz, jDate el JDatechooser
+                    long dD = dateD.getTime(); //guardamos en un long el tiempo
+                    java.sql.Date fechaDesdeD = new java.sql.Date(dD);
+
+                    List<FacturaVenta> com4 = modelo_venta.consulta_facturaDIAESPECIF(fechaDesdeD.toString());
+                    com4.stream().forEach(p -> {
+                        String[] cami = {String.valueOf(p.getFactura_id()), String.valueOf(p.getCliente_id()), p.getNombre_cliente() + " " + p.getApellido_cliente(),
+                            p.getCedula_cliente(), String.valueOf(p.getFecha_factura()), String.valueOf(p.getTotal())};
+                        tb.addRow(cami);
+                    });
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+        }
+        actualizar_totalesregisFact();
+    }
+
     private void actualizar_totalesregis() {
 
-        vistaPro.getTxt_total_factu_registro().setText("0");
+        vistaPro.getLbTotalProd().setText("0");
+
+        int ta = vistaPro.getTbProductos().getRowCount();
+        int c = 0;
+        do {
+            try {
+                int f = c++;
+                int n1 = Integer.parseInt(vistaPro.getTabla_factura_registro().getValueAt(f, 1).toString());
+                String nu = vistaPro.getLbTotalProd().getText();
+                int nu2 = Integer.parseInt(nu);
+                int re = (n1 + nu2);
+                vistaPro.getLbTotalProd().setText(String.valueOf(re));
+            } catch (Exception e) {
+
+            }
+        } while (c < ta);
+    }
+
+    private void actualizar_totalesregisFact() {
+
+        vistaPro.getLbTotalventas().setText("0");
 
         int ta = vistaPro.getTabla_factura_registro().getRowCount();
         int c = 0;
         do {
             try {
-                        int f = c++;
-                Double n1 = Double.parseDouble(vistaPro.getTabla_factura_registro().getValueAt(f, 5).toString());
-                String nu = vistaPro.getTxt_total_factu_registro().getText();
-                double nu2 = Double.parseDouble(nu);
-                double re = (n1 + nu2);
-                vistaPro.getTxt_total_factu_registro().setText(String.valueOf(re));                
+                int f = c++;
+                int n1 = Integer.parseInt(vistaPro.getTabla_factura_registro().getValueAt(f, 5).toString());
+                String nu = vistaPro.getLbTotalventas().getText();
+                int nu2 = Integer.parseInt(nu);
+                int re = (n1 + nu2);
+                vistaPro.getLbTotalventas().setText(String.valueOf(re));
             } catch (Exception e) {
-                
+
             }
         } while (c < ta);
+    }
+
+    private void actualizar_totalesvendiFact() {
+
+        vistaPro.getLbTotalvendido().setText("0");
+
+        int ta = vistaPro.getTabla_factura_registro().getRowCount();
+        int c = 0;
+        do {
+            try {
+                int f = c++;
+                Double n1 = Double.parseDouble(vistaPro.getTabla_factura_registro().getValueAt(f, 5).toString());
+                String nu = vistaPro.getLbTotalvendido().getText();
+                Double nu2 = Double.parseDouble(nu);
+                Double re = (n1 + nu2);
+                vistaPro.getLbTotalvendido().setText(String.valueOf(re));
+            } catch (Exception e) {
+
+            }
+        } while (c < ta);
+    }
+
+    private void esconderDesdeHastaVts() {
+        int op = vistaPro.getCbFechasVentas().getSelectedIndex();
+        switch (op) {
+            case 3:
+                vistaPro.getDtDesdeVentas().setVisible(true);
+                vistaPro.getDtHastaVentas().setVisible(true);
+                vistaPro.getLbHastaVentas().setVisible(true);
+                vistaPro.getLblDesdeVentas().setVisible(true);
+
+                vistaPro.getDtDesdeVentas().setCalendar(null);
+                vistaPro.getDtHastaVentas().setCalendar(null);
+                break;
+            case 4:
+                vistaPro.getDtDesdeVentas().setVisible(true);
+                vistaPro.getLblDesdeVentas().setVisible(true);
+                vistaPro.getDtHastaVentas().setVisible(false);
+                vistaPro.getLbHastaVentas().setVisible(false);
+
+                vistaPro.getDtDesdeVentas().setCalendar(null);
+                break;
+            default:
+                vistaPro.getDtDesdeVentas().setVisible(false);
+                vistaPro.getDtHastaVentas().setVisible(false);
+                vistaPro.getLbHastaVentas().setVisible(false);
+                vistaPro.getLblDesdeVentas().setVisible(false);
+        }
+    }
+
+    private void esconderDesdeHastaGastos() {
+        int op = vistaPro.getCbFechasGastos().getSelectedIndex();
+        switch (op) {
+            case 3:
+                vistaPro.getDtDesdeGasato().setVisible(true);
+                vistaPro.getDtHastaGasto().setVisible(true);
+                vistaPro.getLbdesdeGastos().setVisible(true);
+                vistaPro.getLbhastaGastos().setVisible(true);
+                break;
+            case 4:
+                vistaPro.getDtDesdeGasato().setVisible(true);
+                vistaPro.getLbdesdeGastos().setVisible(true);
+                break;
+            default:
+                vistaPro.getDtDesdeGasato().setVisible(false);
+                vistaPro.getDtHastaGasto().setVisible(false);
+                vistaPro.getLbdesdeGastos().setVisible(false);
+                vistaPro.getLbhastaGastos().setVisible(false);
+        }
+    }
+
+    private boolean fechasVacias() {
+        boolean d = vistaPro.getDtDesdeVentas().getCalendar()==null;
+        boolean h = vistaPro.getDtHastaGasto().getCalendar()==null;
+        boolean result= true;
+        if (d==true||vistaPro.getCbFechasVentas().getSelectedIndex()==4) {
+            result = false;
+        }
+        if ((d==true||h==true)&&(vistaPro.getCbFechasVentas().getSelectedIndex()==3)) {
+            result = false;
+        }
+        
+        return result;
+    }
+    
+    private void inicarGastos(){
+        Controlador.ControlGastoC controlGasto = new Controlador.ControlGastoC(modGasto, vistaPro);
+        controlGasto.iniciaControlC();
     }
 }

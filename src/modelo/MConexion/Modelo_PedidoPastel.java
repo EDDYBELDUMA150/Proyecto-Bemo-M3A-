@@ -44,7 +44,7 @@ public class Modelo_PedidoPastel extends PedidoPastel {
 
     public List<PedidoPastel> getPedidoPastel() {
         List<PedidoPastel> listaPedidoPastel = new ArrayList<PedidoPastel>();
-        String sql = "select pe.pedido_id,pe.pedido_fecha,pe.perdido_entrega,cli.cli_id,pers.pers_nombre1,pers.pers_apellido1,pro.prod_id,pro.prod_nombre, pe.pedido_cantidad,pe.pedido_especificacion,pe.pedido_abono,pe.pedido_foto,pe.pedido_estado\n"
+        String sql = "select pe.pedido_id,pe.pedido_fecha,pe.pedido_entrega,cli.cli_id,pers.pers_nombre1,pers.pers_apellido1,pro.prod_id,pro.prod_nombre, pe.pedido_cantidad,pe.pedido_especificacion,pe.pedido_abono,pe.pedido_foto,pe.pedido_estado\n"
                 + "from pedidos pe join producto pro on pe.prod_id=pro.prod_id\n"
                 + "join cliente cli on cli.cli_id=pe.cli_id\n"
                 + "join persona pers on pers.pers_id=cli.pers_id where pe.pedido_estado='Activo' order by pedido_id";

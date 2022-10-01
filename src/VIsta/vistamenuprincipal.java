@@ -10,6 +10,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
+import javax.swing.JMenuItem;
 import javax.swing.JToolBar;
 
 /**
@@ -89,6 +90,46 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         this.btProductos = btProductos;
     }
 
+    public JMenuItem getMnCategoria() {
+        return mnCategoria;
+    }
+
+    public void setMnCategoria(JMenuItem mnCategoria) {
+        this.mnCategoria = mnCategoria;
+    }
+
+    public JMenuItem getMnCliente() {
+        return mnCliente;
+    }
+
+    public void setMnCliente(JMenuItem mnCliente) {
+        this.mnCliente = mnCliente;
+    }
+
+    public JMenuItem getMnGastos() {
+        return mnGastos;
+    }
+
+    public void setMnGastos(JMenuItem mnGastos) {
+        this.mnGastos = mnGastos;
+    }
+
+    public JMenuItem getMnProducto() {
+        return mnProducto;
+    }
+
+    public void setMnProducto(JMenuItem mnProducto) {
+        this.mnProducto = mnProducto;
+    }
+
+    public JMenuItem getMnProveedore() {
+        return mnProveedore;
+    }
+
+    public void setMnProveedore(JMenuItem mnProveedore) {
+        this.mnProveedore = mnProveedore;
+    }
+
     
     
     
@@ -101,6 +142,7 @@ public class vistamenuprincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         jToolBar1 = new javax.swing.JToolBar();
         btProductos = new javax.swing.JButton();
         btn_factura = new javax.swing.JButton();
@@ -120,7 +162,15 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        mnProducto = new javax.swing.JMenuItem();
+        mnCategoria = new javax.swing.JMenuItem();
+        mnCliente = new javax.swing.JMenuItem();
+        mnProveedore = new javax.swing.JMenuItem();
+        mnGastos = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -244,11 +294,30 @@ public class vistamenuprincipal extends javax.swing.JFrame {
 
         getContentPane().add(jToolBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 90));
 
-        jMenu1.setText("File");
+        jMenu1.setText("Crear");
+
+        mnProducto.setText("Productos");
+        jMenu1.add(mnProducto);
+
+        mnCategoria.setText("Categorias");
+        jMenu1.add(mnCategoria);
+
+        mnCliente.setText("Clientes");
+        jMenu1.add(mnCliente);
+
+        mnProveedore.setText("Proveedores");
+        jMenu1.add(mnProveedore);
+
+        mnGastos.setText("Gastos");
+        jMenu1.add(mnGastos);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Reportes");
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Reportes");
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -302,9 +371,16 @@ public class vistamenuprincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JDesktopPane jdpprincipal;
+    private javax.swing.JMenuItem mnCategoria;
+    private javax.swing.JMenuItem mnCliente;
+    private javax.swing.JMenuItem mnGastos;
+    private javax.swing.JMenuItem mnProducto;
+    private javax.swing.JMenuItem mnProveedore;
     // End of variables declaration//GEN-END:variables
 }

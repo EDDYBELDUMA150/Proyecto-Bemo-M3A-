@@ -406,4 +406,174 @@ public class Modelo_factura_venta extends FacturaVenta {
 
         return lista_factu;
     }
+    
+    public List<FacturaVenta> consulta_facturaDesdeHasta(String Desde, String Hasta) {
+        List<FacturaVenta> lista_factu = new ArrayList<FacturaVenta>();
+
+            String sql = "select  fa.factura_id, ca.cli_id,pers.pers_nombre1,pers.pers_apellido1,pers.pers_cedula, ca.cabecera_fecha, cu.cuerpo_total\n"
+                + "from cabecera_factura ca join factura fa on ca.cabecera_id=fa.cabecera_id join cuerpo_factura cu on cu.cuerpo_id=fa.cuerpo_id\n"
+                + "join cliente cli on cli.cli_id=ca.cli_id join persona pers on pers.pers_id=cli.pers_id where ca.cabecera_id=cu.cabecera_id "
+                    + "AND cabecera_fecha BETWEEN to_date('"+Desde+"', 'YYYY/MM/DD') AND to_date('"+Hasta+"', 'YYYY/MM/DD')";
+
+        ResultSet rs = conexion.consulta(sql);
+        try {
+            while (rs.next()) {
+                FacturaVenta mi_venta = new FacturaVenta();
+                mi_venta.setFactura_id(rs.getInt(1));
+                mi_venta.setCliente_id(rs.getInt(2));
+                mi_venta.setNombre_cliente(rs.getString(3));
+                mi_venta.setApellido_cliente(rs.getString(4));
+                mi_venta.setCedula_cliente(rs.getString(5));
+                mi_venta.setFecha_factura(rs.getDate(6));
+                mi_venta.setTotal(rs.getDouble(7));
+
+                lista_factu.add(mi_venta);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Modelo_factura_venta.class.getName()).log(Level.SEVERE, null, e);
+        }
+        try {
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelo_factura_venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lista_factu;
+    }
+    
+    public List<FacturaVenta> consulta_facturaDIAESPECIF(String Desde) {
+        List<FacturaVenta> lista_factu = new ArrayList<FacturaVenta>();
+
+            String sql = "select  fa.factura_id, ca.cli_id,pers.pers_nombre1,pers.pers_apellido1,pers.pers_cedula, ca.cabecera_fecha, cu.cuerpo_total\n"
+                + "from cabecera_factura ca join factura fa on ca.cabecera_id=fa.cabecera_id join cuerpo_factura cu on cu.cuerpo_id=fa.cuerpo_id\n"
+                + "join cliente cli on cli.cli_id=ca.cli_id join persona pers on pers.pers_id=cli.pers_id where ca.cabecera_id=cu.cabecera_id "
+                        + "AND cabecera_fecha BETWEEN to_date('"+Desde+"', 'YYYY/MM/DD') AND to_date('"+Desde+"', 'YYYY/MM/DD')";
+
+        ResultSet rs = conexion.consulta(sql);
+        try {
+            while (rs.next()) {
+                FacturaVenta mi_venta = new FacturaVenta();
+                mi_venta.setFactura_id(rs.getInt(1));
+                mi_venta.setCliente_id(rs.getInt(2));
+                mi_venta.setNombre_cliente(rs.getString(3));
+                mi_venta.setApellido_cliente(rs.getString(4));
+                mi_venta.setCedula_cliente(rs.getString(5));
+                mi_venta.setFecha_factura(rs.getDate(6));
+                mi_venta.setTotal(rs.getDouble(7));
+
+                lista_factu.add(mi_venta);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Modelo_factura_venta.class.getName()).log(Level.SEVERE, null, e);
+        }
+        try {
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelo_factura_venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lista_factu;
+    }
+    
+    public List<FacturaVenta> consulta_facturaHOY() {
+        List<FacturaVenta> lista_factu = new ArrayList<FacturaVenta>();
+
+            String sql = "select  fa.factura_id, ca.cli_id,pers.pers_nombre1,pers.pers_apellido1,pers.pers_cedula, ca.cabecera_fecha, cu.cuerpo_total\n"
+                + "from cabecera_factura ca join factura fa on ca.cabecera_id=fa.cabecera_id join cuerpo_factura cu on cu.cuerpo_id=fa.cuerpo_id\n"
+                + "join cliente cli on cli.cli_id=ca.cli_id join persona pers on pers.pers_id=cli.pers_id where ca.cabecera_id=cu.cabecera_id "
+                    + "AND cabecera_fecha = to_date(sysdate)";
+
+        ResultSet rs = conexion.consulta(sql);
+        try {
+            while (rs.next()) {
+                FacturaVenta mi_venta = new FacturaVenta();
+                mi_venta.setFactura_id(rs.getInt(1));
+                mi_venta.setCliente_id(rs.getInt(2));
+                mi_venta.setNombre_cliente(rs.getString(3));
+                mi_venta.setApellido_cliente(rs.getString(4));
+                mi_venta.setCedula_cliente(rs.getString(5));
+                mi_venta.setFecha_factura(rs.getDate(6));
+                mi_venta.setTotal(rs.getDouble(7));
+
+                lista_factu.add(mi_venta);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Modelo_factura_venta.class.getName()).log(Level.SEVERE, null, e);
+        }
+        try {
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelo_factura_venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lista_factu;
+    }
+    
+    public List<FacturaVenta> consulta_facturaESTASEMANA() {
+        List<FacturaVenta> lista_factu = new ArrayList<FacturaVenta>();
+
+            String sql = "select  fa.factura_id, ca.cli_id,pers.pers_nombre1,pers.pers_apellido1,pers.pers_cedula, ca.cabecera_fecha, cu.cuerpo_total\n"
+                + "from cabecera_factura ca join factura fa on ca.cabecera_id=fa.cabecera_id join cuerpo_factura cu on cu.cuerpo_id=fa.cuerpo_id\n"
+                + "join cliente cli on cli.cli_id=ca.cli_id join persona pers on pers.pers_id=cli.pers_id where ca.cabecera_id=cu.cabecera_id "
+                    + "AND ca.cabecera_id=cu.cabecera_id AND TO_char(cabecera_fecha, 'WW')= to_char(sysdate, 'WW')";
+
+        ResultSet rs = conexion.consulta(sql);
+        try {
+            while (rs.next()) {
+                FacturaVenta mi_venta = new FacturaVenta();
+                mi_venta.setFactura_id(rs.getInt(1));
+                mi_venta.setCliente_id(rs.getInt(2));
+                mi_venta.setNombre_cliente(rs.getString(3));
+                mi_venta.setApellido_cliente(rs.getString(4));
+                mi_venta.setCedula_cliente(rs.getString(5));
+                mi_venta.setFecha_factura(rs.getDate(6));
+                mi_venta.setTotal(rs.getDouble(7));
+
+                lista_factu.add(mi_venta);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Modelo_factura_venta.class.getName()).log(Level.SEVERE, null, e);
+        }
+        try {
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelo_factura_venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lista_factu;
+    }
+     
+     public List<FacturaVenta> consulta_facturaESTEMES() {
+        List<FacturaVenta> lista_factu = new ArrayList<FacturaVenta>();
+
+            String sql = "select  fa.factura_id, ca.cli_id,pers.pers_nombre1,pers.pers_apellido1,pers.pers_cedula, ca.cabecera_fecha, cu.cuerpo_total\n"
+                + "from cabecera_factura ca join factura fa on ca.cabecera_id=fa.cabecera_id join cuerpo_factura cu on cu.cuerpo_id=fa.cuerpo_id\n"
+                + "join cliente cli on cli.cli_id=ca.cli_id join persona pers on pers.pers_id=cli.pers_id where ca.cabecera_id=cu.cabecera_id "
+                    + "AND ca.cabecera_id=cu.cabecera_id AND TO_char(cabecera_fecha, 'MM')= to_char(sysdate, 'MM')";
+
+        ResultSet rs = conexion.consulta(sql);
+        try {
+            while (rs.next()) {
+                FacturaVenta mi_venta = new FacturaVenta();
+                mi_venta.setFactura_id(rs.getInt(1));
+                mi_venta.setCliente_id(rs.getInt(2));
+                mi_venta.setNombre_cliente(rs.getString(3));
+                mi_venta.setApellido_cliente(rs.getString(4));
+                mi_venta.setCedula_cliente(rs.getString(5));
+                mi_venta.setFecha_factura(rs.getDate(6));
+                mi_venta.setTotal(rs.getDouble(7));
+
+                lista_factu.add(mi_venta);
+            }
+        } catch (Exception e) {
+            Logger.getLogger(Modelo_factura_venta.class.getName()).log(Level.SEVERE, null, e);
+        }
+        try {
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelo_factura_venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return lista_factu;
+    }
 }

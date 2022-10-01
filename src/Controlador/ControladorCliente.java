@@ -99,7 +99,7 @@ public class ControladorCliente {
 
     }
 
-    private void abrirDialogo(int ope) {
+    public void abrirDialogo(int ope) {
         String titulo;
         if (ope == 1) {
             limpiardatos();

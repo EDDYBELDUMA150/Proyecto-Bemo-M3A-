@@ -22,7 +22,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -34,6 +36,12 @@ import modelo.MConexion.Modelo_PedidoPastel;
 import modelo.MConexion.Modelo_factura_venta;
 import modelo.OCconection;
 import modelo.Productos;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -72,7 +80,7 @@ public class Controlador_factura_venta implements Printable {
         cargarTablacliente();
         cargartablaProducto();
         vis_factura.getDate_fecha().setDate(fechaActual);
-        
+
         vis_factura.getTxt_id_factura().setText(String.valueOf(modelo_venta.numeroidfactura() + 1));
         vis_factura.getBtn_abrir_dialog_cliente().addActionListener(l -> abrirDialogocliente());
         vis_factura.getBtn_abrir_dialog_producto().addActionListener(l -> abrirDialogoProducto());
@@ -126,6 +134,7 @@ public class Controlador_factura_venta implements Printable {
                 }
             });
         }
+        vis_factura.getTxt_cantidad().setText("1");
     }
 
     public void cargar_cliente() {
@@ -298,9 +307,7 @@ public class Controlador_factura_venta implements Printable {
         mi_facturita1.setFecha_factura(fecha_factura1);
         mi_facturita1.setCabecera_estado(cabe_est);
 
-        if (mi_facturita1.setCabecerita()) {
-            JOptionPane.showMessageDialog(vis_factura, "Factura registrada exitosamente");
-        }
+        mi_facturita1.setCabecerita();
     }
 
     public void guardar_facturita() {
@@ -328,6 +335,7 @@ public class Controlador_factura_venta implements Printable {
         guardar_cuerpo_factura();
         guardar_facturita();
         limpiar_todo();
+        imprimeFactura(Integer.parseInt(vis_factura.getTxt_id_factura().getText()));
     }
 
     public void limpiar_produ() {
@@ -378,6 +386,26 @@ public class Controlador_factura_venta implements Printable {
         vis_factura.printAll(graphics);
 
         return PAGE_EXISTS;
+
+    }
+
+    public void imprimeFactura(int idFactura) {
+        //Instanciamos la conexion proyecto
+        OCconection con = new OCconection();
+
+        JasperReport jr;
+        try {
+            jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/VIsta/reportes/Factura.jasper"));
+            Map<String, Object> parametros = new HashMap<String, Object>();
+
+            parametros.put("Cabecera", idFactura);
+
+            JasperPrint jp = JasperFillManager.fillReport(jr, parametros, con.getConex());//llena el reporte con datos.
+            JasperViewer jv = new JasperViewer(jp, false);
+            jv.setVisible(true);
+        } catch (JRException ex) {
+            java.util.logging.Logger.getLogger(Controlador_factura_venta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
 
     }
 

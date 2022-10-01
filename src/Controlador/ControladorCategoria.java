@@ -84,7 +84,7 @@ public class ControladorCategoria {
         });
     }
 
-    private void abrirdialog(int opcion) {
+    public void abrirdialog(int opcion) {
         int CRg = modeloCat.countRegistros();
 
         if (CRg == 0) {
