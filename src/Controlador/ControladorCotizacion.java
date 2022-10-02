@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.xml.ws.Holder;
 import modelo.MConexion.modelo_cotizacion;
 import modelo.Productos;
 
@@ -76,8 +77,35 @@ public class ControladorCotizacion {
             }
 
         });
+         vista_coti.getTxt_buscar_producto().addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+
+                buscarProducto();
+            }
+        });
     }
 
+    public void buscarProducto() {
+
+        String filtro = vista_coti.getTxt_buscar_producto().getText() + "%";
+        DefaultTableModel estructuratabla;
+        estructuratabla = (DefaultTableModel) vista_coti.getTabla_productos().getModel();
+        estructuratabla.setNumRows(0);
+        List<Productos> listaproducto = modelito_coti.busquedaProducto(filtro);
+
+        Holder<Integer> i = new Holder<>(0);
+        listaproducto.stream().forEach(produ -> {
+            estructuratabla.addRow(new Object[3]);
+
+            vista_coti.getTabla_productos().setValueAt(produ.getPrd_ID(), i.value, 0);
+            vista_coti.getTabla_productos().setValueAt(produ.getPrd_nombre(), i.value, 1);
+            vista_coti.getTabla_productos().setValueAt(produ.getPrd_precio(), i.value, 2);
+
+            i.value++;
+
+        });
+
+    }
     public void cargartablaProducto() {
         DefaultTableModel tb = (DefaultTableModel) vista_coti.getTabla_productos().getModel();
         tb.setNumRows(0);
