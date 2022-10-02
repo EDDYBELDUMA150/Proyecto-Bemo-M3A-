@@ -116,27 +116,31 @@ public class ControladorCotizacion {
     }
 
     private void llenar_facturaprodu() {
-        double suma_total = 0;
-        DefaultTableModel estructuratabla;
-        estructuratabla = (DefaultTableModel) vista_coti.getTabla_cotizacion().getModel();
 
-        int cantidad = Integer.parseInt(vista_coti.getTxt_cantidad_producto().getText());
-        double precio_unit = Double.parseDouble(vista_coti.getTxt_precio_uni_producto().getText());
-        double sub_to = cantidad * precio_unit;
+        if (validarcasillas() == true) {
+            double suma_total = 0;
+            DefaultTableModel estructuratabla;
+            estructuratabla = (DefaultTableModel) vista_coti.getTabla_cotizacion().getModel();
 
-        String nomb_prod = vista_coti.getTxt_nombre_producto().getText();
-        String pre_uni = vista_coti.getTxt_precio_uni_producto().getText();
-        String can = vista_coti.getTxt_cantidad_producto().getText();
-        String sub_tota = String.valueOf(sub_to);
+            int cantidad = Integer.parseInt(vista_coti.getTxt_cantidad_producto().getText());
+            double precio_unit = Double.parseDouble(vista_coti.getTxt_precio_uni_producto().getText());
+            double sub_to = cantidad * precio_unit;
 
-        Object[] lista = new Object[4];
-        lista[0] = nomb_prod;
-        lista[1] = pre_uni;
-        lista[2] = can;
-        lista[3] = sub_tota;
-        estructuratabla.addRow(lista);
-        actualizar_totales();
-        limpiar_datos();
+            String nomb_prod = vista_coti.getTxt_nombre_producto().getText();
+            String pre_uni = vista_coti.getTxt_precio_uni_producto().getText();
+            String can = vista_coti.getTxt_cantidad_producto().getText();
+            String sub_tota = String.valueOf(sub_to);
+
+            Object[] lista = new Object[4];
+            lista[0] = nomb_prod;
+            lista[1] = pre_uni;
+            lista[2] = can;
+            lista[3] = sub_tota;
+            estructuratabla.addRow(lista);
+            actualizar_totales();
+            limpiar_datos();
+
+        }
 
     }
 
@@ -211,16 +215,37 @@ public class ControladorCotizacion {
         vista_coti.getTxt_precio_uni_extra().setText("");
         vista_coti.getTxt_cantidad_extra().setText("");
     }
-    
+
 //    public boolean casillasvacias(){
 //        
 //        
 //    
 //    
 //    }
-//    public boolean validarcasillas(){
-//    
-//    
-//    
-//    }
+    public boolean validarcasillas() {
+
+        boolean validado = true;
+
+        if (vista_coti.getTxt_nombre_producto().getText().isEmpty()) {
+            validado = false;
+            vista_coti.getLboonombreproduct().setText("Seleccione un Producto");
+
+        } else {
+
+            vista_coti.getLboonombreproduct().setText("");
+
+        }
+
+        if (vista_coti.getTxt_cantidad_producto().getText().isEmpty()) {
+            validado = false;
+            vista_coti.getLboocantidad().setText("Ingrese la cantidad");
+        } else {
+
+            vista_coti.getLboocantidad().setText("");
+
+        }
+
+        return validado;
+
+    }
 }
