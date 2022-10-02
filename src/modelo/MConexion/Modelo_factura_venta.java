@@ -349,8 +349,8 @@ public class Modelo_factura_venta extends FacturaVenta {
         java.util.List<Cliente> listacliente = new ArrayList<Cliente>();
         String sql = " select c.cli_id ,p.pers_cedula,p.pers_nombre1,p.pers_apellido1  from cliente c \n"
                 + "join persona p on (p.pers_id = c.pers_id) where c.cli_id like lower('%" + filtro + "%') OR p.pers_cedula like lower( '%" + filtro + "%' )"
-                + "OR p.pers_nombre1 like lower('%" + filtro + "%')"
-                + "OR p.pers_apellido1 like lower('%" + filtro + "%')";
+                + "OR p.pers_nombre1 like UPPER('%" + filtro + "%')"
+                + "OR p.pers_apellido1 like UPPER('%" + filtro + "%')";
         ResultSet rs = conexion.consulta(sql);
         try {
             while (rs.next()) {
@@ -576,4 +576,6 @@ public class Modelo_factura_venta extends FacturaVenta {
 
         return lista_factu;
     }
+     
+     
 }
