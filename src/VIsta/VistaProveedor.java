@@ -58,6 +58,10 @@ public class VistaProveedor extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txtnombreempresa = new javax.swing.JTextField();
+        lbodatoovligatorionombre = new javax.swing.JLabel();
+        lbodatoovligatorioapellido1 = new javax.swing.JLabel();
+        lbodatoovligatoriocedula = new javax.swing.JLabel();
+        lbodatoovligatoriocelular = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaproveedores = new javax.swing.JTable();
         txtbuscarproveedor = new javax.swing.JTextField();
@@ -163,6 +167,22 @@ public class VistaProveedor extends javax.swing.JInternalFrame {
             }
         });
         jdialogproveedor.getContentPane().add(txtnombreempresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 643, 40));
+
+        lbodatoovligatorionombre.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbodatoovligatorionombre.setForeground(new java.awt.Color(204, 0, 0));
+        jdialogproveedor.getContentPane().add(lbodatoovligatorionombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 40, 20));
+
+        lbodatoovligatorioapellido1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbodatoovligatorioapellido1.setForeground(new java.awt.Color(204, 0, 0));
+        jdialogproveedor.getContentPane().add(lbodatoovligatorioapellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 40, 20));
+
+        lbodatoovligatoriocedula.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbodatoovligatoriocedula.setForeground(new java.awt.Color(204, 0, 0));
+        jdialogproveedor.getContentPane().add(lbodatoovligatoriocedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, 40, 20));
+
+        lbodatoovligatoriocelular.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbodatoovligatoriocelular.setForeground(new java.awt.Color(204, 0, 0));
+        jdialogproveedor.getContentPane().add(lbodatoovligatoriocelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 40, 20));
 
         setClosable(true);
         setMaximumSize(new java.awt.Dimension(1680, 840));
@@ -448,6 +468,38 @@ public class VistaProveedor extends javax.swing.JInternalFrame {
         this.txttelefono = txttelefono;
     }
 
+    public JLabel getLbodatoovligatorioapellido1() {
+        return lbodatoovligatorioapellido1;
+    }
+
+    public void setLbodatoovligatorioapellido1(JLabel lbodatoovligatorioapellido1) {
+        this.lbodatoovligatorioapellido1 = lbodatoovligatorioapellido1;
+    }
+
+    public JLabel getLbodatoovligatoriocedula() {
+        return lbodatoovligatoriocedula;
+    }
+
+    public void setLbodatoovligatoriocedula(JLabel lbodatoovligatoriocedula) {
+        this.lbodatoovligatoriocedula = lbodatoovligatoriocedula;
+    }
+
+    public JLabel getLbodatoovligatoriocelular() {
+        return lbodatoovligatoriocelular;
+    }
+
+    public void setLbodatoovligatoriocelular(JLabel lbodatoovligatoriocelular) {
+        this.lbodatoovligatoriocelular = lbodatoovligatoriocelular;
+    }
+
+    public JLabel getLbodatoovligatorionombre() {
+        return lbodatoovligatorionombre;
+    }
+
+    public void setLbodatoovligatorionombre(JLabel lbodatoovligatorionombre) {
+        this.lbodatoovligatorionombre = lbodatoovligatorionombre;
+    }
+
     
     
     
@@ -475,6 +527,10 @@ public class VistaProveedor extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JDialog jdialogproveedor;
+    private javax.swing.JLabel lbodatoovligatorioapellido1;
+    private javax.swing.JLabel lbodatoovligatoriocedula;
+    private javax.swing.JLabel lbodatoovligatoriocelular;
+    private javax.swing.JLabel lbodatoovligatorionombre;
     private javax.swing.JLabel lbtitulo;
     private javax.swing.JTable tablaproveedores;
     private javax.swing.JTextField txtapellido;

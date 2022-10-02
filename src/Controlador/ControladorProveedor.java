@@ -57,6 +57,81 @@ public class ControladorProveedor {
 
         });
 
+        vista.getTxtcedula().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (vista.getTxtcedula().getText().length() == 10 || (caracter < '0') || (caracter > '9')) {
+                    e.consume();
+                }
+
+            }
+
+        });
+
+        vista.getTxtnombre().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (vista.getTxtnombre().getText().length() == 20 || ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z'))) {
+                    e.consume();
+                }
+
+            }
+
+        });
+        vista.getTxtsegundonombre().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (vista.getTxtsegundonombre().getText().length() == 20 || ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z'))) {
+                    e.consume();
+                }
+
+            }
+
+        });
+
+        vista.getTxtapellido().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (vista.getTxtapellido().getText().length() == 20 || ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z'))) {
+                    e.consume();
+                }
+
+            }
+
+        });
+        vista.getTxtsegundoapellido().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (vista.getTxtsegundoapellido().getText().length() == 20 || ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z'))) {
+                    e.consume();
+                }
+
+            }
+
+        });
+        vista.getTxttelefono().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (vista.getTxttelefono().getText().length() == 10 || (caracter < '0') || (caracter > '9')) {
+                    e.consume();
+                }
+
+            }
+
+        });
+
     }
 
     public void cargardatos() {
@@ -260,16 +335,56 @@ public class ControladorProveedor {
             int fila = vista.getTablaproveedores().getSelectedRow();
 
             if (fila >= 0) {
+//                vista.getTxtidproveedor().setText(vista.getTablaproveedores().getValueAt(fila, 0).toString());
+//                vista.getTxtcedula().setText(vista.getTablaproveedores().getValueAt(fila, 1).toString());
+//                vista.getTxtnombre().setText(vista.getTablaproveedores().getValueAt(fila, 2).toString());
+//                vista.getTxtsegundonombre().setText(vista.getTablaproveedores().getValueAt(fila, 3).toString());
+//                vista.getTxtapellido().setText(vista.getTablaproveedores().getValueAt(fila, 4).toString());
+//                vista.getTxtsegundoapellido().setText(vista.getTablaproveedores().getValueAt(fila, 5).toString());
+//                vista.getTxtdireccion().setText(vista.getTablaproveedores().getValueAt(fila, 6).toString());
+//                vista.getTxttelefono().setText(vista.getTablaproveedores().getValueAt(fila, 7).toString());
+//                vista.getTxtemail().setText(vista.getTablaproveedores().getValueAt(fila, 8).toString());
+//                vista.getTxtnombreempresa().setText(vista.getTablaproveedores().getValueAt(fila, 9).toString());
+
                 vista.getTxtidproveedor().setText(vista.getTablaproveedores().getValueAt(fila, 0).toString());
                 vista.getTxtcedula().setText(vista.getTablaproveedores().getValueAt(fila, 1).toString());
                 vista.getTxtnombre().setText(vista.getTablaproveedores().getValueAt(fila, 2).toString());
-                vista.getTxtsegundonombre().setText(vista.getTablaproveedores().getValueAt(fila, 3).toString());
+
+                if (vista.getTablaproveedores().getValueAt(fila, 3) == null) {
+                    vista.getTxtsegundonombre().setText("");
+                } else {
+                    vista.getTxtsegundonombre().setText(vista.getTablaproveedores().getValueAt(fila, 3).toString());
+                }
+
                 vista.getTxtapellido().setText(vista.getTablaproveedores().getValueAt(fila, 4).toString());
-                vista.getTxtsegundoapellido().setText(vista.getTablaproveedores().getValueAt(fila, 5).toString());
-                vista.getTxtdireccion().setText(vista.getTablaproveedores().getValueAt(fila, 6).toString());
+
+                if (vista.getTablaproveedores().getValueAt(fila, 5) == null) {
+                    vista.getTxtsegundoapellido().setText("");
+
+                } else {
+                    vista.getTxtsegundoapellido().setText(vista.getTablaproveedores().getValueAt(fila, 5).toString());
+
+                }
+                if (vista.getTablaproveedores().getValueAt(fila, 6) == null) {
+                    vista.getTxtdireccion().setText("");
+                } else {
+                    vista.getTxtdireccion().setText(vista.getTablaproveedores().getValueAt(fila, 6).toString());
+                }
+
                 vista.getTxttelefono().setText(vista.getTablaproveedores().getValueAt(fila, 7).toString());
-                vista.getTxtemail().setText(vista.getTablaproveedores().getValueAt(fila, 8).toString());
-                vista.getTxtnombreempresa().setText(vista.getTablaproveedores().getValueAt(fila, 9).toString());
+
+                if (vista.getTablaproveedores().getValueAt(fila, 8) == null) {
+                    vista.getTxtemail().setText("");
+                } else {
+                    vista.getTxtemail().setText(vista.getTablaproveedores().getValueAt(fila, 8).toString());
+                }
+                
+                if (vista.getTablaproveedores().getValueAt(fila, 9)==null) {
+                    vista.getTxtnombreempresa().setText("");
+                }else{
+                     vista.getTxtnombreempresa().setText(vista.getTablaproveedores().getValueAt(fila, 9).toString());
+                }
+               
                 vista.getJdialogproveedor().setVisible(true);
 
             } else {
@@ -367,6 +482,10 @@ public class ControladorProveedor {
         vista.getTxttelefono().setText("");
         vista.getTxtemail().setText("");
         vista.getTxtnombreempresa().setText("");
+        vista.getLbodatoovligatoriocedula().setText("");
+        vista.getLbodatoovligatorionombre().setText("");
+        vista.getLbodatoovligatorioapellido1().setText("");
+        vista.getLbodatoovligatoriocelular().setText("");
 
     }
 
@@ -378,19 +497,22 @@ public class ControladorProveedor {
             vali = false;
 
         }
-        if (!validar.Validarnombreapellido(vista.getTxtnombre().getText()) || !validar.Validarnombreapellido(vista.getTxtsegundonombre().getText())) {
-            JOptionPane.showMessageDialog(null, "El Nombre debe comensar con Una letra Mayuscula, No se permiten Espacios");
-            vali = false;
+//        if (!validar.Validarnombreapellido(vista.getTxtnombre().getText()) || !validar.Validarnombreapellido(vista.getTxtsegundonombre().getText())) {
+//            JOptionPane.showMessageDialog(null, "El Nombre debe comensar con Una letra Mayuscula, No se permiten Espacios");
+//            vali = false;
+//
+//        }
+//        if (!validar.Validarnombreapellido(vista.getTxtapellido().getText()) || !validar.Validarnombreapellido(vista.getTxtsegundoapellido().getText())) {
+//            JOptionPane.showMessageDialog(null, "El Apellido debe comensar con Una letra Mayuscula, No se permiten Espacios");
+//            vali = false;
+//
+//        }
+        if (!vista.getTxtemail().getText().isEmpty()) {
+            if (!validar.Validarcorreo(vista.getTxtemail().getText())) {
+                JOptionPane.showMessageDialog(null, "Correo  Invalido ");
+                vali = false;
 
-        }
-        if (!validar.Validarnombreapellido(vista.getTxtapellido().getText()) || !validar.Validarnombreapellido(vista.getTxtsegundoapellido().getText())) {
-            JOptionPane.showMessageDialog(null, "El Apellido debe comensar con Una letra Mayuscula, No se permiten Espacios");
-            vali = false;
-
-        }
-        if (!validar.Validarcorreo(vista.getTxtemail().getText())) {
-            JOptionPane.showMessageDialog(null, "Correo  Invalido ");
-            vali = false;
+            }
 
         }
         if (!validar.validartelefono(vista.getTxttelefono().getText())) {
@@ -404,53 +526,103 @@ public class ControladorProveedor {
     }
 
     public boolean espacios_vacios() {
-
+        int c = 0;
         boolean espacio = true;
+//
+//        if (vista.getTxtcedula().getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Campo Cedula  Vacio");
+//
+//            espacio = false;
+//        }
+//        if (vista.getTxtnombre().getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Campo Primer Nombre  Vacio");
+//
+//            espacio = false;
+//        }
+//        if (vista.getTxtsegundonombre().getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Campo Segundo Nombre  Vacio");
+//
+//            espacio = false;
+//        }
+//        if (vista.getTxtapellido().getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Campo Primer Apellido  Vacio");
+//
+//            espacio = false;
+//        }
+//        if (vista.getTxtsegundoapellido().getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Campo Segundo Apellido  Vacio");
+//
+//            espacio = false;
+//        }
+//        if (vista.getTxttelefono().getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Campo Telefono o Celular Vacio");
+//
+//            espacio = false;
+//        }
+//        if (vista.getTxtdireccion().getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Campo Direccion  Vacio");
+//
+//            espacio = false;
+//        }
+//        if (vista.getTxtemail().getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Campo Email  Vacio");
+//
+//            espacio = false;
+//        }
+//        if (vista.getTxtnombreempresa().getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(null, "Campo  Nombre Empresa Vacio");
+//
+//            espacio = false;
+//        }
 
         if (vista.getTxtcedula().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campo Cedula  Vacio");
+            //  JOptionPane.showMessageDialog(null, "Campo Cedula  Vacio");
+            c += 1;
+            vista.getLbodatoovligatoriocedula().setText("*");
 
             espacio = false;
+        } else {
+            vista.getLbodatoovligatoriocedula().setText("");
+
         }
         if (vista.getTxtnombre().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campo Primer Nombre  Vacio");
-
+            //JOptionPane.showMessageDialog(null, "Campo Primer Nombre  Vacio");
+            c += 1;
+            vista.getLbodatoovligatorionombre().setText("*");
             espacio = false;
-        }
-        if (vista.getTxtsegundonombre().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campo Segundo Nombre  Vacio");
-
-            espacio = false;
+        } else {
+            vista.getLbodatoovligatorionombre().setText("");
         }
         if (vista.getTxtapellido().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campo Primer Apellido  Vacio");
-
+            //  JOptionPane.showMessageDialog(null, "Campo Primer Apellido  Vacio");
+            c += 1;
+            vista.getLbodatoovligatorioapellido1().setText("*");
             espacio = false;
-        }
-        if (vista.getTxtsegundoapellido().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campo Segundo Apellido  Vacio");
+        } else {
 
-            espacio = false;
+            vista.getLbodatoovligatorioapellido1().setText("");
         }
         if (vista.getTxttelefono().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campo Telefono o Celular Vacio");
-
+            // JOptionPane.showMessageDialog(null, "Campo Telefono o Celular Vacio");
+            c += 1;
+            vista.getLbodatoovligatoriocelular().setText("*");
             espacio = false;
+        } else {
+            vista.getLbodatoovligatoriocelular().setText("");
+
         }
-        if (vista.getTxtdireccion().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campo Direccion  Vacio");
-
-            espacio = false;
-        }
-        if (vista.getTxtemail().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campo Email  Vacio");
-
-            espacio = false;
-        }
-        if (vista.getTxtnombreempresa().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campo  Nombre Empresa Vacio");
-
-            espacio = false;
+//        if (vista.getTxtdireccion().getText().isEmpty()) {
+//            //  JOptionPane.showMessageDialog(null, "Campo Direccion  Vacio");
+//            c += 1;
+//            espacio = false;
+//        }
+//        if (vista.getTxtemail().getText().isEmpty()) {
+//            // JOptionPane.showMessageDialog(null, "Campo Email  Vacio");
+//            c += 1;
+//            espacio = false;
+//        }
+        if (c > 0) {
+            JOptionPane.showMessageDialog(null, "*  campos Obligatorios.");
         }
         return espacio;
 

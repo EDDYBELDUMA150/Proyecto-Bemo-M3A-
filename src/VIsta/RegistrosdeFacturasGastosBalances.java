@@ -218,6 +218,9 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         rbGenerar = new javax.swing.JRadioButton();
         rbEditar = new javax.swing.JRadioButton();
         lbNuevo = new javax.swing.JLabel();
+        lbopcionovligatorianombre = new javax.swing.JLabel();
+        lbopcionobligatoriaprecio = new javax.swing.JLabel();
+        lbopcionobligatorioselecco = new javax.swing.JLabel();
         jdGastos = new javax.swing.JDialog();
         txtcodG = new javax.swing.JTextField();
         lbTitulo = new javax.swing.JLabel();
@@ -240,6 +243,9 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         jLabel44 = new javax.swing.JLabel();
         txtCantidadG = new javax.swing.JTextField();
         dtFecha = new com.toedter.calendar.JDateChooser();
+        lboopreciogasto = new javax.swing.JLabel();
+        lboocgasto = new javax.swing.JLabel();
+        lboodesgasto = new javax.swing.JLabel();
         btgCodProd = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
@@ -340,6 +346,15 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         lbNuevo.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 20)); // NOI18N
         lbNuevo.setText("NUEVO PRODUCTO");
 
+        lbopcionovligatorianombre.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbopcionovligatorianombre.setForeground(new java.awt.Color(255, 0, 0));
+
+        lbopcionobligatoriaprecio.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbopcionobligatoriaprecio.setForeground(new java.awt.Color(204, 0, 0));
+
+        lbopcionobligatorioselecco.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbopcionobligatorioselecco.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout jdProductosLayout = new javax.swing.GroupLayout(jdProductos.getContentPane());
         jdProductos.getContentPane().setLayout(jdProductosLayout);
         jdProductosLayout.setHorizontalGroup(
@@ -364,8 +379,14 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jdProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPronombre, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtProprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jdProductosLayout.createSequentialGroup()
+                                        .addComponent(txtPronombre, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lbopcionovligatorianombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jdProductosLayout.createSequentialGroup()
+                                        .addComponent(txtProprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lbopcionobligatoriaprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jdProductosLayout.createSequentialGroup()
                                         .addComponent(txtCodPro, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -382,11 +403,15 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
                                     .addComponent(btPrevisualizar))
                                 .addGroup(jdProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jdProductosLayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cbProCate, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jdProductosLayout.createSequentialGroup()
                                         .addGap(45, 45, 45)
-                                        .addComponent(btVerCategoria)))))))
+                                        .addComponent(btVerCategoria))
+                                    .addGroup(jdProductosLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jdProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cbProCate, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jdProductosLayout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(lbopcionobligatorioselecco, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))))))))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         jdProductosLayout.setVerticalGroup(
@@ -402,171 +427,112 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
                     .addComponent(rbEditar)
                     .addComponent(jLabel11)
                     .addComponent(txtCodPro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jdProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtPronombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGroup(jdProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jdProductosLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jdProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtPronombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jdProductosLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lbopcionovligatorianombre, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jdProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbProCate, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(txtProprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(50, 50, 50)
+                    .addComponent(jLabel5)
+                    .addComponent(lbopcionobligatoriaprecio, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbopcionobligatorioselecco, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jdProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btPrevisualizar)
                     .addComponent(btVerCategoria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(jdProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btAgregarModi, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33))
         );
 
+        jdGastos.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         txtcodG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcodGActionPerformed(evt);
             }
         });
+        jdGastos.getContentPane().add(txtcodG, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 73, 136, 33));
 
         lbTitulo.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 20)); // NOI18N
         lbTitulo.setText("NUEVO GASTO");
+        jdGastos.getContentPane().add(lbTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 22, -1, 33));
 
         btAgregarModiG.setText("AGREGAR");
+        jdGastos.getContentPane().add(btAgregarModiG, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 483, 117, 50));
 
         btSalirG.setText("SALIR");
+        jdGastos.getContentPane().add(btSalirG, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 495, 117, 50));
 
         jLabel21.setText("Codigo:");
+        jdGastos.getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 81, -1, -1));
 
         jLabel41.setText("Fecha:");
+        jdGastos.getContentPane().add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(499, 81, 43, -1));
+        jdGastos.getContentPane().add(txtprecioG, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 316, 105, 44));
 
         jLabel6.setText("Foto de factura recibida por el proveedor");
+        jdGastos.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 132, -1, -1));
 
         lbFotoG.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jdGastos.getContentPane().add(lbFotoG, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 220, 231, 169));
 
         btCargarFotoG.setText("Cargar foto");
+        jdGastos.getContentPane().add(btCargarFotoG, new org.netbeans.lib.awtextra.AbsoluteConstraints(604, 164, 122, 44));
 
         txtdescripG.setColumns(20);
         txtdescripG.setRows(5);
         jScrollPane3.setViewportView(txtdescripG);
 
+        jdGastos.getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 155, 331, 121));
+
         jLabel42.setText("Descripción:");
+        jdGastos.getContentPane().add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 155, -1, -1));
 
         jLabel43.setText("Precio:");
+        jdGastos.getContentPane().add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 330, -1, -1));
 
         jLabel19.setText("Subtotal:");
+        jdGastos.getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 385, -1, -1));
 
         jLabel22.setText("Total:");
+        jdGastos.getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 419, -1, -1));
 
         lbSubtotalG.setText("00.00");
+        jdGastos.getContentPane().add(lbSubtotalG, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 385, -1, -1));
 
         lbTotalG.setText("00.00");
+        jdGastos.getContentPane().add(lbTotalG, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 419, -1, -1));
 
         jLabel44.setText("Cantidad:");
+        jdGastos.getContentPane().add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 330, -1, -1));
+        jdGastos.getContentPane().add(txtCantidadG, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 316, 105, 44));
+        jdGastos.getContentPane().add(dtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 73, 164, 33));
 
-        javax.swing.GroupLayout jdGastosLayout = new javax.swing.GroupLayout(jdGastos.getContentPane());
-        jdGastos.getContentPane().setLayout(jdGastosLayout);
-        jdGastosLayout.setHorizontalGroup(
-            jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdGastosLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jdGastosLayout.createSequentialGroup()
-                        .addComponent(btSalirG, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btAgregarModiG, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jdGastosLayout.createSequentialGroup()
-                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbTitulo)
-                            .addGroup(jdGastosLayout.createSequentialGroup()
-                                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel42)
-                                    .addComponent(jLabel43))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jdGastosLayout.createSequentialGroup()
-                                        .addComponent(txtprecioG, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jdGastosLayout.createSequentialGroup()
-                                                .addGap(66, 66, 66)
-                                                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel22)
-                                                    .addComponent(jLabel19))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(lbSubtotalG)
-                                                    .addComponent(lbTotalG)))
-                                            .addGroup(jdGastosLayout.createSequentialGroup()
-                                                .addGap(59, 59, 59)
-                                                .addComponent(jLabel44)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtCantidadG, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtcodG, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(dtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbFotoG, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jdGastosLayout.createSequentialGroup()
-                                .addGap(56, 56, 56)
-                                .addComponent(btCargarFotoG, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(51, 51, 51))
-        );
-        jdGastosLayout.setVerticalGroup(
-            jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdGastosLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jdGastosLayout.createSequentialGroup()
-                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel21)
-                            .addComponent(txtcodG, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel41))
-                        .addGap(49, 49, 49)
-                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel42))
-                        .addGap(18, 18, 18)
-                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtprecioG, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel44)
-                            .addComponent(txtCantidadG, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel43))
-                        .addGap(0, 47, Short.MAX_VALUE)
-                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel19)
-                            .addComponent(lbSubtotalG))
-                        .addGap(18, 18, 18)
-                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel22)
-                            .addComponent(lbTotalG))
-                        .addGap(48, 48, 48))
-                    .addGroup(jdGastosLayout.createSequentialGroup()
-                        .addComponent(dtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel6)
-                        .addGap(16, 16, 16)
-                        .addComponent(btCargarFotoG, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lbFotoG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(94, 94, 94)))
-                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdGastosLayout.createSequentialGroup()
-                        .addComponent(btAgregarModiG, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdGastosLayout.createSequentialGroup()
-                        .addComponent(btSalirG, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-        );
+        lboopreciogasto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lboopreciogasto.setForeground(new java.awt.Color(255, 0, 0));
+        jdGastos.getContentPane().add(lboopreciogasto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 40, 30));
+
+        lboocgasto.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lboocgasto.setForeground(new java.awt.Color(204, 0, 0));
+        jdGastos.getContentPane().add(lboocgasto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, 50, 30));
+
+        lboodesgasto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lboodesgasto.setForeground(new java.awt.Color(255, 0, 0));
+        jdGastos.getContentPane().add(lboodesgasto, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 50, 30));
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(1660, 800));
@@ -1288,6 +1254,54 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
     public void setLbErrores(JLabel lbErrores) {
         this.lbErrores = lbErrores;
     }
+
+    public JLabel getLbopcionobligatoriaprecio() {
+        return lbopcionobligatoriaprecio;
+    }
+
+    public void setLbopcionobligatoriaprecio(JLabel lbopcionobligatoriaprecio) {
+        this.lbopcionobligatoriaprecio = lbopcionobligatoriaprecio;
+    }
+
+    public JLabel getLbopcionobligatorioselecco() {
+        return lbopcionobligatorioselecco;
+    }
+
+    public void setLbopcionobligatorioselecco(JLabel lbopcionobligatorioselecco) {
+        this.lbopcionobligatorioselecco = lbopcionobligatorioselecco;
+    }
+
+    public JLabel getLbopcionovligatorianombre() {
+        return lbopcionovligatorianombre;
+    }
+
+    public void setLbopcionovligatorianombre(JLabel lbopcionovligatorianombre) {
+        this.lbopcionovligatorianombre = lbopcionovligatorianombre;
+    }
+
+    public JLabel getLboocgasto() {
+        return lboocgasto;
+    }
+
+    public void setLboocgasto(JLabel lboocgasto) {
+        this.lboocgasto = lboocgasto;
+    }
+
+    public JLabel getLboopreciogasto() {
+        return lboopreciogasto;
+    }
+
+    public void setLboopreciogasto(JLabel lboopreciogasto) {
+        this.lboopreciogasto = lboopreciogasto;
+    }
+
+    public JLabel getLboodesgasto() {
+        return lboodesgasto;
+    }
+
+    public void setLboodesgasto(JLabel lboodesgasto) {
+        this.lboodesgasto = lboodesgasto;
+    }
     
     
 
@@ -1381,6 +1395,12 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
     private javax.swing.JLabel lbdesdeGastos;
     private javax.swing.JLabel lbhastaGastos;
     private javax.swing.JLabel lblDesdeVentas;
+    private javax.swing.JLabel lboocgasto;
+    private javax.swing.JLabel lboodesgasto;
+    private javax.swing.JLabel lboopreciogasto;
+    private javax.swing.JLabel lbopcionobligatoriaprecio;
+    private javax.swing.JLabel lbopcionobligatorioselecco;
+    private javax.swing.JLabel lbopcionovligatorianombre;
     private javax.swing.JRadioButton rbEditar;
     private javax.swing.JRadioButton rbGenerar;
     private javax.swing.JTable tabla_factura_registro;

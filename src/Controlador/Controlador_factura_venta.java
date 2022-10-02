@@ -10,6 +10,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.PrintJob;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
@@ -91,6 +93,20 @@ public class Controlador_factura_venta implements Printable {
         vis_factura.getBtn_guardar_factura().addActionListener(l -> guar_todo_factu());
         vis_factura.getBtn_imprimir().addActionListener(l -> imprimirfactura());
 //        vis_factura.getBtn_guardar_cliente().addActionListener(l-> guardar_cabecera());
+
+        vis_factura.getTxt_cantidad().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (vis_factura.getTxt_cantidad().getText().length() == 10 || (caracter < '0') || (caracter > '9')) {
+                    e.consume();
+                }
+
+            }
+
+        });
+
     }
 
     public void iniciarcontrol2() {
@@ -185,29 +201,33 @@ public class Controlador_factura_venta implements Printable {
     }
 
     private void llenar_factura() {
-        double suma_total = 0;
-        DefaultTableModel estructuratabla;
-        estructuratabla = (DefaultTableModel) vis_factura.getTabla_factura().getModel();
+
+        if (casillasvacias() == true) {
+            double suma_total = 0;
+            DefaultTableModel estructuratabla;
+            estructuratabla = (DefaultTableModel) vis_factura.getTabla_factura().getModel();
 //        estructuratabla.setNumRows(0);
-        int cantidad = Integer.parseInt(vis_factura.getTxt_cantidad().getText());
-        double precio_unit = Double.parseDouble(vis_factura.getTxt_precio_unitario().getText());
-        double sub_to = cantidad * precio_unit;
+            int cantidad = Integer.parseInt(vis_factura.getTxt_cantidad().getText());
+            double precio_unit = Double.parseDouble(vis_factura.getTxt_precio_unitario().getText());
+            double sub_to = cantidad * precio_unit;
 
-        String cod_prod = vis_factura.getTxt_codigo_producto().getText();
-        String nomb_prod = vis_factura.getTxt_nombre_producto().getText();
-        String pre_uni = vis_factura.getTxt_precio_unitario().getText();
-        String can = vis_factura.getTxt_cantidad().getText();
-        String sub_tota = String.valueOf(sub_to);
+            String cod_prod = vis_factura.getTxt_codigo_producto().getText();
+            String nomb_prod = vis_factura.getTxt_nombre_producto().getText();
+            String pre_uni = vis_factura.getTxt_precio_unitario().getText();
+            String can = vis_factura.getTxt_cantidad().getText();
+            String sub_tota = String.valueOf(sub_to);
 
-        Object[] lista = new Object[5];
-        lista[0] = cod_prod;
-        lista[1] = nomb_prod;
-        lista[2] = pre_uni;
-        lista[3] = can;
-        lista[4] = sub_tota;
-        estructuratabla.addRow(lista);
-        actualizar_totales();
-        limpiar_produ();
+            Object[] lista = new Object[5];
+            lista[0] = cod_prod;
+            lista[1] = nomb_prod;
+            lista[2] = pre_uni;
+            lista[3] = can;
+            lista[4] = sub_tota;
+            estructuratabla.addRow(lista);
+            actualizar_totales();
+            limpiar_produ();
+
+        }
 
     }
 
@@ -406,6 +426,31 @@ public class Controlador_factura_venta implements Printable {
         } catch (JRException ex) {
             java.util.logging.Logger.getLogger(Controlador_factura_venta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+
+    }
+
+    public boolean casillasvacias() {
+
+        boolean validar = true;
+
+        if (vis_factura.getTxt_id_cliente().getText().isEmpty()) {
+            validar = false;
+            vis_factura.getLboocliente().setText("Seleccione un Cliente");
+
+        } else {
+            vis_factura.getLboocliente().setText("");
+
+        }
+        if (vis_factura.getTxt_codigo_producto().getText().isEmpty()) {
+            validar = false;
+            vis_factura.getLbooproducto().setText("Seleccione un Producto");
+
+        } else {
+            vis_factura.getLbooproducto().setText("");
+
+        }
+
+        return validar;
 
     }
 

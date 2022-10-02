@@ -51,6 +51,18 @@
             <Property name="text" type="java.lang.String" value="Reportes"/>
           </Properties>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu4">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Opciones"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="jCheckboxitemmodooscuro">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Modo Oscuro"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
       </SubComponents>
     </Menu>
   </NonVisualComponents>
@@ -85,9 +97,6 @@
   <SubComponents>
     <Container class="javax.swing.JToolBar" name="jToolBar1">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -103,14 +112,11 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btProductos">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic" size="12" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IconoseImagenes/productos.png"/>
+              <Image iconType="3" name="/IconoseImagenes/cash_register_50px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Registros"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -124,9 +130,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_factura">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic" size="12" style="1"/>
             </Property>
@@ -148,14 +151,11 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_cotizacion">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic" size="12" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IconoseImagenes/cootizar.png"/>
+              <Image iconType="3" name="/IconoseImagenes/estimate_50px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cootizacion"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -169,14 +169,11 @@
         </Component>
         <Component class="javax.swing.JButton" name="btncrudclientes">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic" size="12" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IconoseImagenes/user_group_50px.png"/>
+              <Image iconType="3" name="/IconoseImagenes/user_group_50px_1.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cliente"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -190,14 +187,11 @@
         </Component>
         <Component class="javax.swing.JButton" name="btncrudproveedores">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic" size="12" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IconoseImagenes/proveedor.png"/>
+              <Image iconType="3" name="/IconoseImagenes/supplier_50px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Proveedor"/>
             <Property name="borderPainted" type="boolean" value="false"/>
@@ -211,9 +205,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="btn_pedido_pastel">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Yu Gothic" size="12" style="1"/>
             </Property>
@@ -267,9 +258,6 @@
     </Container>
     <Container class="javax.swing.JToolBar" name="jToolBar2">
       <Properties>
-        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="null"/>
         </Property>
@@ -313,7 +301,7 @@
               <Font name="Yu Gothic" size="12" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/IconoseImagenes/salir.png"/>
+              <Image iconType="3" name="/IconoseImagenes/export_50px.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
             <Property name="borderPainted" type="boolean" value="false"/>

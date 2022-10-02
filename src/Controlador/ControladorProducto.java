@@ -6,6 +6,8 @@ package Controlador;
 
 import VIsta.Categorias;
 import VIsta.RegistrosdeFacturasGastosBalances;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Date;
@@ -91,6 +93,20 @@ public class ControladorProducto {
         });
         vistaPro.getCbFechasVentas().addActionListener(l -> esconderDesdeHastaVts());
         vistaPro.getCbFechasGastos().addActionListener(l -> esconderDesdeHastaGastos());
+
+        vistaPro.getTxtPronombre().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (vistaPro.getTxtPronombre().getText().length() == 50 || ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z'))) {
+                    e.consume();
+                }
+
+            }
+
+        });
+      
     }
 
     private void cargarDatos() {
@@ -283,6 +299,9 @@ public class ControladorProducto {
         vistaPro.getTxtProprecio().setText("");
         vistaPro.getTxtPrevista().setText("");
         vistaPro.getCbProCate().setSelectedIndex(0);
+        vistaPro.getLbopcionobligatoriaprecio().setText("");
+        vistaPro.getLbopcionobligatorioselecco().setText("");
+        vistaPro.getLbopcionovligatorianombre().setText("");
     }
 
     private void previa() {
@@ -295,14 +314,16 @@ public class ControladorProducto {
         boolean validado = true;
 
         if (!validar.validarsololetras(vistaPro.getTxtPronombre().getText())) {
-            JOptionPane.showMessageDialog(vistaPro, "Asegurese de que el Nombre solo tenga letras .  Por Favor");
+            //  JOptionPane.showMessageDialog(vistaPro, "Asegurese de que el Nombre solo tenga letras .  Por Favor");
             validado = false;
+            //vistaPro.getLbopcionovligatorianombre().setText("*");
 
         }
 
         if (!validar.validarprecio(vistaPro.getTxtProprecio().getText())) {
-            JOptionPane.showMessageDialog(vistaPro, "Asegurese de que el precion sea un numero y use el punto para decimales .  Por Favor");
+              JOptionPane.showMessageDialog(vistaPro, "Asegurese de que el precion sea un numero y use el punto para decimales .  Por Favor");
             validado = false;
+            //  vistaPro.getLbopcionobligatoriaprecio().setText("*");
 
         }
 
@@ -311,22 +332,42 @@ public class ControladorProducto {
     }
 
     public boolean casillasvacias() {
-
+        int c=0;
         boolean validado = true;
 
         if (vistaPro.getTxtPronombre().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(vistaPro, "Casilla Nombre del Producto Vacia.");
+            // JOptionPane.showMessageDialog(vistaPro, "Casilla Nombre del Producto Vacia.");
             validado = false;
+            vistaPro.getLbopcionovligatorianombre().setText("*");
+            c+=1;
+
+        } else {
+            vistaPro.getLbopcionovligatorianombre().setText("");
 
         }
         if (vistaPro.getTxtProprecio().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(vistaPro, "Casilla Precio del Producto Vacio");
+            //  JOptionPane.showMessageDialog(vistaPro, "Casilla Precio del Producto Vacio");
             validado = false;
+               c+=1;
+            vistaPro.getLbopcionobligatoriaprecio().setText("*");
+        } else {
+            vistaPro.getLbopcionobligatoriaprecio().setText("");
+
         }
         if (!(vistaPro.getCbProCate().getSelectedIndex() > 0)) {
-            JOptionPane.showMessageDialog(vistaPro, "Escoja una Categoria, Por favor");
+            // JOptionPane.showMessageDialog(vistaPro, "Escoja una Categoria, Por favor");
             validado = false;
+               c+=1;
+            vistaPro.getLbopcionobligatorioselecco().setText("*");
 
+        } else {
+
+            vistaPro.getLbopcionobligatorioselecco().setText("");
+        }
+        if (c>0) {
+            
+             JOptionPane.showMessageDialog(vistaPro, " * Campos Obligatorios");
+            
         }
         return validado;
     }
@@ -348,7 +389,7 @@ public class ControladorProducto {
 
         DefaultTableModel tb = (DefaultTableModel) vistaPro.getTabla_factura_registro().getModel();
         tb.setNumRows(0);
-        if (fechasVacias()==false) {
+        if (fechasVacias() == false) {
             vistaPro.getLbErrores().setText("Ingrese una fecha.");
             vistaPro.getLbErrores().setVisible(true);
         } else {
@@ -522,20 +563,20 @@ public class ControladorProducto {
     }
 
     private boolean fechasVacias() {
-        boolean d = vistaPro.getDtDesdeVentas().getCalendar()==null;
-        boolean h = vistaPro.getDtHastaGasto().getCalendar()==null;
-        boolean result= true;
-        if (d==true||vistaPro.getCbFechasVentas().getSelectedIndex()==4) {
+        boolean d = vistaPro.getDtDesdeVentas().getCalendar() == null;
+        boolean h = vistaPro.getDtHastaGasto().getCalendar() == null;
+        boolean result = true;
+        if (d == true || vistaPro.getCbFechasVentas().getSelectedIndex() == 4) {
             result = false;
         }
-        if ((d==true||h==true)&&(vistaPro.getCbFechasVentas().getSelectedIndex()==3)) {
+        if ((d == true || h == true) && (vistaPro.getCbFechasVentas().getSelectedIndex() == 3)) {
             result = false;
         }
-        
+
         return result;
     }
-    
-    private void inicarGastos(){
+
+    private void inicarGastos() {
         Controlador.ControlGastoC controlGasto = new Controlador.ControlGastoC(modGasto, vistaPro);
         controlGasto.iniciaControlC();
     }

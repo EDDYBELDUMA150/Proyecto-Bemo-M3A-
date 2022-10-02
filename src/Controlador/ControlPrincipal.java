@@ -13,6 +13,11 @@ import VIsta.vista_cotizacion;
 import VIsta.vista_factura;
 import VIsta.vistacliente;
 import VIsta.vistamenuprincipal;
+import com.formdev.flatlaf.FlatDarculaLaf;
+import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
+import java.awt.EventQueue;
 import modelo.MConexion.ModelGastoCorriente;
 import modelo.MConexion.ModeloProveedor;
 import modelo.MConexion.Modelo_PedidoPastel;
@@ -34,6 +39,12 @@ public class ControlPrincipal {
 
     public ControlPrincipal(vistamenuprincipal vistamenuprin) {
         this.vistamenuprin = vistamenuprin;
+        EventQueue.invokeLater(() -> {
+            FlatAnimatedLafChange.showSnapshot();
+            FlatIntelliJLaf.setup();
+            FlatLaf.updateUI();
+            FlatAnimatedLafChange.hideSnapshotWithAnimation();
+        });
         vistamenuprin.setVisible(true);
         vistamenuprin.setSize(1680, 950);
 
@@ -52,6 +63,7 @@ public class ControlPrincipal {
         vistamenuprin.getMnCliente().addActionListener(l -> menusItems(3));
         vistamenuprin.getMnProveedore().addActionListener(l -> menusItems(4));
         vistamenuprin.getMnGastos().addActionListener(l -> menusItems(5));
+        vistamenuprin.getjCheckboxitemmodooscuro().addActionListener(l->modooscurro());
     }
 
     private void crudclientes() {
@@ -90,7 +102,7 @@ public class ControlPrincipal {
         modelo.MConexion.Modelo_factura_venta modventa = new modelo.MConexion.Modelo_factura_venta();
         modelo.MConexion.ModelGastoCorriente mdGC = new ModelGastoCorriente();
         vistamenuprin.getJdpprincipal().add(vistaProd);
-        
+
         Controlador.ControladorProducto controlpro = new ControladorProducto(modprod, vistaProd, modCtg, vistaCTG, modventa, mdGC);
         controlpro.iniciaControl();
     }
@@ -164,10 +176,30 @@ public class ControlPrincipal {
                 controlproveedor.abrirDialogo(1);
                 break;
             case 5:
-                
+
                 break;
             default:
                 throw new AssertionError();
         }
+    }
+
+    private void modooscurro() {
+
+        if (vistamenuprin.getjCheckboxitemmodooscuro().isSelected()) {
+            EventQueue.invokeLater(() -> {
+                FlatAnimatedLafChange.showSnapshot();
+                FlatDarculaLaf.setup();
+                FlatLaf.updateUI();
+                FlatAnimatedLafChange.hideSnapshotWithAnimation();
+            });
+        } else {
+            EventQueue.invokeLater(() -> {
+                FlatAnimatedLafChange.showSnapshot();
+                FlatIntelliJLaf.setup();
+                FlatLaf.updateUI();
+                FlatAnimatedLafChange.hideSnapshotWithAnimation();
+            });
+        }
+
     }
 }

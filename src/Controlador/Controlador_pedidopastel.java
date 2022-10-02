@@ -30,6 +30,7 @@ import modelo.MConexion.Modelo_PedidoPastel;
 import modelo.MConexion.Modelocliente;
 import modelo.PedidoPastel;
 import modelo.Productos;
+import modelo.Validaciones;
 
 /**
  *
@@ -48,6 +49,7 @@ public class Controlador_pedidopastel {
     private int i;
     DefaultTableModel estructuraTabla;
     Date fechaActual = new Date();
+    Validaciones validar = new Validaciones();
 
     public Controlador_pedidopastel() {
     }
@@ -73,7 +75,7 @@ public class Controlador_pedidopastel {
         vista_pedido.getBtn_buscar_cliente().addActionListener(l -> abrirDialogocliente());
         vista_pedido.getBtn_buscar_producto().addActionListener(l -> abrirDialogoProducto());
         vista_pedido.getBtn_aceptar_producto().addActionListener(l -> cargar_producto());
-       vista_pedido.getBtn_actualizar_tabla().addActionListener(l -> cargardatos());
+        vista_pedido.getBtn_actualizar_tabla().addActionListener(l -> cargardatos());
 //        vista_pedido.getBtn_nuevo_cliente().addActionListener(l -> abrirDialogocliente(1));
 
         vista_pedido.getTxt_busquedapedido().addKeyListener(new KeyAdapter() {
@@ -85,7 +87,7 @@ public class Controlador_pedidopastel {
             }
 
         });
-        
+
         vista_pedido.getTxt_buscar_producto().addKeyListener(new KeyAdapter() {
 
             @Override
@@ -95,13 +97,26 @@ public class Controlador_pedidopastel {
             }
 
         });
-        
+
         vista_pedido.getTxt_buscar_cliente().addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyReleased(KeyEvent ke) {
 
                 busqueda_cliente();
+            }
+
+        });
+
+        vista_pedido.getTxt_cantidad().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (vista_pedido.getTxt_cantidad().getText().length() == 10 || (caracter < '0') || (caracter > '9')) {
+                    e.consume();
+                }
+
             }
 
         });
@@ -145,7 +160,8 @@ public class Controlador_pedidopastel {
         });
 
     }
-     public void cargar_cliente() {
+
+    public void cargar_cliente() {
         int seleccion = vista_pedido.getTabla_cliente_pedido().getSelectedRow();
 
         if (seleccion == -1) {
@@ -164,7 +180,8 @@ public class Controlador_pedidopastel {
             });
         }
     }
-     public void cargar_producto() {
+
+    public void cargar_producto() {
         int seleccion = vista_pedido.getTabla_productos().getSelectedRow();
 
         if (seleccion == -1) {
@@ -182,6 +199,7 @@ public class Controlador_pedidopastel {
             });
         }
     }
+
     private void abrirDialogo(int op) {
         String titulo;
         if (op == 1) {
@@ -190,22 +208,21 @@ public class Controlador_pedidopastel {
             vista_pedido.getLabel_titulo().setText(titulo);
             vista_pedido.getDialog_pedido().setName("C");
             vista_pedido.getDialog_pedido().setVisible(true);
-            vista_pedido.getTxt_id_pedido().setText(String.valueOf(modelo_pedido.numeroidpedido()+ 1));
+            vista_pedido.getTxt_id_pedido().setText(String.valueOf(modelo_pedido.numeroidpedido() + 1));
             vista_pedido.getTxt_id_pedido().setEnabled(false);
 
         } else {
 
             titulo = "Editar Pedido";
-           if(llenarDatos()){
+            if (llenarDatos()) {
                 vista_pedido.getLabel_titulo().setText(titulo);
                 vista_pedido.getDialog_pedido().setName("E");
                 vista_pedido.getTxt_id_cliente().setEnabled(false);
                 vista_pedido.getTxt_producto_id().setEnabled(false);
                 vista_pedido.getTxt_id_pedido().setEnabled(false);
                 vista_pedido.getDialog_pedido().setVisible(true);
-            
-           }
-               
+
+            }
 
         }
         vista_pedido.getDialog_pedido().setTitle(titulo);
@@ -213,13 +230,15 @@ public class Controlador_pedidopastel {
         vista_pedido.getDialog_pedido().setLocationRelativeTo(vista_pedido);
 
     }
+
     private void abrirDialogocliente() {
-        
+
         vista_pedido.getDialog_buscar_cliente().setVisible(true);
         vista_pedido.getDialog_buscar_cliente().setSize(650, 500);
         vista_pedido.getDialog_buscar_cliente().setLocationRelativeTo(vista_pedido);
 
     }
+
     public void cargarTablacliente() {
         DefaultTableModel tb = (DefaultTableModel) vista_pedido.getTabla_cliente_pedido().getModel();
         tb.setNumRows(0);
@@ -229,22 +248,25 @@ public class Controlador_pedidopastel {
             tb.addRow(cami);
         });
     }
+
     private void abrirDialogoProducto() {
-  
+
         vista_pedido.getDialog_buscar_producto().setVisible(true);
         vista_pedido.getDialog_buscar_producto().setSize(650, 500);
         vista_pedido.getDialog_buscar_producto().setLocationRelativeTo(vista_pedido);
 
     }
+
     public void cargartablaProducto() {
         DefaultTableModel tb = (DefaultTableModel) vista_pedido.getTabla_productos().getModel();
         tb.setNumRows(0);
         List<Productos> com = modelo_pedido.list_producto();
         com.stream().forEach(p -> {
-            String[] cami = {String.valueOf(p.getPrd_ID()), p.getPrd_nombre(),String.valueOf(p.getPrd_precio())};
+            String[] cami = {String.valueOf(p.getPrd_ID()), p.getPrd_nombre(), String.valueOf(p.getPrd_precio())};
             tb.addRow(cami);
         });
     }
+
     public boolean llenarDatos() {
         Modelo_PedidoPastel persona = new Modelo_PedidoPastel();
         int fila = vista_pedido.getTabla_pedido().getSelectedRow();
@@ -285,7 +307,7 @@ public class Controlador_pedidopastel {
             return true;
         }
     }
-    
+
     public void eliminar_pedido() {
 
         int id_pedido = 0;
@@ -325,8 +347,8 @@ public class Controlador_pedidopastel {
         }
 
     }
-    
-     public void limpiardatos() {
+
+    public void limpiardatos() {
 
         //  vista.getTxtidcliente().setText("");
         vista_pedido.getTxt_abono().setText("");
@@ -342,7 +364,7 @@ public class Controlador_pedidopastel {
         vista_pedido.getDate_fecha_pedido().setCalendar(null);
 
     }
-     
+
     private void examinaFoto() {
         jfc = new JFileChooser();
         jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -361,73 +383,19 @@ public class Controlador_pedidopastel {
                 Logger.getLogger(Controlador_pedidopastel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    } 
+    }
+
     private void crear_editar_pedido() {
         int id_pedido = 0;
         if (vista_pedido.getDialog_pedido().getName().contentEquals("C")) {
-            if (modelo_pedido.numeroidpedido()== 0) {
-                id_pedido = 1;
-            } else {
-                id_pedido = modelo_pedido.numeroidpedido()+ 1;
-            }
-            Modelo_PedidoPastel mi_pedido = new Modelo_PedidoPastel();
-            Date date = vista_pedido.getDate_fecha_pedido().getDate(); //ic es la interfaz, jDate el JDatechooser
-            long d = date.getTime(); //guardamos en un long el tiempo
-            java.sql.Date fecha_pedido = new java.sql.Date(d);// parseamos al formato del sql  
 
-            Date date1 = vista_pedido.getDate_fecha_entrega().getDate(); //ic es la interfaz, jDate el JDatechooser
-            long d1 = date1.getTime(); //guardamos en un long el tiempo
-            java.sql.Date fecha_entrega = new java.sql.Date(d1);// parseamos al formato del sql  
-
-            int cli_id = Integer.parseInt(vista_pedido.getTxt_id_cliente().getText());
-            int prod_id = Integer.parseInt(vista_pedido.getTxt_producto_id().getText());
-            int cantidad = Integer.parseInt(vista_pedido.getTxt_cantidad().getText());
-            String especificacion = vista_pedido.getTxt_area_especificacion().getText();
-            double abono = Double.parseDouble(vista_pedido.getTxt_abono().getText());
-            String estado = "Activo";           
-            try {
-                FileInputStream img = new FileInputStream(jfc.getSelectedFile());
-                int largo = (int) jfc.getSelectedFile().length();
-                mi_pedido.setImagefile(img);
-                mi_pedido.setLengthfoto(largo);
-
-            } catch (IOException ex) {
-                Logger.getLogger(Controlador_pedidopastel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            mi_pedido.setPdpt_ID(id_pedido);
-            mi_pedido.setPdpt_fechapedido(fecha_pedido);
-            mi_pedido.setPdpt_fechaentrga(fecha_entrega);
-            mi_pedido.setPdpt_cli_id(cli_id);
-            mi_pedido.setPdpt_prod_id(prod_id);
-            mi_pedido.setPdpt_cantidad(cantidad);
-            mi_pedido.setPdpt_especificacion(especificacion);
-            mi_pedido.setPdpt_abono(abono);
-            mi_pedido.setPdpt_estado(estado);
-            try {
-                FileInputStream img = new FileInputStream(jfc.getSelectedFile());
-                int largo = (int) jfc.getSelectedFile().length();
-                mi_pedido.setImagefile(img);
-                mi_pedido.setLengthfoto(largo);
-
-            } catch (IOException ex) {
-                Logger.getLogger(Controlador_pedidopastel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            if (mi_pedido.setPedidoPastelito()) {
-                JOptionPane.showMessageDialog(vista_pedido, "Pedido registrada exitosamente");
-                vista_pedido.setVisible(true);
-                vista_pedido.getDialog_pedido().setVisible(false);
-                limpiardatos();
-            } else {
-                JOptionPane.showMessageDialog(vista_pedido, "El Pedido no se pudo registrar");
-            }
-        } else {
-            int respuesta = JOptionPane.showConfirmDialog(vista_pedido, "Seguro Desea Actualizar este Registro?");
-
-            if (respuesta == JOptionPane.YES_OPTION) {
-
+            if (casillasvacias() == true) {
+                if (modelo_pedido.numeroidpedido() == 0) {
+                    id_pedido = 1;
+                } else {
+                    id_pedido = modelo_pedido.numeroidpedido() + 1;
+                }
                 Modelo_PedidoPastel mi_pedido = new Modelo_PedidoPastel();
-                int id_pedido1=Integer.valueOf(vista_pedido.getTxt_id_pedido().getText());
                 Date date = vista_pedido.getDate_fecha_pedido().getDate(); //ic es la interfaz, jDate el JDatechooser
                 long d = date.getTime(); //guardamos en un long el tiempo
                 java.sql.Date fecha_pedido = new java.sql.Date(d);// parseamos al formato del sql  
@@ -441,7 +409,27 @@ public class Controlador_pedidopastel {
                 int cantidad = Integer.parseInt(vista_pedido.getTxt_cantidad().getText());
                 String especificacion = vista_pedido.getTxt_area_especificacion().getText();
                 double abono = Double.parseDouble(vista_pedido.getTxt_abono().getText());
-                String estado = "Pendiente";
+                String estado = "Activo";
+                try {
+                    FileInputStream img = new FileInputStream(jfc.getSelectedFile());
+                    int largo = (int) jfc.getSelectedFile().length();
+                    mi_pedido.setImagefile(img);
+                    mi_pedido.setLengthfoto(largo);
+                    cargardatos();
+
+                } catch (IOException ex) {
+                    Logger.getLogger(Controlador_pedidopastel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                mi_pedido.setPdpt_ID(id_pedido);
+                mi_pedido.setPdpt_fechapedido(fecha_pedido);
+                mi_pedido.setPdpt_fechaentrga(fecha_entrega);
+                mi_pedido.setPdpt_cli_id(cli_id);
+                mi_pedido.setPdpt_prod_id(prod_id);
+                mi_pedido.setPdpt_cantidad(cantidad);
+                mi_pedido.setPdpt_especificacion(especificacion);
+                mi_pedido.setPdpt_abono(abono);
+                mi_pedido.setPdpt_estado(estado);
                 try {
                     FileInputStream img = new FileInputStream(jfc.getSelectedFile());
                     int largo = (int) jfc.getSelectedFile().length();
@@ -451,32 +439,77 @@ public class Controlador_pedidopastel {
                 } catch (IOException ex) {
                     Logger.getLogger(Controlador_pedidopastel.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                if (mi_pedido.setPedidoPastelito()) {
+                    JOptionPane.showMessageDialog(vista_pedido, "Pedido registrada exitosamente");
+                    vista_pedido.setVisible(true);
+                    vista_pedido.getDialog_pedido().setVisible(false);
+                    limpiardatos();
+                } else {
+                    JOptionPane.showMessageDialog(vista_pedido, "El Pedido no se pudo registrar");
+                }
+
+            }//ifcasiilas
+
+        } else {
+            int respuesta = JOptionPane.showConfirmDialog(vista_pedido, "Seguro Desea Actualizar este Registro?");
+
+            if (respuesta == JOptionPane.YES_OPTION) {
+
+                if (casillasvacias() == true) {
+                    Modelo_PedidoPastel mi_pedido = new Modelo_PedidoPastel();
+                    int id_pedido1 = Integer.valueOf(vista_pedido.getTxt_id_pedido().getText());
+                    Date date = vista_pedido.getDate_fecha_pedido().getDate(); //ic es la interfaz, jDate el JDatechooser
+                    long d = date.getTime(); //guardamos en un long el tiempo
+                    java.sql.Date fecha_pedido = new java.sql.Date(d);// parseamos al formato del sql  
+
+                    Date date1 = vista_pedido.getDate_fecha_entrega().getDate(); //ic es la interfaz, jDate el JDatechooser
+                    long d1 = date1.getTime(); //guardamos en un long el tiempo
+                    java.sql.Date fecha_entrega = new java.sql.Date(d1);// parseamos al formato del sql  
+
+                    int cli_id = Integer.parseInt(vista_pedido.getTxt_id_cliente().getText());
+                    int prod_id = Integer.parseInt(vista_pedido.getTxt_producto_id().getText());
+                    int cantidad = Integer.parseInt(vista_pedido.getTxt_cantidad().getText());
+                    String especificacion = vista_pedido.getTxt_area_especificacion().getText();
+                    double abono = Double.parseDouble(vista_pedido.getTxt_abono().getText());
+                    String estado = "Pendiente";
+                    try {
+                        FileInputStream img = new FileInputStream(jfc.getSelectedFile());
+                        int largo = (int) jfc.getSelectedFile().length();
+                        mi_pedido.setImagefile(img);
+                        mi_pedido.setLengthfoto(largo);
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(Controlador_pedidopastel.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                     mi_pedido.setPdpt_ID(id_pedido1);
-                mi_pedido.setPdpt_fechapedido(fecha_pedido);
-                mi_pedido.setPdpt_fechaentrga(fecha_entrega);
-                mi_pedido.setPdpt_cli_id(cli_id);
-                mi_pedido.setPdpt_prod_id(prod_id);
-                mi_pedido.setPdpt_cantidad(cantidad);
-                mi_pedido.setPdpt_especificacion(especificacion);
-                mi_pedido.setPdpt_abono(abono);
-                mi_pedido.setPdpt_estado(estado);
-                if (mi_pedido.updatePedido()) {
-                    JOptionPane.showMessageDialog(vista_pedido, "Pedido modificado exitosamente");
-                    limpiardatos();
-                    cargardatos();
-                    vista_pedido.setVisible(true);
-                    
-                    vista_pedido.getDialog_pedido().setVisible(false);
-                    
-                } else {
-                    JOptionPane.showMessageDialog(vista_pedido, "El Pedido no se pudo modificar");
-                }
+                    mi_pedido.setPdpt_fechapedido(fecha_pedido);
+                    mi_pedido.setPdpt_fechaentrga(fecha_entrega);
+                    mi_pedido.setPdpt_cli_id(cli_id);
+                    mi_pedido.setPdpt_prod_id(prod_id);
+                    mi_pedido.setPdpt_cantidad(cantidad);
+                    mi_pedido.setPdpt_especificacion(especificacion);
+                    mi_pedido.setPdpt_abono(abono);
+                    mi_pedido.setPdpt_estado(estado);
+                    if (mi_pedido.updatePedido()) {
+                        JOptionPane.showMessageDialog(vista_pedido, "Pedido modificado exitosamente");
+                        limpiardatos();
+                        cargardatos();
+                        vista_pedido.setVisible(true);
+
+                        vista_pedido.getDialog_pedido().setVisible(false);
+
+                    } else {
+                        JOptionPane.showMessageDialog(vista_pedido, "El Pedido no se pudo modificar");
+                    }
+
+                }//if casellasvaciasr
+
             }
         }
     }
-     
-      public void buscarPedido() {
+
+    public void buscarPedido() {
 
         String filtro = vista_pedido.getTxt_busquedapedido().getText() + "%";
         DefaultTableModel estructuratabla;
@@ -488,7 +521,7 @@ public class Controlador_pedidopastel {
         listaPedido.stream().forEach(pedido -> {
             estructuratabla.addRow(new Object[10]);
 
-           vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_ID(), i.value, 0);
+            vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_ID(), i.value, 0);
             vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_fechapedido(), i.value, 1);
             vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_fechaentrga(), i.value, 2);
             vista_pedido.getTabla_pedido().setValueAt(pedido.getPdpt_nombrecliente(), i.value, 3);
@@ -503,8 +536,8 @@ public class Controlador_pedidopastel {
         });
 
     }
-      
-      public void buscarProducto() {
+
+    public void buscarProducto() {
 
         String filtro = vista_pedido.getTxt_buscar_producto().getText() + "%";
         DefaultTableModel estructuratabla;
@@ -516,21 +549,19 @@ public class Controlador_pedidopastel {
         listaproducto.stream().forEach(produ -> {
             estructuratabla.addRow(new Object[3]);
 
-           vista_pedido.getTabla_productos().setValueAt(produ.getPrd_ID(), i.value, 0);
+            vista_pedido.getTabla_productos().setValueAt(produ.getPrd_ID(), i.value, 0);
             vista_pedido.getTabla_productos().setValueAt(produ.getPrd_nombre(), i.value, 1);
             vista_pedido.getTabla_productos().setValueAt(produ.getPrd_precio(), i.value, 2);
-            
+
             i.value++;
 
         });
-        
-        
 
     }
-      
-      public void busqueda_cliente() {
-       String filtro = vista_pedido.getTxt_buscar_cliente().getText() + "%";
-          DefaultTableModel estructuraTabla;
+
+    public void busqueda_cliente() {
+        String filtro = vista_pedido.getTxt_buscar_cliente().getText() + "%";
+        DefaultTableModel estructuraTabla;
         estructuraTabla = (DefaultTableModel) vista_pedido.getTabla_cliente_pedido().getModel();
         estructuraTabla.setNumRows(0);
         List<Cliente> listap = modelo_pedido.busqueda_cliente(filtro);
@@ -552,6 +583,101 @@ public class Controlador_pedidopastel {
         } else {
 //            JOptionPane.showMessageDialog(vista_pedido, "No se encuentra el registro");
         }
+
+    }
+
+    public boolean validadr() {
+
+        boolean validado = true;
+
+        if (!validar.validarprecio(vista_pedido.getTxt_abono().getText())) {
+            JOptionPane.showMessageDialog(vista_pedido, "Asegurese de que el precion sea un numero y use el punto para decimales .  Por Favor");
+            validado = false;
+            //  vistaPro.getLbopcionobligatoriaprecio().setText("*");
+
+        }
+
+        return validado;
+
+    }
+
+    public boolean casillasvacias() {
+
+        int c = 0;
+        boolean validado = true;
+
+        if (vista_pedido.getTxt_id_cliente().getText().isEmpty()) {
+            vista_pedido.getLbooidcliente().setText("Escoja un Cliente.");
+            validado = false;
+            c = +1;
+
+        } else {
+            vista_pedido.getLbooidcliente().setText("");
+
+        }
+        if (vista_pedido.getTxt_producto_id().getText().isEmpty()) {
+            vista_pedido.getLbooprodecto().setText("Escoja unProducto");
+            validado = false;
+            c = +1;
+
+        } else {
+            vista_pedido.getLbooprodecto().setText("");
+        }
+
+        if (vista_pedido.getTxt_area_especificacion().getText().isEmpty()) {
+
+            vista_pedido.getLbooespeficacion().setText("*");
+            validado = false;
+            c = +1;
+
+        } else {
+
+            vista_pedido.getLbooespeficacion().setText("");
+
+        }
+        if (vista_pedido.getTxt_cantidad().getText().isEmpty()) {
+            vista_pedido.getLbooprociones().setText("*");
+            validado = false;
+            c = +1;
+        } else {
+            vista_pedido.getLbooprociones().setText("");
+
+        }
+
+        if (vista_pedido.getDate_fecha_entrega().getDate() == null) {
+
+            vista_pedido.getLboofechaentrega().setText("*");
+            validado = false;
+            c += 1;
+
+        } else {
+
+            vista_pedido.getLboofechaentrega().setText("");
+
+        }
+
+        if (vista_pedido.getTxt_abono().getText().isEmpty()) {
+            vista_pedido.getLbooabono().setText("*");
+            validado = false;
+            c = +1;
+        } else {
+            if (!validar.validarprecio(vista_pedido.getTxt_abono().getText())) {
+                JOptionPane.showMessageDialog(vista_pedido, "Asegurese de que el precion sea un numero y use el punto para decimales .  Por Favor");
+                validado = false;
+
+            } else {
+                validado = true;
+
+            }
+            vista_pedido.getLbooabono().setText("");
+
+        }
+        if (c > 0) {
+            JOptionPane.showMessageDialog(null, "*  campos Obligatorios.");
+
+        }
+
+        return validado;
 
     }
 }

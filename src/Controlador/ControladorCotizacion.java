@@ -5,6 +5,8 @@
 package Controlador;
 
 import VIsta.vista_cotizacion;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +18,7 @@ import modelo.Productos;
  * @author OWNER
  */
 public class ControladorCotizacion {
+
     private modelo_cotizacion modelito_coti;
     private vista_cotizacion vista_coti;
 
@@ -35,6 +38,44 @@ public class ControladorCotizacion {
         vista_coti.getBtn_agregar_producto().addActionListener(l -> llenar_facturaprodu());
         vista_coti.getBtn_agregar_extra().addActionListener(l -> llenar_facturaextra());
         vista_coti.getBtn_quitar().addActionListener(l -> quitar_producto());
+
+        vista_coti.getTxt_cantidad_producto().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (vista_coti.getTxt_cantidad_producto().getText().length() == 10 || (caracter < '0') || (caracter > '9')) {
+                    e.consume();
+                }
+
+            }
+
+        });
+
+        vista_coti.getTxt_nombre_extra().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char c = e.getKeyChar();
+                if (vista_coti.getTxt_nombre_extra().getText().length() == 150 || ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z'))) {
+                    e.consume();
+                }
+
+            }
+
+        });
+        vista_coti.getTxt_cantidad_extra().addKeyListener(new KeyAdapter() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                char caracter = e.getKeyChar();
+                if (vista_coti.getTxt_cantidad_extra().getText().length() == 10 || (caracter < '0') || (caracter > '9')) {
+                    e.consume();
+                }
+
+            }
+
+        });
     }
 
     public void cargartablaProducto() {
@@ -106,12 +147,12 @@ public class ControladorCotizacion {
         int cantidad = Integer.parseInt(vista_coti.getTxt_cantidad_extra().getText());
         double precio_unit = Double.parseDouble(vista_coti.getTxt_precio_uni_extra().getText());
         double sub_to = cantidad * precio_unit;
-        
-          String nomb_prod = vista_coti.getTxt_nombre_extra().getText();
+
+        String nomb_prod = vista_coti.getTxt_nombre_extra().getText();
         String pre_uni = vista_coti.getTxt_precio_uni_extra().getText();
         String can = vista_coti.getTxt_cantidad_extra().getText();
         String sub_tota = String.valueOf(sub_to);
-        
+
         Object[] lista = new Object[4];
         lista[0] = nomb_prod;
         lista[1] = pre_uni;
@@ -130,7 +171,7 @@ public class ControladorCotizacion {
         int c = 0;
         do {
             try {
-                        int f = c++;
+                int f = c++;
                 Double n1 = Double.parseDouble(vista_coti.getTabla_cotizacion().getValueAt(f, 3).toString());
                 String nu = vista_coti.getTxt_subtotal().getText();
                 double nu2 = Double.parseDouble(nu);
@@ -149,20 +190,20 @@ public class ControladorCotizacion {
         } while (c < ta);
 
     }
-    
-    public void quitar_producto(){
-         DefaultTableModel estructuratabla;
-        estructuratabla = (DefaultTableModel) vista_coti.getTabla_cotizacion().getModel(); 
+
+    public void quitar_producto() {
+        DefaultTableModel estructuratabla;
+        estructuratabla = (DefaultTableModel) vista_coti.getTabla_cotizacion().getModel();
         int fila = vista_coti.getTabla_cotizacion().getSelectedRow();
-          if (fila >= 0) {
-               estructuratabla.removeRow(vista_coti.getTabla_cotizacion().getSelectedRow());
-               actualizar_totales();
-          }else{
-             JOptionPane.showMessageDialog(vista_coti, "Seleccione el producto que desea eliminar");
-          }
+        if (fila >= 0) {
+            estructuratabla.removeRow(vista_coti.getTabla_cotizacion().getSelectedRow());
+            actualizar_totales();
+        } else {
+            JOptionPane.showMessageDialog(vista_coti, "Seleccione el producto que desea eliminar");
+        }
     }
-    
-    public void limpiar_datos(){
+
+    public void limpiar_datos() {
         vista_coti.getTxt_nombre_producto().setText("");
         vista_coti.getTxt_precio_uni_producto().setText("");
         vista_coti.getTxt_cantidad_producto().setText("");
@@ -170,4 +211,16 @@ public class ControladorCotizacion {
         vista_coti.getTxt_precio_uni_extra().setText("");
         vista_coti.getTxt_cantidad_extra().setText("");
     }
+    
+//    public boolean casillasvacias(){
+//        
+//        
+//    
+//    
+//    }
+//    public boolean validarcasillas(){
+//    
+//    
+//    
+//    }
 }

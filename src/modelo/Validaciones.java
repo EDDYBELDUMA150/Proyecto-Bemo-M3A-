@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author Abel Gomez
@@ -94,7 +96,7 @@ public class Validaciones {
     }
 
     public boolean Validarcorreo(String correo) {
-        return correo.matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
+        return correo.matches("^[_a-z0-9-]+(.[_a-z0-9-]+)@[a-z0-9-]+(.[a-z0-9-]+)(.[a-z]{2,4})$");
 
     }
 
@@ -108,20 +110,36 @@ public class Validaciones {
 
         try {
             Double.parseDouble(precio);
+                  return true;
+          
+            
             // System.out.println("It is numerical string");
-            return true;
+          
         } catch (NumberFormatException e) {
             // System.out.println("It is not numerical string");
             return false;
         }
 
     }
-    
+
     public boolean validarsololetras(String cadena){
     
          return cadena.matches("^[a-zA-Z]{1,}[a-zA-Z ]{2,254}");
     
     
     }
+//    public void txt_sololetrasKeyTyped(KeyEvent e) {
+//        char c = e.getKeyChar();
+//        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z')) {
+//            e.consume();
+//        }
+//    }
+//
+//    public void txt_solonumerosKeyTyped(KeyEvent e) {
+//        char c = e.getKeyChar();
+//        if (c < '0' || c > '9') {
+//            e.consume();
+//        }
+//    }
 
 }

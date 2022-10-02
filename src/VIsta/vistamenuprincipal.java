@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JDesktopPane;
 import javax.swing.JMenuItem;
 import javax.swing.JToolBar;
@@ -130,6 +131,18 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         this.mnProveedore = mnProveedore;
     }
 
+    public JCheckBoxMenuItem getjCheckboxitemmodooscuro() {
+        return jCheckboxitemmodooscuro;
+    }
+
+    public void setjCheckboxitemmodooscuro(JCheckBoxMenuItem jCheckboxitemmodooscuro) {
+        this.jCheckboxitemmodooscuro = jCheckboxitemmodooscuro;
+    }
+    
+    
+    
+    
+
     
     
     
@@ -169,6 +182,8 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         mnGastos = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jCheckboxitemmodooscuro = new javax.swing.JCheckBoxMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -177,13 +192,11 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar1.setBorder(null);
         jToolBar1.setRollover(true);
 
-        btProductos.setBackground(new java.awt.Color(255, 255, 255));
         btProductos.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        btProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/productos.png"))); // NOI18N
+        btProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/cash_register_50px.png"))); // NOI18N
         btProductos.setText("Registros");
         btProductos.setBorderPainted(false);
         btProductos.setFocusable(false);
@@ -192,7 +205,6 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         btProductos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btProductos);
 
-        btn_factura.setBackground(new java.awt.Color(255, 255, 255));
         btn_factura.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
         btn_factura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/factura.png"))); // NOI18N
         btn_factura.setText("Factura");
@@ -204,9 +216,8 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         btn_factura.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btn_factura);
 
-        btn_cotizacion.setBackground(new java.awt.Color(255, 255, 255));
         btn_cotizacion.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        btn_cotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/cootizar.png"))); // NOI18N
+        btn_cotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/estimate_50px.png"))); // NOI18N
         btn_cotizacion.setText("Cootizacion");
         btn_cotizacion.setBorderPainted(false);
         btn_cotizacion.setFocusable(false);
@@ -215,9 +226,8 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         btn_cotizacion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btn_cotizacion);
 
-        btncrudclientes.setBackground(new java.awt.Color(255, 255, 255));
         btncrudclientes.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        btncrudclientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/user_group_50px.png"))); // NOI18N
+        btncrudclientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/user_group_50px_1.png"))); // NOI18N
         btncrudclientes.setText("Cliente");
         btncrudclientes.setBorderPainted(false);
         btncrudclientes.setFocusable(false);
@@ -226,9 +236,8 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         btncrudclientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btncrudclientes);
 
-        btncrudproveedores.setBackground(new java.awt.Color(255, 255, 255));
         btncrudproveedores.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        btncrudproveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/proveedor.png"))); // NOI18N
+        btncrudproveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/supplier_50px.png"))); // NOI18N
         btncrudproveedores.setText("Proveedor");
         btncrudproveedores.setBorderPainted(false);
         btncrudproveedores.setFocusable(false);
@@ -237,7 +246,6 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         btncrudproveedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(btncrudproveedores);
 
-        btn_pedido_pastel.setBackground(new java.awt.Color(255, 255, 255));
         btn_pedido_pastel.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
         btn_pedido_pastel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/pedidos.png"))); // NOI18N
         btn_pedido_pastel.setText("Pedidos");
@@ -266,7 +274,6 @@ public class vistamenuprincipal extends javax.swing.JFrame {
 
         getContentPane().add(jdpprincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1680, 840));
 
-        jToolBar2.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar2.setBorder(null);
         jToolBar2.setRollover(true);
 
@@ -283,7 +290,7 @@ public class vistamenuprincipal extends javax.swing.JFrame {
 
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/salir.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/export_50px.png"))); // NOI18N
         jButton3.setText("Salir");
         jButton3.setBorderPainted(false);
         jButton3.setFocusable(false);
@@ -318,6 +325,13 @@ public class vistamenuprincipal extends javax.swing.JFrame {
 
         jMenu3.setText("Reportes");
         jMenuBar1.add(jMenu3);
+
+        jMenu4.setText("Opciones");
+
+        jCheckboxitemmodooscuro.setText("Modo Oscuro");
+        jMenu4.add(jCheckboxitemmodooscuro);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -369,9 +383,11 @@ public class vistamenuprincipal extends javax.swing.JFrame {
     private javax.swing.JButton btncrudproveedores;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JCheckBoxMenuItem jCheckboxitemmodooscuro;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JToolBar jToolBar1;

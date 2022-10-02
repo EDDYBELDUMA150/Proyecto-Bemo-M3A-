@@ -186,6 +186,40 @@ public class vistacliente extends javax.swing.JInternalFrame {
     public void setBtnlimpiar(JButton btnlimpiar) {
         this.btnlimpiar = btnlimpiar;
     }
+
+    public JLabel getLbodatoovligatorioapellido1() {
+        return lbodatoovligatorioapellido1;
+    }
+
+    public void setLbodatoovligatorioapellido1(JLabel lbodatoovligatorioapellido1) {
+        this.lbodatoovligatorioapellido1 = lbodatoovligatorioapellido1;
+    }
+
+    public JLabel getLbodatoovligatoriocedula() {
+        return lbodatoovligatoriocedula;
+    }
+
+    public void setLbodatoovligatoriocedula(JLabel lbodatoovligatoriocedula) {
+        this.lbodatoovligatoriocedula = lbodatoovligatoriocedula;
+    }
+
+    public JLabel getLbodatoovligatoriocelular() {
+        return lbodatoovligatoriocelular;
+    }
+
+    public void setLbodatoovligatoriocelular(JLabel lbodatoovligatoriocelular) {
+        this.lbodatoovligatoriocelular = lbodatoovligatoriocelular;
+    }
+
+    public JLabel getLbodatoovligatorionombre() {
+        return lbodatoovligatorionombre;
+    }
+
+    public void setLbodatoovligatorionombre(JLabel lbodatoovligatorionombre) {
+        this.lbodatoovligatorionombre = lbodatoovligatorionombre;
+    }
+    
+    
     
     
     
@@ -222,6 +256,10 @@ public class vistacliente extends javax.swing.JInternalFrame {
         txtidcliente = new javax.swing.JTextField();
         lbtitulo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        lbodatoovligatoriocelular = new javax.swing.JLabel();
+        lbodatoovligatoriocedula = new javax.swing.JLabel();
+        lbodatoovligatorionombre = new javax.swing.JLabel();
+        lbodatoovligatorioapellido1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaclientes = new javax.swing.JTable();
         btnagregar = new javax.swing.JButton();
@@ -314,6 +352,22 @@ public class vistacliente extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setText("ID ;");
         dialogclientes.getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 90, 30, 30));
+
+        lbodatoovligatoriocelular.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbodatoovligatoriocelular.setForeground(new java.awt.Color(204, 0, 0));
+        dialogclientes.getContentPane().add(lbodatoovligatoriocelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 300, 40, 20));
+
+        lbodatoovligatoriocedula.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbodatoovligatoriocedula.setForeground(new java.awt.Color(204, 0, 0));
+        dialogclientes.getContentPane().add(lbodatoovligatoriocedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, 40, 20));
+
+        lbodatoovligatorionombre.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbodatoovligatorionombre.setForeground(new java.awt.Color(204, 0, 0));
+        dialogclientes.getContentPane().add(lbodatoovligatorionombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 40, 20));
+
+        lbodatoovligatorioapellido1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lbodatoovligatorioapellido1.setForeground(new java.awt.Color(204, 0, 0));
+        dialogclientes.getContentPane().add(lbodatoovligatorioapellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 230, 40, 20));
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(1660, 800));
@@ -457,6 +511,10 @@ public class vistacliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbodatoovligatorioapellido1;
+    private javax.swing.JLabel lbodatoovligatoriocedula;
+    private javax.swing.JLabel lbodatoovligatoriocelular;
+    private javax.swing.JLabel lbodatoovligatorionombre;
     private javax.swing.JLabel lbtitulo;
     private javax.swing.JTable tablaclientes;
     private javax.swing.JTextField txtapellido;
