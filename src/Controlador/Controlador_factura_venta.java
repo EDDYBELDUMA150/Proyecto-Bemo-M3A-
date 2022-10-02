@@ -81,6 +81,7 @@ public class Controlador_factura_venta implements Printable {
     public void iniciarcontrol() {
         cargarTablacliente();
         cargartablaProducto();
+        consumidor_final();
         vis_factura.getDate_fecha().setDate(fechaActual);
 
         vis_factura.getTxt_id_factura().setText(String.valueOf(modelo_venta.numeroidfactura() + 1));
@@ -112,7 +113,13 @@ public class Controlador_factura_venta implements Printable {
     public void iniciarcontrol2() {
         cargarTablaregistrofactura();
     }
-
+    public void consumidor_final(){
+        vis_factura.getTxt_nombre_cliente().setText("consumidor final");
+        vis_factura.getTxt_cedula_cliente().setText("9999999999");
+        vis_factura.getTxt_direccion().setText("sin direccion");
+        
+        
+    }
     public void cargarTablacliente() {
         DefaultTableModel tb = (DefaultTableModel) vis_factura.getTabla_cliente_pedido().getModel();
         tb.setNumRows(0);
