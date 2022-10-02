@@ -277,9 +277,8 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         jToolBar2.setBorder(null);
         jToolBar2.setRollover(true);
 
-        jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/home.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/logoINICIO - Editado.png"))); // NOI18N
         jButton2.setText("Inicio");
         jButton2.setBorderPainted(false);
         jButton2.setFocusable(false);
@@ -288,7 +287,6 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(jButton2);
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/export_50px.png"))); // NOI18N
         jButton3.setText("Salir");
