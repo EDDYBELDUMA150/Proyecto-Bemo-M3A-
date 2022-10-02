@@ -62,6 +62,29 @@ public class modelo_cotizacion extends Cotizacion_pastel{
         return listaProductos;
     }
     
-    
+    public java.util.List<Productos> busquedaProducto(String filtro) {
+
+        java.util.List<Productos> listaProductos = new ArrayList<Productos>();
+        String sql = "select prod_id, prod_nombre , prod_precio from producto where prod_id like lower('%" + filtro + "%') OR prod_nombre like lower( '%" + filtro + "%')";
+        ResultSet rs = conexion.consulta(sql);
+        try {
+            while (rs.next()) {
+
+            Productos produ = new Productos();
+                produ.setPrd_ID(rs.getInt(1));
+                produ.setPrd_nombre(rs.getString(2));
+                 produ.setPrd_precio(rs.getDouble(3));
+                listaProductos.add(produ);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelocliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            rs.close();//cierro conexion BD
+        } catch (SQLException ex) {
+            Logger.getLogger(Modelocliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listaProductos;
+    }
     
 }
