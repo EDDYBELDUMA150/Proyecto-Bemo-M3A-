@@ -32,6 +32,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.xml.ws.Holder;
 import modelo.Cliente;
 import modelo.FacturaVenta;
 import modelo.MConexion.Modelo_PedidoPastel;
@@ -51,6 +52,7 @@ import net.sf.jasperreports.view.JasperViewer;
  */
 public class Controlador_factura_venta implements Printable {
 
+    private int i;
     private Modelo_factura_venta modelo_venta;
     private vista_factura vis_factura;
     private VIsta.RegistrosdeFacturasGastosBalances vista_regis_factur;
@@ -107,19 +109,82 @@ public class Controlador_factura_venta implements Printable {
             }
 
         });
+        vis_factura.getTxt_buscar_producto().addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+
+                buscarProducto();
+            }
+        });
+
+        vis_factura.getTxt_buscar_cliente().addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+
+                busqueda_cliente();
+            }
+        });
+
+    }
+
+    public void buscarProducto() {
+
+        String filtro = vis_factura.getTxt_buscar_producto().getText() + "%";
+        DefaultTableModel estructuratabla;
+        estructuratabla = (DefaultTableModel) vis_factura.getTabla_productos().getModel();
+        estructuratabla.setNumRows(0);
+        List<Productos> listaproducto = modelo_venta.busquedaProducto(filtro);
+
+        Holder<Integer> i = new Holder<>(0);
+        listaproducto.stream().forEach(produ -> {
+            estructuratabla.addRow(new Object[3]);
+
+            vis_factura.getTabla_productos().setValueAt(produ.getPrd_ID(), i.value, 0);
+            vis_factura.getTabla_productos().setValueAt(produ.getPrd_nombre(), i.value, 1);
+            vis_factura.getTabla_productos().setValueAt(produ.getPrd_precio(), i.value, 2);
+
+            i.value++;
+
+        });
+
+    }
+
+    public void busqueda_cliente() {
+        String filtro = vis_factura.getTxt_buscar_cliente().getText() + "%";
+        DefaultTableModel estructuraTabla;
+        estructuraTabla = (DefaultTableModel) vis_factura.getTabla_cliente_pedido().getModel();
+        estructuraTabla.setNumRows(0);
+        List<Cliente> listap = modelo_venta.busqueda_cliente(filtro);
+        i = 0;
+
+        if (!listap.isEmpty()) {
+            listap.stream().forEach(pe -> {
+                estructuraTabla.addRow(new Object[4]);
+
+                vis_factura.getTabla_cliente_pedido().setValueAt(pe.getCl_ID(), i, 0);
+                vis_factura.getTabla_cliente_pedido().setValueAt(pe.getPrs_cedula(), i, 1);
+                vis_factura.getTabla_cliente_pedido().setValueAt(pe.getPrs_nombre1(), i, 2);
+                vis_factura.getTabla_cliente_pedido().setValueAt(pe.getPrs_apellido1(), i, 3);
+
+                i = i + 1;
+
+            });
+
+        } else {
+//            JOptionPane.showMessageDialog(vista_pedido, "No se encuentra el registro");
+        }
 
     }
 
     public void iniciarcontrol2() {
         cargarTablaregistrofactura();
     }
-    public void consumidor_final(){
+
+    public void consumidor_final() {
         vis_factura.getTxt_nombre_cliente().setText("consumidor final");
         vis_factura.getTxt_cedula_cliente().setText("9999999999");
         vis_factura.getTxt_direccion().setText("sin direccion");
-        
-        
+
     }
+
     public void cargarTablacliente() {
         DefaultTableModel tb = (DefaultTableModel) vis_factura.getTabla_cliente_pedido().getModel();
         tb.setNumRows(0);
@@ -280,7 +345,10 @@ public class Controlador_factura_venta implements Printable {
     public void guardar_cuerpo_factura() {
 
         double ivita = 0;
-
+//        if (vis_factura.getTabla_factura().getRowCount() == 0) {
+//
+//            JOptionPane.showMessageDialog(vis_factura, "Seleccione el producto que desea eliminar");
+//        } else {
         for (int i = 0; i < vis_factura.getTabla_factura().getRowCount(); i++) {
 
             int id_cabe = modelo_venta.consultar_id_cabecera();
@@ -306,7 +374,9 @@ public class Controlador_factura_venta implements Printable {
             mi_venta.setCabecera_id(id_cabe);
             mi_facturita1.Insertcuerpito(mi_venta);
 
+//            }
         }
+
 //        if (mi_facturita1.setCabecerita()) {
 //            JOptionPane.showMessageDialog(vis_factura, "Factura registrada exitosamente");
 //        }
@@ -358,11 +428,17 @@ public class Controlador_factura_venta implements Printable {
     }
 
     public void guar_todo_factu() {
-        guardar_cabecera();
-        guardar_cuerpo_factura();
-        guardar_facturita();
-        limpiar_todo();
-        imprimeFactura(Integer.parseInt(vis_factura.getTxt_id_factura().getText()));
+        if (vis_factura.getTabla_factura().getRowCount() == 0) {
+
+            JOptionPane.showMessageDialog(vis_factura, "Seleccione el producto que desea eliminar");
+        } else {
+            guardar_cabecera();
+            guardar_cuerpo_factura();
+            guardar_facturita();
+            limpiar_todo();
+            imprimeFactura(Integer.parseInt(vis_factura.getTxt_id_factura().getText()));
+        }
+
     }
 
     public void limpiar_produ() {
@@ -381,7 +457,19 @@ public class Controlador_factura_venta implements Printable {
         vis_factura.getTxt_cedula_cliente().setText("");
         vis_factura.getTxt_direccion().setText("");
         vis_factura.getDate_fecha().setDate(null);
+        vis_factura.getTxt_iva().setText("");
+        vis_factura.getTxt_subtotal().setText("");
+        vis_factura.getTxt_total().setText("");
+        limpiar_tabla();
 
+    }
+
+    private void limpiar_tabla() {
+        DefaultTableModel dm = (DefaultTableModel) vis_factura.getTabla_factura().getModel();
+        dm.getDataVector().removeAllElements();
+        dm.fireTableDataChanged();
+
+      
     }
 
     private void imprimirfactura() {
