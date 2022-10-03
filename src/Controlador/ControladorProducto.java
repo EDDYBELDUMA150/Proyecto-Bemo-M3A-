@@ -1,3 +1,4 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
@@ -162,7 +163,7 @@ public class ControladorProducto {
             vistaPro.getLbNuevo().setVisible(true);
             vistaPro.getJdProductos().setName("C");
             vistaPro.getJdProductos().setVisible(true);
-            vistaPro.getJdProductos().setSize(700, 600);
+            vistaPro.getJdProductos().setSize(636, 471);
             vistaPro.getTxtCodPro().setText(String.valueOf(CRg));
             vistaPro.getJdProductos().setLocationRelativeTo(vistaPro);
             vistaPro.getBtAgregarModi().setText("Agregar");
@@ -180,7 +181,7 @@ public class ControladorProducto {
                 vistaPro.getCbProCate().setSelectedIndex(modeloPro.codProducto(vistaPro.getTbProductos().getValueAt(fila, 3).toString()));
                 vistaPro.getJdProductos().setLocationRelativeTo(vistaPro);
                 vistaPro.getJdProductos().setVisible(true);
-                vistaPro.getJdProductos().setSize(700, 500);
+                vistaPro.getJdProductos().setSize(636, 471);
                 vistaPro.getLbModificar().setVisible(true);
                 vistaPro.getLbNuevo().setVisible(false);
 
@@ -779,7 +780,7 @@ public class ControladorProducto {
         controlGasto.iniciaControlC();
     }
 
-    private void imprimeProducto() {
+    public void imprimeProducto() {
         //Instanciamos la conexion proyecto
         OCconection con = new OCconection();
 
@@ -795,7 +796,7 @@ public class ControladorProducto {
         }
     }
 
-    private void imprimeGasto() {
+    public void imprimeGasto() {
         //Instanciamos la conexion proyecto
         OCconection con = new OCconection();
 
@@ -811,7 +812,7 @@ public class ControladorProducto {
         }
     }
 
-    private void imprimeVentas() {
+    public void imprimeVentas() {
         //Instanciamos la conexion proyecto
         OCconection con = new OCconection();
 

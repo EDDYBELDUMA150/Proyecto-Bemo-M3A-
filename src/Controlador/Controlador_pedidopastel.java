@@ -76,6 +76,8 @@ public class Controlador_pedidopastel {
         vista_pedido.getBtn_buscar_producto().addActionListener(l -> abrirDialogoProducto());
         vista_pedido.getBtn_aceptar_producto().addActionListener(l -> cargar_producto());
         vista_pedido.getBtn_actualizar_tabla().addActionListener(l -> cargardatos());
+        vista_pedido.getBtActualizarClie().addActionListener(l -> cargarTablacliente());
+        vista_pedido.getBtActualizarProd().addActionListener(l -> cargartablaProducto());
 //        vista_pedido.getBtn_nuevo_cliente().addActionListener(l -> abrirDialogocliente(1));
 
         vista_pedido.getTxt_busquedapedido().addKeyListener(new KeyAdapter() {
@@ -226,7 +228,7 @@ public class Controlador_pedidopastel {
 
         }
         vista_pedido.getDialog_pedido().setTitle(titulo);
-        vista_pedido.getDialog_pedido().setSize(900, 750);
+        vista_pedido.getDialog_pedido().setSize(760, 540);
         vista_pedido.getDialog_pedido().setLocationRelativeTo(vista_pedido);
 
     }
@@ -234,7 +236,7 @@ public class Controlador_pedidopastel {
     private void abrirDialogocliente() {
 
         vista_pedido.getDialog_buscar_cliente().setVisible(true);
-        vista_pedido.getDialog_buscar_cliente().setSize(650, 500);
+        vista_pedido.getDialog_buscar_cliente().setSize(583, 430);
         vista_pedido.getDialog_buscar_cliente().setLocationRelativeTo(vista_pedido);
 
     }
@@ -252,7 +254,7 @@ public class Controlador_pedidopastel {
     private void abrirDialogoProducto() {
 
         vista_pedido.getDialog_buscar_producto().setVisible(true);
-        vista_pedido.getDialog_buscar_producto().setSize(650, 500);
+        vista_pedido.getDialog_buscar_producto().setSize(583, 430);
         vista_pedido.getDialog_buscar_producto().setLocationRelativeTo(vista_pedido);
 
     }

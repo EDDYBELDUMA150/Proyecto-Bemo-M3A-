@@ -83,6 +83,8 @@ public class Vista_pedidoPastel extends javax.swing.JInternalFrame {
         tabla_cliente_pedido = new javax.swing.JTable();
         btb_cargar_cliente = new javax.swing.JButton();
         btn_cancelar_cliente = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        btActualizarClie = new javax.swing.JButton();
         dialog_buscar_producto = new javax.swing.JDialog();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -90,6 +92,8 @@ public class Vista_pedidoPastel extends javax.swing.JInternalFrame {
         btn_aceptar_producto = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         txt_buscar_producto = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        btActualizarProd = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btn_eliminar_pedido = new javax.swing.JButton();
@@ -107,14 +111,15 @@ public class Vista_pedidoPastel extends javax.swing.JInternalFrame {
 
         dialog_pedido.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        label_titulo.setText("Pedidos de prodcutos");
-        dialog_pedido.getContentPane().add(label_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(289, 6, -1, 22));
+        label_titulo.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        label_titulo.setText("Pedidos de productos");
+        dialog_pedido.getContentPane().add(label_titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, 22));
 
         btn_aceptar.setText("Aceptar");
-        dialog_pedido.getContentPane().add(btn_aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 490, -1, -1));
+        dialog_pedido.getContentPane().add(btn_aceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 500, 90, 40));
 
         btn_cancelar.setText("Cancelar");
-        dialog_pedido.getContentPane().add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 490, -1, -1));
+        dialog_pedido.getContentPane().add(btn_cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 490, 90, 40));
 
         txt_id_pedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,7 +210,7 @@ public class Vista_pedidoPastel extends javax.swing.JInternalFrame {
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel14))
                                 .addComponent(lbooespeficacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,10 +251,11 @@ public class Vista_pedidoPastel extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel8)
-                                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(lbooabono, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lbooabono, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jLabel8)
+                                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(txt_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,9 +264,11 @@ public class Vista_pedidoPastel extends javax.swing.JInternalFrame {
                                 .addGap(19, 19, 19)
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lbooespeficacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(11, Short.MAX_VALUE))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lbooespeficacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
 
         dialog_pedido.getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 760, 270));
@@ -349,7 +357,6 @@ public class Vista_pedidoPastel extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lboofechaentrega, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 11, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_nombre_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_apellido_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -360,8 +367,11 @@ public class Vista_pedidoPastel extends javax.swing.JInternalFrame {
                 .addGap(5, 5, 5))
         );
 
-        dialog_pedido.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 72, 722, -1));
+        dialog_pedido.getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 72, 760, -1));
 
+        dialog_buscar_cliente.setPreferredSize(new java.awt.Dimension(583, 430));
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel15.setText("Lista Cliente");
 
         tabla_cliente_pedido.setModel(new javax.swing.table.DefaultTableModel(
@@ -381,44 +391,65 @@ public class Vista_pedidoPastel extends javax.swing.JInternalFrame {
 
         btn_cancelar_cliente.setText("Cancelar");
 
+        jLabel17.setText("Busca el producto al ingresar el nombre:");
+
+        btActualizarClie.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/restart_40px.png"))); // NOI18N
+        btActualizarClie.setText("Refrescar");
+        btActualizarClie.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btActualizarClie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btActualizarClieActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout dialog_buscar_clienteLayout = new javax.swing.GroupLayout(dialog_buscar_cliente.getContentPane());
         dialog_buscar_cliente.getContentPane().setLayout(dialog_buscar_clienteLayout);
         dialog_buscar_clienteLayout.setHorizontalGroup(
             dialog_buscar_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialog_buscar_clienteLayout.createSequentialGroup()
+                .addGap(106, 106, 106)
+                .addComponent(btb_cargar_cliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_cancelar_cliente)
+                .addGap(137, 137, 137))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialog_buscar_clienteLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel15)
+                .addGap(227, 227, 227))
             .addGroup(dialog_buscar_clienteLayout.createSequentialGroup()
-                .addGroup(dialog_buscar_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(21, 21, 21)
+                .addGroup(dialog_buscar_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(dialog_buscar_clienteLayout.createSequentialGroup()
-                        .addGap(250, 250, 250)
-                        .addComponent(jLabel15))
-                    .addGroup(dialog_buscar_clienteLayout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(txt_buscar_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dialog_buscar_clienteLayout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dialog_buscar_clienteLayout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(btb_cargar_cliente)
-                        .addGap(37, 37, 37)
-                        .addComponent(btn_cancelar_cliente)))
-                .addContainerGap(222, Short.MAX_VALUE))
+                        .addGroup(dialog_buscar_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_buscar_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel17))
+                        .addGap(115, 115, 115)
+                        .addComponent(btActualizarClie)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         dialog_buscar_clienteLayout.setVerticalGroup(
             dialog_buscar_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialog_buscar_clienteLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(21, 21, 21)
                 .addComponent(jLabel15)
-                .addGap(31, 31, 31)
-                .addComponent(txt_buscar_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(29, 29, 29)
+                .addGroup(dialog_buscar_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(dialog_buscar_clienteLayout.createSequentialGroup()
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_buscar_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btActualizarClie, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(dialog_buscar_clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btb_cargar_cliente)
-                    .addComponent(btn_cancelar_cliente))
-                .addContainerGap(109, Short.MAX_VALUE))
+                    .addComponent(btn_cancelar_cliente)
+                    .addComponent(btb_cargar_cliente))
+                .addGap(40, 40, 40))
         );
 
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel16.setText("Tabla Productos");
 
         tabla_productos.setModel(new javax.swing.table.DefaultTableModel(
@@ -435,45 +466,71 @@ public class Vista_pedidoPastel extends javax.swing.JInternalFrame {
         jScrollPane4.setViewportView(tabla_productos);
 
         btn_aceptar_producto.setText("Aceptar");
+        btn_aceptar_producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_aceptar_productoActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Cancelar");
+
+        txt_buscar_producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_buscar_productoActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setText("Busca los productos:");
+
+        btActualizarProd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/restart_40px.png"))); // NOI18N
+        btActualizarProd.setText("Refrescar");
+        btActualizarProd.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         javax.swing.GroupLayout dialog_buscar_productoLayout = new javax.swing.GroupLayout(dialog_buscar_producto.getContentPane());
         dialog_buscar_producto.getContentPane().setLayout(dialog_buscar_productoLayout);
         dialog_buscar_productoLayout.setHorizontalGroup(
             dialog_buscar_productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialog_buscar_productoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btn_aceptar_producto)
+                .addGap(80, 80, 80)
+                .addComponent(jButton1)
+                .addGap(167, 167, 167))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialog_buscar_productoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel16)
+                .addGap(196, 196, 196))
             .addGroup(dialog_buscar_productoLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(dialog_buscar_productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4)
                     .addGroup(dialog_buscar_productoLayout.createSequentialGroup()
-                        .addGap(136, 136, 136)
-                        .addComponent(btn_aceptar_producto)
-                        .addGap(80, 80, 80)
-                        .addComponent(jButton1))
-                    .addGroup(dialog_buscar_productoLayout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(dialog_buscar_productoLayout.createSequentialGroup()
-                        .addGap(289, 289, 289)
-                        .addComponent(jLabel16))
-                    .addGroup(dialog_buscar_productoLayout.createSequentialGroup()
-                        .addGap(134, 134, 134)
-                        .addComponent(txt_buscar_producto, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(126, Short.MAX_VALUE))
+                        .addGroup(dialog_buscar_productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_buscar_producto, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel18))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                        .addComponent(btActualizarProd)))
+                .addContainerGap())
         );
         dialog_buscar_productoLayout.setVerticalGroup(
             dialog_buscar_productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialog_buscar_productoLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addComponent(jLabel16)
-                .addGap(23, 23, 23)
-                .addComponent(txt_buscar_producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addGroup(dialog_buscar_productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(dialog_buscar_productoLayout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_buscar_producto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btActualizarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(dialog_buscar_productoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_aceptar_producto)
                     .addComponent(jButton1))
-                .addGap(97, 97, 97))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         setBackground(new java.awt.Color(148, 180, 159));
@@ -584,7 +641,7 @@ public class Vista_pedidoPastel extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -603,6 +660,18 @@ public class Vista_pedidoPastel extends javax.swing.JInternalFrame {
     private void txt_id_pedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_id_pedidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_id_pedidoActionPerformed
+
+    private void btActualizarClieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btActualizarClieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btActualizarClieActionPerformed
+
+    private void btn_aceptar_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptar_productoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_aceptar_productoActionPerformed
+
+    private void txt_buscar_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_buscar_productoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_buscar_productoActionPerformed
 
     public JButton getBtn_buscar_producto() {
         return btn_buscar_producto;
@@ -948,8 +1017,26 @@ public class Vista_pedidoPastel extends javax.swing.JInternalFrame {
         this.lboofechaentrega = lboofechaentrega;
     }
 
+    public JButton getBtActualizarClie() {
+        return btActualizarClie;
+    }
+
+    public void setBtActualizarClie(JButton btActualizarClie) {
+        this.btActualizarClie = btActualizarClie;
+    }
+
+    public JButton getBtActualizarProd() {
+        return btActualizarProd;
+    }
+
+    public void setBtActualizarProd(JButton btActualizarProd) {
+        this.btActualizarProd = btActualizarProd;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btActualizarClie;
+    private javax.swing.JButton btActualizarProd;
     private javax.swing.JButton btb_cargar_cliente;
     private javax.swing.JButton btn_aagregar_pedido;
     private javax.swing.JButton btn_aceptar;
@@ -979,6 +1066,8 @@ public class Vista_pedidoPastel extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -141,6 +141,64 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         this.jCheckboxitemmodooscuro = jCheckboxitemmodooscuro;
     }
 
+    public JMenuItem getBtCrearFact() {
+        return btCrearFact;
+    }
+
+    public void setBtCrearFact(JMenuItem btCrearFact) {
+        this.btCrearFact = btCrearFact;
+    }
+
+    public JMenuItem getBtCootizarM() {
+        return btCootizarM;
+    }
+
+    public void setBtCootizarM(JMenuItem btCootizarM) {
+        this.btCootizarM = btCootizarM;
+    }
+
+    public JMenuItem getBtReporteGastosM() {
+        return btReporteGastosM;
+    }
+
+    public void setBtReporteGastosM(JMenuItem btReporteGastosM) {
+        this.btReporteGastosM = btReporteGastosM;
+    }
+
+    public JMenuItem getBtReporteProductosM() {
+        return btReporteProductosM;
+    }
+
+    public void setBtReporteProductosM(JMenuItem btReporteProductosM) {
+        this.btReporteProductosM = btReporteProductosM;
+    }
+
+    public JMenuItem getBtReporteVentasM() {
+        return btReporteVentasM;
+    }
+
+    public void setBtReporteVentasM(JMenuItem btReporteVentasM) {
+        this.btReporteVentasM = btReporteVentasM;
+    }
+
+    public JButton getBtSALIR() {
+        return btSALIR;
+    }
+
+    public void setBtSALIR(JButton btSALIR) {
+        this.btSALIR = btSALIR;
+    }
+
+    public JButton getBtUsuario() {
+        return btUsuario;
+    }
+
+    public void setBtUsuario(JButton btUsuario) {
+        this.btUsuario = btUsuario;
+    }
+    
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -159,8 +217,8 @@ public class vistamenuprincipal extends javax.swing.JFrame {
             }
         };
         jToolBar2 = new javax.swing.JToolBar();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btUsuario = new javax.swing.JButton();
+        btSALIR = new javax.swing.JButton();
         btn_pedido_pastel = new javax.swing.JButton();
         btncrudproveedores = new javax.swing.JButton();
         btncrudclientes = new javax.swing.JButton();
@@ -174,7 +232,12 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         mnCliente = new javax.swing.JMenuItem();
         mnProveedore = new javax.swing.JMenuItem();
         mnGastos = new javax.swing.JMenuItem();
+        btCrearFact = new javax.swing.JMenuItem();
+        btCootizarM = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        btReporteVentasM = new javax.swing.JMenuItem();
+        btReporteProductosM = new javax.swing.JMenuItem();
+        btReporteGastosM = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jCheckboxitemmodooscuro = new javax.swing.JCheckBoxMenuItem();
 
@@ -182,17 +245,17 @@ public class vistamenuprincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(getMaximumSize());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jdpprincipal.setBackground(new java.awt.Color(153, 204, 255));
         jdpprincipal.setMaximumSize(d);
+        jdpprincipal.setPreferredSize(new java.awt.Dimension(700, 700));
 
         javax.swing.GroupLayout jdpprincipalLayout = new javax.swing.GroupLayout(jdpprincipal);
         jdpprincipal.setLayout(jdpprincipalLayout);
         jdpprincipalLayout.setHorizontalGroup(
             jdpprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 2147483647, 2147483647)
+            .addGap(0, 700, Short.MAX_VALUE)
         );
         jdpprincipalLayout.setVerticalGroup(
             jdpprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,30 +266,30 @@ public class vistamenuprincipal extends javax.swing.JFrame {
 
         jToolBar2.setBorder(null);
         jToolBar2.setRollover(true);
-        jToolBar2.setMaximumSize(new java.awt.Dimension(1000, 115));
+        jToolBar2.setMaximumSize(new java.awt.Dimension(1000, 350));
         jToolBar2.setPreferredSize(getMaximumSize());
 
-        jButton2.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/logoINICIO - Editado.png"))); // NOI18N
-        jButton2.setText("Inicio");
-        jButton2.setBorderPainted(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setMargin(new java.awt.Insets(15, 14, 15, 16));
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton2);
+        btUsuario.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
+        btUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/logoINICIO - Editado.png"))); // NOI18N
+        btUsuario.setText("Inicio");
+        btUsuario.setBorderPainted(false);
+        btUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btUsuario.setFocusable(false);
+        btUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btUsuario.setMargin(new java.awt.Insets(15, 14, 15, 16));
+        btUsuario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(btUsuario);
 
-        jButton3.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/export_50px.png"))); // NOI18N
-        jButton3.setText("Salir");
-        jButton3.setBorderPainted(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setMargin(new java.awt.Insets(15, 14, 15, 16));
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar2.add(jButton3);
+        btSALIR.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
+        btSALIR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/export_50px.png"))); // NOI18N
+        btSALIR.setText("Salir");
+        btSALIR.setBorderPainted(false);
+        btSALIR.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btSALIR.setFocusable(false);
+        btSALIR.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btSALIR.setMargin(new java.awt.Insets(15, 14, 15, 16));
+        btSALIR.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(btSALIR);
 
         btn_pedido_pastel.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
         btn_pedido_pastel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/pedidos.png"))); // NOI18N
@@ -236,9 +299,9 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         btn_pedido_pastel.setFocusable(false);
         btn_pedido_pastel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btn_pedido_pastel.setMargin(new java.awt.Insets(15, 14, 15, 16));
-        btn_pedido_pastel.setMaximumSize(new java.awt.Dimension(97, 115));
+        btn_pedido_pastel.setMaximumSize(new java.awt.Dimension(109, 115));
         btn_pedido_pastel.setMinimumSize(new java.awt.Dimension(97, 115));
-        btn_pedido_pastel.setPreferredSize(new java.awt.Dimension(97, 115));
+        btn_pedido_pastel.setPreferredSize(new java.awt.Dimension(109, 115));
         btn_pedido_pastel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(btn_pedido_pastel);
 
@@ -298,11 +361,11 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         btProductos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(btProductos);
 
-        getContentPane().add(jToolBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 115));
+        getContentPane().add(jToolBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1160, 115));
 
         jMenu1.setText("Crear");
 
-        mnProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        mnProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_DOWN_MASK));
         mnProducto.setText("Productos");
         jMenu1.add(mnProducto);
 
@@ -322,9 +385,30 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         mnGastos.setText("Gastos");
         jMenu1.add(mnGastos);
 
+        btCrearFact.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, 0));
+        btCrearFact.setText("Factura");
+        jMenu1.add(btCrearFact);
+
+        btCootizarM.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        btCootizarM.setText("Cootizar");
+        jMenu1.add(btCootizarM);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Reportes");
+
+        btReporteVentasM.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        btReporteVentasM.setText("Reporte de ventas");
+        jMenu2.add(btReporteVentasM);
+
+        btReporteProductosM.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        btReporteProductosM.setText("Reporte de productos");
+        jMenu2.add(btReporteProductosM);
+
+        btReporteGastosM.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
+        btReporteGastosM.setText("Reporte de gastos");
+        jMenu2.add(btReporteGastosM);
+
         jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Opciones");
@@ -376,14 +460,19 @@ public class vistamenuprincipal extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btCootizarM;
+    private javax.swing.JMenuItem btCrearFact;
     private javax.swing.JButton btProductos;
+    private javax.swing.JMenuItem btReporteGastosM;
+    private javax.swing.JMenuItem btReporteProductosM;
+    private javax.swing.JMenuItem btReporteVentasM;
+    private javax.swing.JButton btSALIR;
+    private javax.swing.JButton btUsuario;
     private javax.swing.JButton btn_cotizacion;
     private javax.swing.JButton btn_factura;
     private javax.swing.JButton btn_pedido_pastel;
     private javax.swing.JButton btncrudclientes;
     private javax.swing.JButton btncrudproveedores;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBoxMenuItem jCheckboxitemmodooscuro;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

@@ -4,6 +4,10 @@
  */
 package VIsta;
 
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 /**
  *
  * @author OWNER
@@ -17,6 +21,38 @@ public class Contraseña extends javax.swing.JFrame {
         initComponents();
     }
 
+    public JButton getBtCerrarLogin() {
+        return btCerrarLogin;
+    }
+
+    public void setBtCerrarLogin(JButton btCerrarLogin) {
+        this.btCerrarLogin = btCerrarLogin;
+    }
+
+    public JButton getBtIngresar() {
+        return btIngresar;
+    }
+
+    public void setBtIngresar(JButton btIngresar) {
+        this.btIngresar = btIngresar;
+    }
+
+    public JPasswordField getTxtContrase() {
+        return txtContrase;
+    }
+
+    public void setTxtContrase(JPasswordField txtContrase) {
+        this.txtContrase = txtContrase;
+    }
+
+    public JTextField getTxtUsuario() {
+        return txtUsuario;
+    }
+
+    public void setTxtUsuario(JTextField txtUsuario) {
+        this.txtUsuario = txtUsuario;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,58 +62,67 @@ public class Contraseña extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
         jLabel1 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         btIngresar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtUsuario = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtContrase = new javax.swing.JPasswordField();
+        btCerrarLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Inicio");
-        setBackground(new java.awt.Color(225, 235, 136));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLocationByPlatform(true);
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("STLiti", 3, 48)); // NOI18N
         jLabel1.setText("Bienvenido!");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 24, 246, -1));
 
-        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jPasswordField1.setText("jPasswordField1");
+        jLabel2.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
+        jLabel2.setText("Usuario:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 205, 30));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 1, 16)); // NOI18N
-        jLabel2.setText("Ingrese su contraseña:");
-
+        btIngresar.setBackground(new java.awt.Color(117, 189, 131));
         btIngresar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btIngresar.setText("Ingresar");
+        btIngresar.setForeground(new java.awt.Color(255, 255, 255));
+        btIngresar.setText("INGRESAR");
+        btIngresar.setBorder(null);
+        btIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(btIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 120, 50));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(304, 304, 304)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(181, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btIngresar)))
-                .addGap(158, 158, 158))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btIngresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-                .addGap(104, 104, 104))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/logoLogin (1).png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, 260, 290));
+
+        txtUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtUsuario.setForeground(new java.awt.Color(117, 189, 131));
+        txtUsuario.setText("Ingrese su nombre de usuario");
+        txtUsuario.setBorder(null);
+        getContentPane().add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 423, 40));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/fondoLogin.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(482, 0, 416, 410));
+
+        jLabel5.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
+        jLabel5.setText("Constraseña:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 205, 30));
+
+        txtContrase.setForeground(new java.awt.Color(117, 189, 131));
+        txtContrase.setText("******");
+        txtContrase.setBorder(null);
+        getContentPane().add(txtContrase, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 420, 40));
+
+        btCerrarLogin.setBackground(new java.awt.Color(255, 255, 255));
+        btCerrarLogin.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btCerrarLogin.setText("X");
+        btCerrarLogin.setBorder(null);
+        getContentPane().add(btCerrarLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 40, 40));
 
         pack();
         setLocationRelativeTo(null);
@@ -89,9 +134,15 @@ public class Contraseña extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCerrarLogin;
     private javax.swing.JButton btIngresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPasswordField txtContrase;
+    private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

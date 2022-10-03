@@ -5,6 +5,8 @@
 package proyecto.bemo;
 
 import Controlador.ControlPrincipal;
+import Controlador.ControladorLogin;
+import VIsta.Contraseña;
 import VIsta.vistamenuprincipal;
 
 /**
@@ -22,9 +24,9 @@ public class PROYECTOBEMO {
 //        
 //        oc.getConex();
 
-        vistamenuprincipal vista = new vistamenuprincipal();
-        ControlPrincipal controller = new ControlPrincipal(vista);
-        controller.iniciaControl();
+        VIsta.Contraseña vistLogin = new Contraseña();
+        Controlador.ControladorLogin contLogin = new ControladorLogin(vistLogin);
+        contLogin.iniciaLogin();
 
     }
 

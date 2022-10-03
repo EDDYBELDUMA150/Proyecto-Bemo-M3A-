@@ -6,6 +6,7 @@
 package Controlador;
 
 //import modelo.ModeloProveedor;
+import VIsta.Contraseña;
 import VIsta.RegistrosdeFacturasGastosBalances;
 import VIsta.VistaProveedor;
 import VIsta.Vista_pedidoPastel;
@@ -36,13 +37,15 @@ import modelo.MConexion.modelo_cotizacion;
  * @author Abel Gomez
  */
 public class ControlPrincipal {
+
     Toolkit tik = Toolkit.getDefaultToolkit();
     Dimension d = tik.getScreenSize();
-    
-    int ancho = (int)d.getWidth();
-    int alto = (int)d.getHeight();
-    
+
+    int ancho = (int) d.getWidth();
+    int alto = (int) d.getHeight();
+
     vistamenuprincipal vistamenuprin;
+    
 
     public ControlPrincipal(vistamenuprincipal vistamenuprin) {
         this.vistamenuprin = vistamenuprin;
@@ -64,12 +67,15 @@ public class ControlPrincipal {
         vistamenuprin.getBtn_pedido_pastel().addActionListener(l -> crud_pedido());
         vistamenuprin.getBtn_factura().addActionListener(l -> crud_factura());
         vistamenuprin.getBtn_cotizacion().addActionListener(l -> crud_cotizacion());
-        vistamenuprin.getMnProducto().addActionListener(l -> menusItems(1));
-        vistamenuprin.getMnCategoria().addActionListener(l -> menusItems(2));
-        vistamenuprin.getMnCliente().addActionListener(l -> menusItems(3));
-        vistamenuprin.getMnProveedore().addActionListener(l -> menusItems(4));
-        vistamenuprin.getMnGastos().addActionListener(l -> menusItems(5));
-        vistamenuprin.getjCheckboxitemmodooscuro().addActionListener(l->modooscurro());
+        vistamenuprin.getMnProducto().addActionListener(l -> menusItemsCrear(1));
+        vistamenuprin.getMnCategoria().addActionListener(l -> menusItemsCrear(2));
+        vistamenuprin.getMnCliente().addActionListener(l -> menusItemsCrear(3));
+        vistamenuprin.getMnProveedore().addActionListener(l -> menusItemsCrear(4));
+        vistamenuprin.getMnGastos().addActionListener(l -> menusItemsCrear(5));
+        vistamenuprin.getBtCrearFact().addActionListener(l -> menusItemsCrear(6));
+        vistamenuprin.getBtCootizarM().addActionListener(l -> menusItemsCrear(7));
+
+        vistamenuprin.getjCheckboxitemmodooscuro().addActionListener(l -> modooscurro());
     }
 
     private void crudclientes() {
@@ -139,7 +145,7 @@ public class ControlPrincipal {
         controler.iniciarcontrol();
     }
 
-    public void menusItems(int opc) {
+    public void menusItemsCrear(int opc) {
         VIsta.RegistrosdeFacturasGastosBalances vistaProd = new RegistrosdeFacturasGastosBalances();
         VIsta.Categorias vistaCTG = new VIsta.Categorias();
 
@@ -147,21 +153,20 @@ public class ControlPrincipal {
         modelo.MConexion.ModelProducto modprod = new modelo.MConexion.ModelProducto();
         modelo.MConexion.Modelo_factura_venta modventa = new modelo.MConexion.Modelo_factura_venta();
         modelo.MConexion.ModelGastoCorriente modgasto = new ModelGastoCorriente();
-
         Modelocliente modelocliente = new Modelocliente();
-        vistacliente vistacliente = new vistacliente();
 
+        vistacliente vistacliente = new vistacliente();
+        VIsta.vista_factura vistafact = new vista_factura();
         //Agregar Vista Personas al Desktop Pane.
         vistamenuprin.getJdpprincipal().add(vistacliente);
         modelo.MConexion.ModelGastoCorriente mdGC = new ModelGastoCorriente();
         ModeloProveedor modeloproveedor = new ModeloProveedor();
         VistaProveedor vistaproveedor = new VistaProveedor();
         vistamenuprin.getJdpprincipal().add(vistaproveedor);
+        vistamenuprin.getJdpprincipal().add(vistaProd);
 
         switch (opc) {
             case 1:
-                vistamenuprin.getJdpprincipal().add(vistaProd);
-
                 Controlador.ControladorProducto controlpro = new ControladorProducto(modprod, vistaProd, modCtg, vistaCTG, modventa, mdGC);
                 controlpro.iniciaControl();
                 controlpro.abrirdialogProd(1);
@@ -188,6 +193,44 @@ public class ControlPrincipal {
                 controlgasto.iniciaControlC();
                 controlgasto.abrirdialogG(1);
                 break;
+            case 6:
+                crud_factura();
+                break;
+            case 7:
+                crud_cotizacion();
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    public void menusItemsReportes(int opc) {
+        VIsta.RegistrosdeFacturasGastosBalances vistaProd = new RegistrosdeFacturasGastosBalances();
+        VIsta.Categorias vistaCTG = new VIsta.Categorias();
+
+        modelo.MConexion.ModelCategoria modCtg = new modelo.MConexion.ModelCategoria();
+        modelo.MConexion.ModelProducto modprod = new modelo.MConexion.ModelProducto();
+        modelo.MConexion.Modelo_factura_venta modventa = new modelo.MConexion.Modelo_factura_venta();
+        modelo.MConexion.ModelGastoCorriente modgasto = new ModelGastoCorriente();
+
+        vistamenuprin.getJdpprincipal().add(vistaProd);
+
+        switch (opc) {
+            case 1:
+                Controlador.ControladorProducto controlpro = new ControladorProducto(modprod, vistaProd, modCtg, vistaCTG, modventa, modgasto);
+                controlpro.iniciaControl();
+                controlpro.imprimeVentas();
+                break;
+            case 2:
+                Controlador.ControladorProducto controlpro2 = new ControladorProducto(modprod, vistaProd, modCtg, vistaCTG, modventa, modgasto);
+                controlpro2.iniciaControl();
+                controlpro2.imprimeProducto();
+                break;
+            case 3:
+                Controlador.ControladorProducto controlpro3 = new ControladorProducto(modprod, vistaProd, modCtg, vistaCTG, modventa, modgasto);
+                controlpro3.iniciaControl();
+                controlpro3.imprimeGasto();
+                break;
             default:
                 throw new AssertionError();
         }
@@ -212,4 +255,5 @@ public class ControlPrincipal {
         }
 
     }
+    
 }

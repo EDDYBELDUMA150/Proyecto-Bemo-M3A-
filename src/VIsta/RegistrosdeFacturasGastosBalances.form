@@ -3,6 +3,10 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JDialog" name="jdProductos">
+      <Properties>
+        <Property name="locationByPlatform" type="boolean" value="true"/>
+        <Property name="resizable" type="boolean" value="false"/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -21,7 +25,6 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="btAgregarModi" min="-2" pref="117" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -36,11 +39,6 @@
                                           <Component id="lbopcionovligatorianombre" min="-2" pref="25" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="txtProprecio" min="-2" pref="106" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="lbopcionobligatoriaprecio" min="-2" pref="34" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="txtCodPro" min="-2" pref="174" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="rbGenerar" min="-2" max="-2" attributes="0"/>
@@ -49,34 +47,38 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                          <EmptySpace min="53" pref="53" max="-2" attributes="0"/>
+                                          <Component id="txtProprecio" min="-2" pref="106" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="lbopcionobligatoriaprecio" min="-2" pref="34" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="307" max="-2" attributes="0"/>
                                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="btPrevisualizar" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                          <Component id="btVerCategoria" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="cbProCate" min="-2" pref="154" max="-2" attributes="0"/>
-                                              <Group type="102" attributes="0">
-                                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                                  <Component id="lbopcionobligatorioselecco" min="-2" pref="32" max="-2" attributes="0"/>
-                                              </Group>
+                                          <Component id="cbProCate" min="-2" pref="154" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="btPrevisualizar" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="353" max="-2" attributes="0"/>
+                                              <Component id="btVerCategoria" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="314" max="-2" attributes="0"/>
+                                              <Component id="lbopcionobligatorioselecco" min="-2" pref="32" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                               </Group>
                           </Group>
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="344" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="32" max="32767" attributes="0"/>
@@ -100,26 +102,27 @@
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtPronombre" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="lbopcionovligatorianombre" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="txtPronombre" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="cbProCate" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtProprecio" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="txtProprecio" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lbopcionobligatoriaprecio" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   <Component id="lbopcionobligatorioselecco" min="-2" pref="22" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -127,8 +130,8 @@
                       <Component id="btVerCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="58" max="-2" attributes="0"/>
-                  <EmptySpace pref="52" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" min="-2" pref="67" max="-2" attributes="0"/>
+                  <EmptySpace pref="43" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btAgregarModi" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="btSalir" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
@@ -276,6 +279,9 @@
     <Component class="javax.swing.ButtonGroup" name="btgCodProd">
     </Component>
     <Container class="javax.swing.JDialog" name="jdGastos">
+      <Properties>
+        <Property name="locationByPlatform" type="boolean" value="true"/>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -786,16 +792,16 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="cbFechasGastos" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
                                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
-                              <Component id="btFechaGASTO" min="-2" pref="146" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btFechaGASTO" min="-2" pref="240" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
@@ -1072,10 +1078,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cbFechasVentas" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="cbFechasVentas" alignment="1" pref="238" max="32767" attributes="0"/>
                                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btFecha" alignment="1" min="-2" pref="146" max="-2" attributes="0"/>
+                                  <Component id="btFecha" alignment="1" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">

@@ -95,6 +95,8 @@ public class Controlador_factura_venta implements Printable {
         vis_factura.getBtn_quitar_producto().addActionListener(l -> quitar_producto());
         vis_factura.getBtn_guardar_factura().addActionListener(l -> guar_todo_factu());
         vis_factura.getBtn_imprimir().addActionListener(l -> imprimirfactura());
+        vis_factura.getBtActualizarProd().addActionListener(l -> cargartablaProducto());
+        vis_factura.getBtActualizarCliente().addActionListener(l -> cargarTablacliente());
 //        vis_factura.getBtn_guardar_cliente().addActionListener(l-> guardar_cabecera());
 
         vis_factura.getTxt_cantidad().addKeyListener(new KeyAdapter() {

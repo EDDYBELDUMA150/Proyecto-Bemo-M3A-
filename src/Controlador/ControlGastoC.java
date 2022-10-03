@@ -127,7 +127,7 @@ public class ControlGastoC {
             viewGC.getJdGastos().setName("C");
             viewGC.getJdGastos().setVisible(true);
             viewGC.getJdGastos().setLocationRelativeTo(viewGC);
-            viewGC.getJdGastos().setSize(772, 558);
+            viewGC.getJdGastos().setSize(788, 410);
             viewGC.getTxtcodG().setText(String.valueOf(CRg));
             viewGC.getBtAgregarModiG().setText("Agregar");
             vaciasCampos();
@@ -136,7 +136,7 @@ public class ControlGastoC {
             if (llenarGastoE()) {
                 viewGC.getJdGastos().setName("E");
                 viewGC.getJdGastos().setVisible(true);
-                viewGC.getJdGastos().setSize(772, 558);
+                viewGC.getJdGastos().setSize(788, 410);
                 viewGC.getLbTitulo().setText("MODIFICAR GASTO");
                 viewGC.getJdGastos().setLocationRelativeTo(viewGC);
                 viewGC.getBtAgregarModiG().setText("Modificar");
