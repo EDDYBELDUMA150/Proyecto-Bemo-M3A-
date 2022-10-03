@@ -5,8 +5,10 @@
  */
 package VIsta;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
@@ -23,8 +25,16 @@ public class vistamenuprincipal extends javax.swing.JFrame {
     /**
      * Creates new form vistamenuprincipal
      */
+    Toolkit tik = Toolkit.getDefaultToolkit();
+    Dimension d = tik.getScreenSize();
+
+    int ancho = (int) d.getWidth();
+    int alto = (int) d.getHeight();
+
     public vistamenuprincipal() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
+        jdpprincipal.setPreferredSize(new Dimension(d));
     }
 
     public JButton getBtncrudclientes() {
@@ -33,14 +43,6 @@ public class vistamenuprincipal extends javax.swing.JFrame {
 
     public void setBtncrudclientes(JButton btncrudclientes) {
         this.btncrudclientes = btncrudclientes;
-    }
-
-    public JToolBar getjToolBar1() {
-        return jToolBar1;
-    }
-
-    public void setjToolBar1(JToolBar jToolBar1) {
-        this.jToolBar1 = jToolBar1;
     }
 
     public JButton getBtn_pedido_pastel() {
@@ -138,14 +140,7 @@ public class vistamenuprincipal extends javax.swing.JFrame {
     public void setjCheckboxitemmodooscuro(JCheckBoxMenuItem jCheckboxitemmodooscuro) {
         this.jCheckboxitemmodooscuro = jCheckboxitemmodooscuro;
     }
-    
-    
-    
-    
 
-    
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -156,23 +151,22 @@ public class vistamenuprincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        jToolBar1 = new javax.swing.JToolBar();
-        btProductos = new javax.swing.JButton();
-        btn_factura = new javax.swing.JButton();
-        btn_cotizacion = new javax.swing.JButton();
-        btncrudclientes = new javax.swing.JButton();
-        btncrudproveedores = new javax.swing.JButton();
-        btn_pedido_pastel = new javax.swing.JButton();
         ImageIcon icon = new ImageIcon(getClass().getResource("/IconoseImagenes/fondo_pBM.png"));
         Image image = icon.getImage();
         jdpprincipal = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
-                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+                g.drawImage(image,0,0,(int)d.getWidth(),(int)d.getHeight(),this);
             }
         };
         jToolBar2 = new javax.swing.JToolBar();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        btn_pedido_pastel = new javax.swing.JButton();
+        btncrudproveedores = new javax.swing.JButton();
+        btncrudclientes = new javax.swing.JButton();
+        btn_cotizacion = new javax.swing.JButton();
+        btn_factura = new javax.swing.JButton();
+        btProductos = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnProducto = new javax.swing.JMenuItem();
@@ -181,7 +175,6 @@ public class vistamenuprincipal extends javax.swing.JFrame {
         mnProveedore = new javax.swing.JMenuItem();
         mnGastos = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jCheckboxitemmodooscuro = new javax.swing.JCheckBoxMenuItem();
 
@@ -189,130 +182,143 @@ public class vistamenuprincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setResizable(false);
+        setPreferredSize(getMaximumSize());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jToolBar1.setBorder(null);
-        jToolBar1.setRollover(true);
-
-        btProductos.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        btProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/cash_register_50px.png"))); // NOI18N
-        btProductos.setText("Registros");
-        btProductos.setBorderPainted(false);
-        btProductos.setFocusable(false);
-        btProductos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btProductos.setMargin(new java.awt.Insets(2, 14, 2, 16));
-        btProductos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btProductos);
-
-        btn_factura.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        btn_factura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/factura.png"))); // NOI18N
-        btn_factura.setText("Factura");
-        btn_factura.setBorderPainted(false);
-        btn_factura.setFocusable(false);
-        btn_factura.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_factura.setMargin(new java.awt.Insets(2, 14, 2, 16));
-        btn_factura.setPreferredSize(new java.awt.Dimension(89, 83));
-        btn_factura.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btn_factura);
-
-        btn_cotizacion.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        btn_cotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/estimate_50px.png"))); // NOI18N
-        btn_cotizacion.setText("Cootizacion");
-        btn_cotizacion.setBorderPainted(false);
-        btn_cotizacion.setFocusable(false);
-        btn_cotizacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_cotizacion.setMargin(new java.awt.Insets(2, 14, 2, 16));
-        btn_cotizacion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btn_cotizacion);
-
-        btncrudclientes.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        btncrudclientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/user_group_50px_1.png"))); // NOI18N
-        btncrudclientes.setText("Cliente");
-        btncrudclientes.setBorderPainted(false);
-        btncrudclientes.setFocusable(false);
-        btncrudclientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btncrudclientes.setMargin(new java.awt.Insets(2, 14, 2, 16));
-        btncrudclientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btncrudclientes);
-
-        btncrudproveedores.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        btncrudproveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/supplier_50px.png"))); // NOI18N
-        btncrudproveedores.setText("Proveedor");
-        btncrudproveedores.setBorderPainted(false);
-        btncrudproveedores.setFocusable(false);
-        btncrudproveedores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btncrudproveedores.setMargin(new java.awt.Insets(2, 14, 2, 16));
-        btncrudproveedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btncrudproveedores);
-
-        btn_pedido_pastel.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
-        btn_pedido_pastel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/pedidos.png"))); // NOI18N
-        btn_pedido_pastel.setText("Pedidos");
-        btn_pedido_pastel.setBorderPainted(false);
-        btn_pedido_pastel.setFocusable(false);
-        btn_pedido_pastel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_pedido_pastel.setMargin(new java.awt.Insets(2, 14, 2, 16));
-        btn_pedido_pastel.setMaximumSize(new java.awt.Dimension(89, 83));
-        btn_pedido_pastel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btn_pedido_pastel);
-
-        getContentPane().add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 0, 610, 90));
-
-        jdpprincipal.setBackground(new java.awt.Color(204, 204, 255));
+        jdpprincipal.setBackground(new java.awt.Color(153, 204, 255));
+        jdpprincipal.setMaximumSize(d);
 
         javax.swing.GroupLayout jdpprincipalLayout = new javax.swing.GroupLayout(jdpprincipal);
         jdpprincipal.setLayout(jdpprincipalLayout);
         jdpprincipalLayout.setHorizontalGroup(
             jdpprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1680, Short.MAX_VALUE)
+            .addGap(0, 2147483647, 2147483647)
         );
         jdpprincipalLayout.setVerticalGroup(
             jdpprincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 840, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jdpprincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1680, 840));
+        getContentPane().add(jdpprincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
 
         jToolBar2.setBorder(null);
         jToolBar2.setRollover(true);
+        jToolBar2.setMaximumSize(new java.awt.Dimension(1000, 115));
+        jToolBar2.setPreferredSize(getMaximumSize());
 
-        jButton2.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/logoINICIO - Editado.png"))); // NOI18N
         jButton2.setText("Inicio");
         jButton2.setBorderPainted(false);
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setMargin(new java.awt.Insets(2, 14, 2, 16));
+        jButton2.setMargin(new java.awt.Insets(15, 14, 15, 16));
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(jButton2);
 
-        jButton3.setFont(new java.awt.Font("Yu Gothic", 1, 12)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/export_50px.png"))); // NOI18N
         jButton3.setText("Salir");
         jButton3.setBorderPainted(false);
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setMargin(new java.awt.Insets(2, 14, 2, 16));
+        jButton3.setMargin(new java.awt.Insets(15, 14, 15, 16));
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(jButton3);
 
-        getContentPane().add(jToolBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 90));
+        btn_pedido_pastel.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
+        btn_pedido_pastel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/pedidos.png"))); // NOI18N
+        btn_pedido_pastel.setText("Pedidos");
+        btn_pedido_pastel.setBorderPainted(false);
+        btn_pedido_pastel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_pedido_pastel.setFocusable(false);
+        btn_pedido_pastel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_pedido_pastel.setMargin(new java.awt.Insets(15, 14, 15, 16));
+        btn_pedido_pastel.setMaximumSize(new java.awt.Dimension(97, 115));
+        btn_pedido_pastel.setMinimumSize(new java.awt.Dimension(97, 115));
+        btn_pedido_pastel.setPreferredSize(new java.awt.Dimension(97, 115));
+        btn_pedido_pastel.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(btn_pedido_pastel);
+
+        btncrudproveedores.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
+        btncrudproveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/supplier_50px.png"))); // NOI18N
+        btncrudproveedores.setText("Proveedores");
+        btncrudproveedores.setBorderPainted(false);
+        btncrudproveedores.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btncrudproveedores.setFocusable(false);
+        btncrudproveedores.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btncrudproveedores.setMargin(new java.awt.Insets(15, 14, 15, 16));
+        btncrudproveedores.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(btncrudproveedores);
+
+        btncrudclientes.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
+        btncrudclientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/user_group_50px_1.png"))); // NOI18N
+        btncrudclientes.setText("Clientes");
+        btncrudclientes.setBorderPainted(false);
+        btncrudclientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btncrudclientes.setFocusable(false);
+        btncrudclientes.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btncrudclientes.setMargin(new java.awt.Insets(15, 14, 15, 16));
+        btncrudclientes.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(btncrudclientes);
+
+        btn_cotizacion.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
+        btn_cotizacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/estimate_50px.png"))); // NOI18N
+        btn_cotizacion.setText("Cootización");
+        btn_cotizacion.setBorderPainted(false);
+        btn_cotizacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_cotizacion.setFocusable(false);
+        btn_cotizacion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_cotizacion.setMargin(new java.awt.Insets(15, 14, 15, 16));
+        btn_cotizacion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(btn_cotizacion);
+
+        btn_factura.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
+        btn_factura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/factura.png"))); // NOI18N
+        btn_factura.setText("Facturación");
+        btn_factura.setBorderPainted(false);
+        btn_factura.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_factura.setFocusable(false);
+        btn_factura.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_factura.setMargin(new java.awt.Insets(15, 14, 15, 16));
+        btn_factura.setPreferredSize(new java.awt.Dimension(89, 83));
+        btn_factura.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(btn_factura);
+
+        btProductos.setFont(new java.awt.Font("Yu Gothic", 1, 16)); // NOI18N
+        btProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoseImagenes/cash_register_50px.png"))); // NOI18N
+        btProductos.setText("Registros");
+        btProductos.setBorderPainted(false);
+        btProductos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btProductos.setFocusable(false);
+        btProductos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btProductos.setMargin(new java.awt.Insets(15, 14, 15, 16));
+        btProductos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar2.add(btProductos);
+
+        getContentPane().add(jToolBar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1000, 115));
 
         jMenu1.setText("Crear");
 
+        mnProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_DOWN_MASK));
         mnProducto.setText("Productos");
         jMenu1.add(mnProducto);
 
+        mnCategoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_DOWN_MASK));
         mnCategoria.setText("Categorias");
         jMenu1.add(mnCategoria);
 
+        mnCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_DOWN_MASK));
         mnCliente.setText("Clientes");
         jMenu1.add(mnCliente);
 
+        mnProveedore.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.ALT_DOWN_MASK));
         mnProveedore.setText("Proveedores");
         jMenu1.add(mnProveedore);
 
+        mnGastos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_DOWN_MASK));
         mnGastos.setText("Gastos");
         jMenu1.add(mnGastos);
 
@@ -320,9 +326,6 @@ public class vistamenuprincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Reportes");
         jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Reportes");
-        jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Opciones");
 
@@ -384,11 +387,9 @@ public class vistamenuprincipal extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem jCheckboxitemmodooscuro;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JDesktopPane jdpprincipal;
     private javax.swing.JMenuItem mnCategoria;

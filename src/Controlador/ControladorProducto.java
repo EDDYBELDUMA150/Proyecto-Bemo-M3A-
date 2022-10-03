@@ -25,8 +25,15 @@ import modelo.MConexion.ModelCategoria;
 import modelo.MConexion.ModelGastoCorriente;
 import modelo.MConexion.ModelProducto;
 import modelo.MConexion.Modelo_factura_venta;
+import modelo.OCconection;
 import modelo.Productos;
 import modelo.Validaciones;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -85,6 +92,11 @@ public class ControladorProducto {
         vistaPro.getBtSalir().addActionListener(l -> vistaPro.getJdProductos().dispose());
         vistaPro.getBtFecha().addActionListener(l -> cargarTablaregistrofacturaPorfecha(1));
         vistaPro.getBtFechaGASTO().addActionListener(l -> cargarTablaregistrofacturaPorfecha(2));
+        vistaPro.getCbFechasVentas().addActionListener(l -> esconderDesdeHastaVts());
+        vistaPro.getCbFechasGastos().addActionListener(l -> esconderDesdeHastaGastos());
+        vistaPro.getBtReportesVentas().addActionListener(l-> imprimeVentas());
+        vistaPro.getBtReporteProductos().addActionListener(l-> imprimeProducto());
+        vistaPro.getBtReportesGastos().addActionListener(l-> imprimeGasto());
         vistaPro.getTbProductos().addMouseListener(new MouseAdapter() {
 
             public void mouseClicked(MouseEvent e) {
@@ -100,8 +112,6 @@ public class ControladorProducto {
 
             }
         });
-        vistaPro.getCbFechasVentas().addActionListener(l -> esconderDesdeHastaVts());
-        vistaPro.getCbFechasGastos().addActionListener(l -> esconderDesdeHastaGastos());
 
         vistaPro.getTxtPronombre().addKeyListener(new KeyAdapter() {
 
@@ -764,22 +774,56 @@ public class ControladorProducto {
         }
     }
 
-    private boolean fechasVacias() {
-        boolean d = vistaPro.getDtDesdeVentas().getCalendar() == null;
-        boolean h = vistaPro.getDtHastaGasto().getCalendar() == null;
-        boolean result = true;
-        if (d == true || vistaPro.getCbFechasVentas().getSelectedIndex() == 4) {
-            result = false;
-        }
-        if ((d == true || h == true) && (vistaPro.getCbFechasVentas().getSelectedIndex() == 3)) {
-            result = false;
-        }
-
-        return result;
-    }
-
     private void inicarGastos() {
         Controlador.ControlGastoC controlGasto = new Controlador.ControlGastoC(modGasto, vistaPro);
         controlGasto.iniciaControlC();
+    }
+
+    private void imprimeProducto() {
+        //Instanciamos la conexion proyecto
+        OCconection con = new OCconection();
+
+        JasperReport jr;
+        try {
+            jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/VIsta/reportes/Producto.jasper"));
+
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, con.getConex());//llena el reporte con datos.
+            JasperViewer jv = new JasperViewer(jp, false);
+            jv.setVisible(true);
+        } catch (JRException ex) {
+            java.util.logging.Logger.getLogger(Controlador_factura_venta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
+
+    private void imprimeGasto() {
+        //Instanciamos la conexion proyecto
+        OCconection con = new OCconection();
+
+        JasperReport jr;
+        try {
+            jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/VIsta/reportes/Gastos.jasper"));
+
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, con.getConex());//llena el reporte con datos.
+            JasperViewer jv = new JasperViewer(jp, false);
+            jv.setVisible(true);
+        } catch (JRException ex) {
+            java.util.logging.Logger.getLogger(Controlador_factura_venta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+    }
+
+    private void imprimeVentas() {
+        //Instanciamos la conexion proyecto
+        OCconection con = new OCconection();
+
+        JasperReport jr;
+        try {
+            jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/VIsta/reportes/Ventas.jasper"));
+
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, con.getConex());//llena el reporte con datos.
+            JasperViewer jv = new JasperViewer(jp, false);
+            jv.setVisible(true);
+        } catch (JRException ex) {
+            java.util.logging.Logger.getLogger(Controlador_factura_venta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
     }
 }

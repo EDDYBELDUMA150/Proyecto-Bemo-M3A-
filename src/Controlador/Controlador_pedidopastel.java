@@ -439,10 +439,14 @@ public class Controlador_pedidopastel {
                     int largo = (int) jfc.getSelectedFile().length();
                     mi_pedido.setImagefile(img);
                     mi_pedido.setLengthfoto(largo);
-
+                    
+                    colorAux2 = vista_pedido.getLabel_foto_pedido().getBackground().hashCode() + 2;
                 } catch (IOException ex) {
-                    Logger.getLogger(Controlador_pedidopastel.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ControlGastoC.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NullPointerException e) {
+                    colorAux2 = vista_pedido.getLabel_foto_pedido().getBackground().hashCode();
                 }
+                
                 if (mi_pedido.setPedidoPastelito()) {
                     JOptionPane.showMessageDialog(vista_pedido, "Pedido registrada exitosamente");
                     vista_pedido.setVisible(true);
@@ -482,7 +486,7 @@ public class Controlador_pedidopastel {
                         int largo = (int) jfc.getSelectedFile().length();
                         mi_pedido.setImagefile(img);
                         mi_pedido.setLengthfoto(largo);
-                        
+
                         colorAux2 = vista_pedido.getLabel_foto_pedido().getBackground().hashCode() + 2;
                     } catch (IOException ex) {
                         Logger.getLogger(ControlGastoC.class.getName()).log(Level.SEVERE, null, ex);

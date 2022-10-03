@@ -17,7 +17,9 @@ import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 import modelo.MConexion.ModelGastoCorriente;
 import modelo.MConexion.ModeloProveedor;
 import modelo.MConexion.Modelo_PedidoPastel;
@@ -34,7 +36,12 @@ import modelo.MConexion.modelo_cotizacion;
  * @author Abel Gomez
  */
 public class ControlPrincipal {
-
+    Toolkit tik = Toolkit.getDefaultToolkit();
+    Dimension d = tik.getScreenSize();
+    
+    int ancho = (int)d.getWidth();
+    int alto = (int)d.getHeight();
+    
     vistamenuprincipal vistamenuprin;
 
     public ControlPrincipal(vistamenuprincipal vistamenuprin) {
@@ -46,8 +53,7 @@ public class ControlPrincipal {
             FlatAnimatedLafChange.hideSnapshotWithAnimation();
         });
         vistamenuprin.setVisible(true);
-        vistamenuprin.setSize(1680, 950);
-
+        vistamenuprin.getJdpprincipal().setPreferredSize(d);
     }
 
     public void iniciaControl() {
@@ -140,6 +146,7 @@ public class ControlPrincipal {
         modelo.MConexion.ModelCategoria modCtg = new modelo.MConexion.ModelCategoria();
         modelo.MConexion.ModelProducto modprod = new modelo.MConexion.ModelProducto();
         modelo.MConexion.Modelo_factura_venta modventa = new modelo.MConexion.Modelo_factura_venta();
+        modelo.MConexion.ModelGastoCorriente modgasto = new ModelGastoCorriente();
 
         Modelocliente modelocliente = new Modelocliente();
         vistacliente vistacliente = new vistacliente();
@@ -176,7 +183,10 @@ public class ControlPrincipal {
                 controlproveedor.abrirDialogo(1);
                 break;
             case 5:
+                ControlGastoC controlgasto = new ControlGastoC(modgasto, vistaProd);
 
+                controlgasto.iniciaControlC();
+                controlgasto.abrirdialogG(1);
                 break;
             default:
                 throw new AssertionError();

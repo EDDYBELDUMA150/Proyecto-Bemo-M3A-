@@ -631,9 +631,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton24" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton26" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton29" min="-2" max="-2" attributes="0"/>
+                              <Component id="btReporteProductos" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
@@ -644,7 +642,7 @@
                               <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="1357" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -669,12 +667,11 @@
                           <Component id="lbTotalProd" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane4" pref="407" max="32767" attributes="0"/>
+                      <Component id="jScrollPane4" pref="450" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton24" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
-                          <Component id="jButton26" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
-                          <Component id="jButton29" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
+                          <Component id="btReporteProductos" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -721,11 +718,6 @@
                 <Property name="text" type="java.lang.String" value="CARGAR DATOS"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton26">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="VER DETALLES"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="btPronuevo">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nuevo producto"/>
@@ -736,7 +728,7 @@
                 <Property name="text" type="java.lang.String" value="Modificar prod."/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton29">
+            <Component class="javax.swing.JButton" name="btReporteProductos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="GENERAR REPORTE"/>
               </Properties>
@@ -838,9 +830,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButton9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton12" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton15" min="-2" max="-2" attributes="0"/>
+                      <Component id="btReportesGastos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -893,12 +883,11 @@
                           <Component id="lbMontostotalesGastos" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="363" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="406" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton9" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
-                          <Component id="jButton12" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
-                          <Component id="jButton15" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
+                          <Component id="btReportesGastos" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -916,11 +905,6 @@
                 <Property name="text" type="java.lang.String" value="CARGAR DATOS"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton12">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="VER DETALLES"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="btNuevoGC">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nuevo gasto"/>
@@ -931,7 +915,7 @@
                 <Property name="text" type="java.lang.String" value="Modificar gast."/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton15">
+            <Component class="javax.swing.JButton" name="btReportesGastos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="GENERAR REPORTE"/>
               </Properties>
@@ -1114,9 +1098,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jButton43" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton38" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton41" min="-2" max="-2" attributes="0"/>
+                              <Component id="btReportesVentas" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -1168,11 +1150,10 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane6" min="-2" pref="359" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="57" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton43" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
-                          <Component id="jButton38" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
-                          <Component id="jButton41" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
+                          <Component id="btReportesVentas" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1180,12 +1161,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton38">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="VER DETALLES"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jButton41">
+            <Component class="javax.swing.JButton" name="btReportesVentas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="GENERAR REPORTE"/>
               </Properties>
