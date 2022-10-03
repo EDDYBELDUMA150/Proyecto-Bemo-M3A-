@@ -379,7 +379,7 @@ public class Modelo_factura_venta extends FacturaVenta {
 
         String sql = "select  fa.factura_id, ca.cli_id,pers.pers_nombre1,pers.pers_apellido1,pers.pers_cedula, ca.cabecera_fecha, cu.cuerpo_total\n"
                 + "from cabecera_factura ca join factura fa on ca.cabecera_id=fa.cabecera_id join cuerpo_factura cu on cu.cuerpo_id=fa.cuerpo_id\n"
-                + "join cliente cli on cli.cli_id=ca.cli_id join persona pers on pers.pers_id=cli.pers_id where ca.cabecera_id=cu.cabecera_id";
+                + "join cliente cli on cli.cli_id=ca.cli_id join persona pers on pers.pers_id=cli.pers_id where ca.cabecera_id=cu.cabecera_id ORDER BY cabecera_fecha ASC";
 
         ResultSet rs = conexion.consulta(sql);
         try {
@@ -413,7 +413,7 @@ public class Modelo_factura_venta extends FacturaVenta {
             String sql = "select  fa.factura_id, ca.cli_id,pers.pers_nombre1,pers.pers_apellido1,pers.pers_cedula, ca.cabecera_fecha, cu.cuerpo_total\n"
                 + "from cabecera_factura ca join factura fa on ca.cabecera_id=fa.cabecera_id join cuerpo_factura cu on cu.cuerpo_id=fa.cuerpo_id\n"
                 + "join cliente cli on cli.cli_id=ca.cli_id join persona pers on pers.pers_id=cli.pers_id where ca.cabecera_id=cu.cabecera_id "
-                    + "AND cabecera_fecha BETWEEN to_date('"+Desde+"', 'YYYY/MM/DD') AND to_date('"+Hasta+"', 'YYYY/MM/DD')";
+                    + "AND cabecera_fecha BETWEEN to_date('"+Desde+"', 'YYYY/MM/DD') AND to_date('"+Hasta+"', 'YYYY/MM/DD') ORDER BY cabecera_fecha ASC";
 
         ResultSet rs = conexion.consulta(sql);
         try {
@@ -447,7 +447,7 @@ public class Modelo_factura_venta extends FacturaVenta {
             String sql = "select  fa.factura_id, ca.cli_id,pers.pers_nombre1,pers.pers_apellido1,pers.pers_cedula, ca.cabecera_fecha, cu.cuerpo_total\n"
                 + "from cabecera_factura ca join factura fa on ca.cabecera_id=fa.cabecera_id join cuerpo_factura cu on cu.cuerpo_id=fa.cuerpo_id\n"
                 + "join cliente cli on cli.cli_id=ca.cli_id join persona pers on pers.pers_id=cli.pers_id where ca.cabecera_id=cu.cabecera_id "
-                        + "AND cabecera_fecha BETWEEN to_date('"+Desde+"', 'YYYY/MM/DD') AND to_date('"+Desde+"', 'YYYY/MM/DD')";
+                        + "AND cabecera_fecha BETWEEN to_date('"+Desde+"', 'YYYY/MM/DD') AND to_date('"+Desde+"', 'YYYY/MM/DD') ORDER BY cabecera_fecha ASC";
 
         ResultSet rs = conexion.consulta(sql);
         try {
@@ -481,7 +481,7 @@ public class Modelo_factura_venta extends FacturaVenta {
             String sql = "select  fa.factura_id, ca.cli_id,pers.pers_nombre1,pers.pers_apellido1,pers.pers_cedula, ca.cabecera_fecha, cu.cuerpo_total\n"
                 + "from cabecera_factura ca join factura fa on ca.cabecera_id=fa.cabecera_id join cuerpo_factura cu on cu.cuerpo_id=fa.cuerpo_id\n"
                 + "join cliente cli on cli.cli_id=ca.cli_id join persona pers on pers.pers_id=cli.pers_id where ca.cabecera_id=cu.cabecera_id "
-                    + "AND cabecera_fecha = to_date(sysdate)";
+                    + "AND cabecera_fecha = to_date(sysdate) ORDER BY cabecera_fecha ASC";
 
         ResultSet rs = conexion.consulta(sql);
         try {
@@ -515,7 +515,7 @@ public class Modelo_factura_venta extends FacturaVenta {
             String sql = "select  fa.factura_id, ca.cli_id,pers.pers_nombre1,pers.pers_apellido1,pers.pers_cedula, ca.cabecera_fecha, cu.cuerpo_total\n"
                 + "from cabecera_factura ca join factura fa on ca.cabecera_id=fa.cabecera_id join cuerpo_factura cu on cu.cuerpo_id=fa.cuerpo_id\n"
                 + "join cliente cli on cli.cli_id=ca.cli_id join persona pers on pers.pers_id=cli.pers_id where ca.cabecera_id=cu.cabecera_id "
-                    + "AND ca.cabecera_id=cu.cabecera_id AND TO_char(cabecera_fecha, 'WW')= to_char(sysdate, 'WW')";
+                    + "AND ca.cabecera_id=cu.cabecera_id AND TO_char(cabecera_fecha, 'WW')= to_char(sysdate, 'WW') ORDER BY cabecera_fecha ASC";
 
         ResultSet rs = conexion.consulta(sql);
         try {
@@ -549,7 +549,7 @@ public class Modelo_factura_venta extends FacturaVenta {
             String sql = "select  fa.factura_id, ca.cli_id,pers.pers_nombre1,pers.pers_apellido1,pers.pers_cedula, ca.cabecera_fecha, cu.cuerpo_total\n"
                 + "from cabecera_factura ca join factura fa on ca.cabecera_id=fa.cabecera_id join cuerpo_factura cu on cu.cuerpo_id=fa.cuerpo_id\n"
                 + "join cliente cli on cli.cli_id=ca.cli_id join persona pers on pers.pers_id=cli.pers_id where ca.cabecera_id=cu.cabecera_id "
-                    + "AND ca.cabecera_id=cu.cabecera_id AND TO_char(cabecera_fecha, 'MM')= to_char(sysdate, 'MM')";
+                    + "AND ca.cabecera_id=cu.cabecera_id AND TO_char(cabecera_fecha, 'MM')= to_char(sysdate, 'MM') ORDER BY cabecera_fecha ASC";
 
         ResultSet rs = conexion.consulta(sql);
         try {

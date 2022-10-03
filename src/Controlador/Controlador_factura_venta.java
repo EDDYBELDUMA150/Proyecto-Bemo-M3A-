@@ -437,6 +437,7 @@ public class Controlador_factura_venta implements Printable {
             guardar_facturita();
             limpiar_todo();
             imprimeFactura(Integer.parseInt(vis_factura.getTxt_id_factura().getText()));
+            vis_factura.dispose();
         }
 
     }
@@ -456,7 +457,6 @@ public class Controlador_factura_venta implements Printable {
         vis_factura.getTxt_nombre_cliente().setText("");
         vis_factura.getTxt_cedula_cliente().setText("");
         vis_factura.getTxt_direccion().setText("");
-        vis_factura.getDate_fecha().setDate(null);
         vis_factura.getTxt_iva().setText("");
         vis_factura.getTxt_subtotal().setText("");
         vis_factura.getTxt_total().setText("");

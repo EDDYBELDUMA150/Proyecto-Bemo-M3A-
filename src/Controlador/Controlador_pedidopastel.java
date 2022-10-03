@@ -386,6 +386,8 @@ public class Controlador_pedidopastel {
     }
 
     private void crear_editar_pedido() {
+        boolean ban = false;
+        int colorAux = vista_pedido.getLabel_foto_pedido().getBackground().hashCode(), colorAux2 = 0;
         int id_pedido = 0;
         if (vista_pedido.getDialog_pedido().getName().contentEquals("C")) {
 
@@ -416,9 +418,11 @@ public class Controlador_pedidopastel {
                     mi_pedido.setImagefile(img);
                     mi_pedido.setLengthfoto(largo);
                     cargardatos();
-
+                    colorAux2 = vista_pedido.getLabel_foto_pedido().getBackground().hashCode() + 2;
                 } catch (IOException ex) {
-                    Logger.getLogger(Controlador_pedidopastel.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ControlGastoC.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NullPointerException e) {
+                    colorAux2 = vista_pedido.getLabel_foto_pedido().getBackground().hashCode();
                 }
 
                 mi_pedido.setPdpt_ID(id_pedido);
@@ -444,6 +448,7 @@ public class Controlador_pedidopastel {
                     vista_pedido.setVisible(true);
                     vista_pedido.getDialog_pedido().setVisible(false);
                     limpiardatos();
+                    cargardatos();
                 } else {
                     JOptionPane.showMessageDialog(vista_pedido, "El Pedido no se pudo registrar");
                 }
@@ -477,9 +482,12 @@ public class Controlador_pedidopastel {
                         int largo = (int) jfc.getSelectedFile().length();
                         mi_pedido.setImagefile(img);
                         mi_pedido.setLengthfoto(largo);
-
+                        
+                        colorAux2 = vista_pedido.getLabel_foto_pedido().getBackground().hashCode() + 2;
                     } catch (IOException ex) {
-                        Logger.getLogger(Controlador_pedidopastel.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(ControlGastoC.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NullPointerException e) {
+                        colorAux2 = vista_pedido.getLabel_foto_pedido().getBackground().hashCode();
                     }
 
                     mi_pedido.setPdpt_ID(id_pedido1);

@@ -29,7 +29,7 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         initComponents();
     }
     
-    
+        
     public JButton getBtPrevisualizar() {
         return btPrevisualizar;
     }
@@ -189,6 +189,23 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
     public void setBtSalir(JButton btSalir) {
         this.btSalir = btSalir;
     }
+
+    public JLabel getLbMontostotalesGastos() {
+        return lbMontostotalesGastos;
+    }
+
+    public void setLbMontostotalesGastos(JLabel lbMontostotalesGastos) {
+        this.lbMontostotalesGastos = lbMontostotalesGastos;
+    }
+
+    public JLabel getLbtotalGastos() {
+        return lbtotalGastos;
+    }
+
+    public void setLbtotalGastos(JLabel lbtotalGastos) {
+        this.lbtotalGastos = lbtotalGastos;
+    }
+    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -221,6 +238,7 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         lbopcionovligatorianombre = new javax.swing.JLabel();
         lbopcionobligatoriaprecio = new javax.swing.JLabel();
         lbopcionobligatorioselecco = new javax.swing.JLabel();
+        btgCodProd = new javax.swing.ButtonGroup();
         jdGastos = new javax.swing.JDialog();
         txtcodG = new javax.swing.JTextField();
         lbTitulo = new javax.swing.JLabel();
@@ -236,17 +254,10 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         txtdescripG = new javax.swing.JTextArea();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        lbSubtotalG = new javax.swing.JLabel();
-        lbTotalG = new javax.swing.JLabel();
-        jLabel44 = new javax.swing.JLabel();
-        txtCantidadG = new javax.swing.JTextField();
         dtFecha = new com.toedter.calendar.JDateChooser();
-        lboopreciogasto = new javax.swing.JLabel();
-        lboocgasto = new javax.swing.JLabel();
         lboodesgasto = new javax.swing.JLabel();
-        btgCodProd = new javax.swing.ButtonGroup();
+        Lboofotogasto = new javax.swing.JLabel();
+        lboopreciogasto = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
@@ -255,7 +266,6 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         jScrollPane4 = new javax.swing.JScrollPane();
         tbProductos = new javax.swing.JTable();
         jButton24 = new javax.swing.JButton();
-        jButton25 = new javax.swing.JButton();
         jButton26 = new javax.swing.JButton();
         btPronuevo = new javax.swing.JButton();
         btProModif = new javax.swing.JButton();
@@ -266,13 +276,12 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         jPanel1 = new javax.swing.JPanel();
         btEliminarGastoC = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         btNuevoGC = new javax.swing.JButton();
         btModiGastoC = new javax.swing.JButton();
         jButton15 = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
+        lbtotalGastos = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         cbFechasGastos = new javax.swing.JComboBox<>();
         dtDesdeGasato = new com.toedter.calendar.JDateChooser();
@@ -280,12 +289,12 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         lbdesdeGastos = new javax.swing.JLabel();
         lbhastaGastos = new javax.swing.JLabel();
         dtHastaGasto = new com.toedter.calendar.JDateChooser();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
         jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
+        lbMontostotalesGastos = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbGastos = new javax.swing.JTable();
+        btFechaGASTO = new javax.swing.JButton();
+        lbErroresGasto = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton38 = new javax.swing.JButton();
         jButton41 = new javax.swing.JButton();
@@ -295,17 +304,17 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         jLabel8 = new javax.swing.JLabel();
         lbTotalventas = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        cbFechasVentas = new javax.swing.JComboBox<>();
-        dtDesdeVentas = new com.toedter.calendar.JDateChooser();
-        jLabel3 = new javax.swing.JLabel();
-        lblDesdeVentas = new javax.swing.JLabel();
-        lbHastaVentas = new javax.swing.JLabel();
-        dtHastaVentas = new com.toedter.calendar.JDateChooser();
-        btFecha = new javax.swing.JButton();
-        lbErrores = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         lbTotalvendido = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        cbFechasVentas = new javax.swing.JComboBox<>();
+        btFecha = new javax.swing.JButton();
+        lbErrores = new javax.swing.JLabel();
+        dtDesdeVentas = new com.toedter.calendar.JDateChooser();
+        lblDesdeVentas = new javax.swing.JLabel();
+        lbHastaVentas = new javax.swing.JLabel();
+        dtHastaVentas = new com.toedter.calendar.JDateChooser();
         jLabel2 = new javax.swing.JLabel();
         jButton37 = new javax.swing.JButton();
 
@@ -458,81 +467,148 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
                 .addGap(33, 33, 33))
         );
 
-        jdGastos.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         txtcodG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcodGActionPerformed(evt);
             }
         });
-        jdGastos.getContentPane().add(txtcodG, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 73, 136, 33));
 
         lbTitulo.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 20)); // NOI18N
         lbTitulo.setText("NUEVO GASTO");
-        jdGastos.getContentPane().add(lbTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 22, -1, 33));
 
         btAgregarModiG.setText("AGREGAR");
-        jdGastos.getContentPane().add(btAgregarModiG, new org.netbeans.lib.awtextra.AbsoluteConstraints(662, 483, 117, 50));
 
         btSalirG.setText("SALIR");
-        jdGastos.getContentPane().add(btSalirG, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 495, 117, 50));
 
         jLabel21.setText("Codigo:");
-        jdGastos.getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 81, -1, -1));
 
         jLabel41.setText("Fecha:");
-        jdGastos.getContentPane().add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(499, 81, 43, -1));
-        jdGastos.getContentPane().add(txtprecioG, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 316, 105, 44));
 
         jLabel6.setText("Foto de factura recibida por el proveedor");
-        jdGastos.getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 132, -1, -1));
 
         lbFotoG.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jdGastos.getContentPane().add(lbFotoG, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 220, 231, 169));
 
         btCargarFotoG.setText("Cargar foto");
-        jdGastos.getContentPane().add(btCargarFotoG, new org.netbeans.lib.awtextra.AbsoluteConstraints(604, 164, 122, 44));
 
         txtdescripG.setColumns(20);
         txtdescripG.setRows(5);
         jScrollPane3.setViewportView(txtdescripG);
 
-        jdGastos.getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 155, 331, 121));
-
         jLabel42.setText("Descripción:");
-        jdGastos.getContentPane().add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 155, -1, -1));
 
-        jLabel43.setText("Precio:");
-        jdGastos.getContentPane().add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 330, -1, -1));
+        jLabel43.setText("Monto del gasto:");
 
-        jLabel19.setText("Subtotal:");
-        jdGastos.getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 385, -1, -1));
-
-        jLabel22.setText("Total:");
-        jdGastos.getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 419, -1, -1));
-
-        lbSubtotalG.setText("00.00");
-        jdGastos.getContentPane().add(lbSubtotalG, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 385, -1, -1));
-
-        lbTotalG.setText("00.00");
-        jdGastos.getContentPane().add(lbTotalG, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 419, -1, -1));
-
-        jLabel44.setText("Cantidad:");
-        jdGastos.getContentPane().add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 330, -1, -1));
-        jdGastos.getContentPane().add(txtCantidadG, new org.netbeans.lib.awtextra.AbsoluteConstraints(341, 316, 105, 44));
-        jdGastos.getContentPane().add(dtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(548, 73, 164, 33));
-
-        lboopreciogasto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lboopreciogasto.setForeground(new java.awt.Color(255, 0, 0));
-        jdGastos.getContentPane().add(lboopreciogasto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 40, 30));
-
-        lboocgasto.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        lboocgasto.setForeground(new java.awt.Color(204, 0, 0));
-        jdGastos.getContentPane().add(lboocgasto, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, 50, 30));
-
-        lboodesgasto.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lboodesgasto.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lboodesgasto.setForeground(new java.awt.Color(255, 0, 0));
-        jdGastos.getContentPane().add(lboodesgasto, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 50, 30));
+
+        Lboofotogasto.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        Lboofotogasto.setForeground(new java.awt.Color(255, 0, 0));
+
+        lboopreciogasto.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lboopreciogasto.setForeground(new java.awt.Color(255, 0, 0));
+
+        javax.swing.GroupLayout jdGastosLayout = new javax.swing.GroupLayout(jdGastos.getContentPane());
+        jdGastos.getContentPane().setLayout(jdGastosLayout);
+        jdGastosLayout.setHorizontalGroup(
+            jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdGastosLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btSalirG, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jdGastosLayout.createSequentialGroup()
+                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel42))
+                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jdGastosLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jdGastosLayout.createSequentialGroup()
+                                        .addGap(124, 124, 124)
+                                        .addComponent(jLabel43)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtprecioG))
+                                    .addGroup(jdGastosLayout.createSequentialGroup()
+                                        .addComponent(txtcodG, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(35, 35, 35)
+                                        .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(dtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdGastosLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lboodesgasto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lboopreciogasto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jdGastosLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btAgregarModiG, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel6))
+                            .addComponent(lbFotoG, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))
+                    .addGroup(jdGastosLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btCargarFotoG, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Lboofotogasto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdGastosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbTitulo)
+                .addGap(330, 330, 330))
+        );
+        jdGastosLayout.setVerticalGroup(
+            jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdGastosLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jdGastosLayout.createSequentialGroup()
+                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btCargarFotoG, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Lboofotogasto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(lbFotoG, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jdGastosLayout.createSequentialGroup()
+                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel21)
+                                .addComponent(txtcodG, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel41)
+                            .addComponent(dtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jdGastosLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jLabel42))
+                            .addGroup(jdGastosLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lboodesgasto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(21, 21, 21)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdGastosLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(132, 132, 132))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdGastosLayout.createSequentialGroup()
+                        .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lboopreciogasto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jdGastosLayout.createSequentialGroup()
+                                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtprecioG, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel43))
+                                .addGap(18, 18, 18)
+                                .addGroup(jdGastosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btSalirG, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btAgregarModiG, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(27, 27, 27))))
+        );
 
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(1660, 800));
@@ -561,8 +637,6 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
 
         jButton24.setText("CARGAR DATOS");
 
-        jButton25.setText("SALIR");
-
         jButton26.setText("VER DETALLES");
 
         btPronuevo.setText("Nuevo producto");
@@ -585,35 +659,37 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jButton24)
-                .addGap(18, 18, 18)
-                .addComponent(jButton26)
-                .addGap(18, 18, 18)
-                .addComponent(jButton29)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1115, Short.MAX_VALUE)
-                .addComponent(jButton25)
-                .addGap(32, 32, 32))
-            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel17)
                     .addComponent(txtBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 729, Short.MAX_VALUE)
                 .addComponent(btPronuevo)
                 .addGap(30, 30, 30)
                 .addComponent(btProdelete)
                 .addGap(26, 26, 26)
                 .addComponent(btProModif)
                 .addGap(52, 52, 52))
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbTotalProd)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel23)
+                .addContainerGap()
+                .addComponent(jScrollPane4)
+                .addContainerGap())
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton24)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton26)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton29))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbTotalProd)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel23)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -634,11 +710,10 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
                     .addComponent(jLabel13)
                     .addComponent(lbTotalProd))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton24, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton25, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton26, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton29, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -649,8 +724,6 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         btEliminarGastoC.setText("Eliminar gast.");
 
         jButton9.setText("CARGAR DATOS");
-
-        jButton11.setText("SALIR");
 
         jButton12.setText("VER DETALLES");
 
@@ -663,8 +736,8 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         jLabel24.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel24.setText("Hay");
 
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel25.setText("00");
+        lbtotalGastos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbtotalGastos.setText("00");
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel26.setText("gastos registrados.");
@@ -678,126 +751,132 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
 
         lbhastaGastos.setText("Hasta:");
 
-        jTextPane1.setEditable(false);
-        jScrollPane5.setViewportView(jTextPane1);
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel27.setText("Total de gastos: $");
 
-        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel27.setText("TOTAL DE GASTOS:");
-
-        jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel28.setText("00");
+        lbMontostotalesGastos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbMontostotalesGastos.setText("00");
 
         tbGastos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Descripcion", "Fecha", "Costo Unit.", "Cantidad", "Subtotal", "Total", "Foto"
+                "ID", "Descripcion", "Fecha", "Monto total.", "Foto"
             }
         ));
         jScrollPane2.setViewportView(tbGastos);
+
+        btFechaGASTO.setText("Buscar por fecha");
+
+        lbErroresGasto.setForeground(new java.awt.Color(255, 0, 51));
+        lbErroresGasto.setText("Mensaje de error");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jButton9)
-                .addGap(18, 18, 18)
-                .addComponent(jButton12)
-                .addGap(18, 18, 18)
-                .addComponent(jButton15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1115, Short.MAX_VALUE)
-                .addComponent(jButton11)
-                .addGap(32, 32, 32))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbFechasGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbtotalGastos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbMontostotalesGastos)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dtDesdeGasato, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbdesdeGastos))
-                .addGap(18, 18, 18)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbFechasGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(btFechaGASTO, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbhastaGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(dtHastaGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
+                    .addComponent(lbErroresGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dtDesdeGasato, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbdesdeGastos))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbhastaGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dtHastaGasto, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 640, Short.MAX_VALUE)
                 .addComponent(btNuevoGC)
                 .addGap(30, 30, 30)
                 .addComponent(btEliminarGastoC)
                 .addGap(26, 26, 26)
                 .addComponent(btModiGastoC)
                 .addGap(52, 52, 52))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel24)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel25)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel26)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel27)
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton9)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel28)
-                .addGap(52, 52, 52))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane2)
-                    .addContainerGap()))
+                .addComponent(jButton12)
+                .addGap(18, 18, 18)
+                .addComponent(jButton15)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbFechasGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btEliminarGastoC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btNuevoGC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btModiGastoC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbFechasGastos, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btEliminarGastoC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btNuevoGC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btModiGastoC, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(15, 15, 15)
+                        .addComponent(btFechaGASTO, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbdesdeGastos)
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbdesdeGastos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dtDesdeGasato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(lbhastaGastos)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dtHastaGasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dtDesdeGasato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lbhastaGastos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dtHastaGasto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                        .addComponent(lbErroresGasto)))
+                .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel26)
                     .addComponent(jLabel24)
-                    .addComponent(jLabel25)
+                    .addComponent(lbtotalGastos)
                     .addComponent(jLabel27)
-                    .addComponent(jLabel28))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 422, Short.MAX_VALUE)
+                    .addComponent(lbMontostotalesGastos))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(177, 177, 177)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(157, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Gastos", jPanel1);
@@ -824,125 +903,129 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         lbTotalventas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbTotalventas.setText("00");
 
-        cbFechasVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cbFechasVentas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoy", "Esta semana", "Este mes", "Periodo específico", "Día específico" }));
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1058, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 125, Short.MAX_VALUE)
+        );
 
-        dtDesdeVentas.setDateFormatString("dd/MM/yyyy");
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel14.setText("facturas registradas");
+
+        lbTotalvendido.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lbTotalvendido.setText("00");
+
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel20.setText("Total de ventas:  $");
 
         jLabel3.setText("Busca los gastos en la fecha de:");
 
-        lblDesdeVentas.setText("Desde:");
-
-        lbHastaVentas.setText("Hasta:");
+        cbFechasVentas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbFechasVentas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoy", "Esta semana", "Este mes", "Periodo específico", "Día específico" }));
 
         btFecha.setText("Buscar por fecha");
 
         lbErrores.setForeground(new java.awt.Color(255, 0, 51));
         lbErrores.setText("Mensaje de error");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbFechasVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(262, 262, 262)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dtDesdeVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDesdeVentas))
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbHastaVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dtHastaVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(lbErrores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(47, 47, 47)
-                .addComponent(btFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(658, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(lblDesdeVentas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dtDesdeVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbFechasVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(lbHastaVentas)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(dtHastaVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbErrores)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
+        dtDesdeVentas.setDateFormatString("dd/MM/yyyy");
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel14.setText("facturas registradas");
+        lblDesdeVentas.setText("Desde:");
 
-        lbTotalvendido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lbTotalvendido.setText("00");
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel20.setText("Total de ventas:  $");
+        lbHastaVentas.setText("Hasta:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton43)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton38)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton41))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(jScrollPane6))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbTotalventas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel14)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel20)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbTotalvendido)
-                .addGap(142, 142, 142))
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lbTotalvendido)))
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbFechasVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(btFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(dtDesdeVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblDesdeVentas))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbHastaVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(dtHastaVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lbErrores, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton43)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton38)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton41)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(13, 13, 13)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbFechasVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(lblDesdeVentas)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(dtDesdeVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(lbHastaVentas)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(dtHastaVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbErrores)))))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(lbTotalventas)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
                     .addComponent(jLabel20)
                     .addComponent(lbTotalvendido))
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton43, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton38, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1119,14 +1202,6 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         this.lbFotoG = lbFotoG;
     }
 
-    public JLabel getLbSubtotalG() {
-        return lbSubtotalG;
-    }
-
-    public void setLbSubtotalG(JLabel lbSubtotalG) {
-        this.lbSubtotalG = lbSubtotalG;
-    }
-
     public JLabel getLbTitulo() {
         return lbTitulo;
     }
@@ -1135,28 +1210,12 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         this.lbTitulo = lbTitulo;
     }
 
-    public JLabel getLbTotalG() {
-        return lbTotalG;
-    }
-
-    public void setLbTotalG(JLabel lbTotalG) {
-        this.lbTotalG = lbTotalG;
-    }
-
     public JTable getTbGastos() {
         return tbGastos;
     }
 
     public void setTbGastos(JTable tbGastos) {
         this.tbGastos = tbGastos;
-    }
-
-    public JTextField getTxtCantidadG() {
-        return txtCantidadG;
-    }
-
-    public void setTxtCantidadG(JTextField txtCantidadG) {
-        this.txtCantidadG = txtCantidadG;
     }
 
     public JTextField getTxtcodG() {
@@ -1200,27 +1259,27 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
     }
 
     public JButton getBtEliminarGastoC() {
-        return btProdelete;
+        return btEliminarGastoC;
     }
 
     public void setBtEliminarGastoC(JButton btEliminarGastoC) {
-        this.btProdelete = btEliminarGastoC;
+        this.btEliminarGastoC = btEliminarGastoC;
     }
 
     public JButton getBtModiGastoC() {
-        return btProModif;
+        return btModiGastoC;
     }
 
     public void setBtModiGastoC(JButton btModiGastoC) {
-        this.btProModif = btModiGastoC;
+        this.btModiGastoC = btModiGastoC;
     }
 
     public JButton getBtNuevoGC() {
-        return btPronuevo;
+        return btNuevoGC;
     }
 
     public void setBtNuevoGC(JButton btNuevoGC) {
-        this.btPronuevo = btNuevoGC;
+        this.btNuevoGC = btNuevoGC;
     }
 
     public JButton getBtSalirG() {
@@ -1279,14 +1338,6 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
         this.lbopcionovligatorianombre = lbopcionovligatorianombre;
     }
 
-    public JLabel getLboocgasto() {
-        return lboocgasto;
-    }
-
-    public void setLboocgasto(JLabel lboocgasto) {
-        this.lboocgasto = lboocgasto;
-    }
-
     public JLabel getLboopreciogasto() {
         return lboopreciogasto;
     }
@@ -1302,15 +1353,41 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
     public void setLboodesgasto(JLabel lboodesgasto) {
         this.lboodesgasto = lboodesgasto;
     }
+
+    public JLabel getLboofotogasto() {
+        return Lboofotogasto;
+    }
+
+    public void setLboofotogasto(JLabel Lboofotogasto) {
+        this.Lboofotogasto = Lboofotogasto;
+    }
+
+    public JButton getBtFechaGASTO() {
+        return btFechaGASTO;
+    }
+
+    public void setBtFechaGASTO(JButton btFechaGASTO) {
+        this.btFechaGASTO = btFechaGASTO;
+    }
+
+    public JLabel getLbErroresGasto() {
+        return lbErroresGasto;
+    }
+
+    public void setLbErroresGasto(JLabel lbErroresGasto) {
+        this.lbErroresGasto = lbErroresGasto;
+    }
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Lboofotogasto;
     private javax.swing.JButton btAgregarModi;
     private javax.swing.JButton btAgregarModiG;
     private javax.swing.JButton btCargarFotoG;
     private javax.swing.JButton btEliminarGastoC;
     private javax.swing.JButton btFecha;
+    private javax.swing.JButton btFechaGASTO;
     private javax.swing.JButton btModiGastoC;
     private javax.swing.JButton btNuevoGC;
     private javax.swing.JButton btPrevisualizar;
@@ -1329,11 +1406,9 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
     private com.toedter.calendar.JDateChooser dtFecha;
     private com.toedter.calendar.JDateChooser dtHastaGasto;
     private com.toedter.calendar.JDateChooser dtHastaVentas;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton24;
-    private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton26;
     private javax.swing.JButton jButton29;
     private javax.swing.JButton jButton37;
@@ -1347,23 +1422,18 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
@@ -1375,39 +1445,36 @@ public class RegistrosdeFacturasGastosBalances extends javax.swing.JInternalFram
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JDialog jdGastos;
     private javax.swing.JDialog jdProductos;
     private javax.swing.JLabel lbErrores;
+    private javax.swing.JLabel lbErroresGasto;
     private javax.swing.JLabel lbFotoG;
     private javax.swing.JLabel lbHastaVentas;
     private javax.swing.JLabel lbModificar;
+    private javax.swing.JLabel lbMontostotalesGastos;
     private javax.swing.JLabel lbNuevo;
-    private javax.swing.JLabel lbSubtotalG;
     private javax.swing.JLabel lbTitulo;
-    private javax.swing.JLabel lbTotalG;
     private javax.swing.JLabel lbTotalProd;
     private javax.swing.JLabel lbTotalvendido;
     private javax.swing.JLabel lbTotalventas;
     private javax.swing.JLabel lbdesdeGastos;
     private javax.swing.JLabel lbhastaGastos;
     private javax.swing.JLabel lblDesdeVentas;
-    private javax.swing.JLabel lboocgasto;
     private javax.swing.JLabel lboodesgasto;
     private javax.swing.JLabel lboopreciogasto;
     private javax.swing.JLabel lbopcionobligatoriaprecio;
     private javax.swing.JLabel lbopcionobligatorioselecco;
     private javax.swing.JLabel lbopcionovligatorianombre;
+    private javax.swing.JLabel lbtotalGastos;
     private javax.swing.JRadioButton rbEditar;
     private javax.swing.JRadioButton rbGenerar;
     private javax.swing.JTable tabla_factura_registro;
     private javax.swing.JTable tbGastos;
     private javax.swing.JTable tbProductos;
     private javax.swing.JTextField txtBusqueda;
-    private javax.swing.JTextField txtCantidadG;
     private javax.swing.JTextField txtCodPro;
     private javax.swing.JTextPane txtPrevista;
     private javax.swing.JTextField txtPronombre;

@@ -4,13 +4,13 @@
  */
 package Controlador;
 
+import VIsta.Categorias;
 import VIsta.RegistrosdeFacturasGastosBalances;
 import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.ws.Holder;
@@ -47,7 +48,6 @@ public class ControlGastoC {
     public ControlGastoC(modelo.MConexion.ModelGastoCorriente modeGC, RegistrosdeFacturasGastosBalances viewGC) {
         this.modeGC = modeGC;
         this.viewGC = viewGC;
-        viewGC.setVisible(true);
         cargardatos();
         viewGC.getTxtcodG().setEnabled(false);
     }
@@ -62,12 +62,12 @@ public class ControlGastoC {
 
         viewGC.getDtFecha().setDate(fechaActual);
 
-        viewGC.getTxtCantidadG().addKeyListener(new KeyAdapter() {
+        viewGC.getTxtprecioG().addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyTyped(KeyEvent e) {
                 char caracter = e.getKeyChar();
-                if (viewGC.getTxtCantidadG().getText().length() == 30 || (caracter < '0') || (caracter > '9')) {
+                if (viewGC.getTxtprecioG().getText().length() == 30 || (caracter < '0') || (caracter > '9')) {
                     e.consume();
                 }
 
@@ -87,14 +87,11 @@ public class ControlGastoC {
         List<FacturaGastoCorriente> lista_gastoC = modeGC.getGastoC();
         Holder<Integer> i = new Holder<>(0);
         lista_gastoC.stream().forEach(gasto -> {
-            estructuratabla.addRow(new Object[8]);
+            estructuratabla.addRow(new Object[5]);
             viewGC.getTbGastos().setValueAt(gasto.getFct_ID(), i.value, 0);
             viewGC.getTbGastos().setValueAt(gasto.getFctG_descripccion(), i.value, 1);
             viewGC.getTbGastos().setValueAt(gasto.getFct_fecha(), i.value, 2);
             viewGC.getTbGastos().setValueAt(gasto.getFct_precio(), i.value, 3);
-            viewGC.getTbGastos().setValueAt(gasto.getFct_cantidad(), i.value, 4);
-            viewGC.getTbGastos().setValueAt(gasto.getFct_subtotal(), i.value, 5);
-            viewGC.getTbGastos().setValueAt(gasto.getFct_total(), i.value, 6);
 
             Image foto = gasto.getFotoFactura();
             if (foto != null) {
@@ -102,10 +99,10 @@ public class ControlGastoC {
                 ImageIcon icono = new ImageIcon(foto);
                 DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
                 dtcr.setIcon(icono);
-                viewGC.getTbGastos().setValueAt(new JLabel(icono), i.value, 7);
+                viewGC.getTbGastos().setValueAt(new JLabel(icono), i.value, 4);
 
             } else {
-                viewGC.getTbGastos().setValueAt(null, i.value, 7);
+                viewGC.getTbGastos().setValueAt(null, i.value, 4);
             }
 
             i.value++;
@@ -148,9 +145,6 @@ public class ControlGastoC {
                         viewGC.getTxtdescripG().setText(String.valueOf(gt.getFctG_descripccion()));
                         viewGC.getDtFecha().setDate(gt.getFct_fecha());
                         viewGC.getTxtprecioG().setText(String.valueOf(gt.getFct_precio()));
-                        viewGC.getTxtCantidadG().setText(String.valueOf(gt.getFct_cantidad()));
-                        viewGC.getLbSubtotalG().setText(String.valueOf(gt.getFct_subtotal()));
-                        viewGC.getLbTotalG().setText(String.valueOf(gt.getFct_total()));
                         Image foto = gt.getFotoFactura();
                         if (foto != null) {
                             foto = foto.getScaledInstance(100, 150, Image.SCALE_SMOOTH);
@@ -178,6 +172,9 @@ public class ControlGastoC {
     }
 
     private void crearEditarGastoC() {
+        boolean ban = false;
+        int colorAux = viewGC.getLbFotoG().getBackground().hashCode(), colorAux2 = 0;
+
         if (viewGC.getJdGastos().getName().contentEquals("C")) {
 
             if (casillasvacias() == true) {
@@ -188,34 +185,31 @@ public class ControlGastoC {
                     long d = fecha.getTime();
                     java.sql.Date fch = new java.sql.Date(d);
                     double precio = Double.parseDouble(viewGC.getTxtprecioG().getText());
-                    int cant = Integer.parseInt(viewGC.getTxtCantidadG().getText());
-                    double subt = precio * cant;
-                    double total = subt;
                     try {
                         FileInputStream img = new FileInputStream(jfc.getSelectedFile());
                         int largo = (int) jfc.getSelectedFile().length();
                         modeGC.setImageFile(img);
                         modeGC.setLength(largo);
 
+                        colorAux2 = viewGC.getLbFotoG().getBackground().hashCode() + 2;
                     } catch (IOException ex) {
                         Logger.getLogger(ControlGastoC.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NullPointerException e) {
+                        colorAux2 = viewGC.getLbFotoG().getBackground().hashCode();
                     }
 
                     modeGC.setFct_ID(id);
                     modeGC.setFctG_descripccion(descr);
                     modeGC.setFct_fecha(fch);
                     modeGC.setFct_precio(precio);
-                    modeGC.setFct_cantidad(cant);
-                    modeGC.setFct_subtotal(subt);
-                    modeGC.setFct_total(total);
                     modeGC.setFctG_estado("ACTIVO");
 
                     if (modeGC.setGastoC()) {
                         JOptionPane.showMessageDialog(viewGC, "Gasto registrado exitosamente");
                         cargardatos();
-                        viewGC.setVisible(true);
                         viewGC.getJdGastos().setVisible(false);
                         vaciasCampos();
+                        totalesregisGastos();
                     } else {
                         JOptionPane.showMessageDialog(viewGC, "No se ha podido registrar el gasto.");
                     }
@@ -232,26 +226,23 @@ public class ControlGastoC {
                     String descr = viewGC.getTxtdescripG().getText();
                     Date fecha = fechaActual;
                     double precio = Double.parseDouble(viewGC.getTxtprecioG().getText());
-                    int cant = Integer.parseInt(viewGC.getTxtCantidadG().getText());
-                    double subt = precio * cant;
-                    double total = subt;
                     try {
                         FileInputStream img = new FileInputStream(jfc.getSelectedFile());
                         int largo = (int) jfc.getSelectedFile().length();
                         modeGC.setImageFile(img);
                         modeGC.setLength(largo);
 
+                        colorAux2 = viewGC.getLbFotoG().getBackground().hashCode() + 2;
                     } catch (IOException ex) {
                         Logger.getLogger(ControlGastoC.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NullPointerException e) {
+                        colorAux2 = viewGC.getLbFotoG().getBackground().hashCode();
                     }
 
                     modeGC.setFct_ID(id);
                     modeGC.setFctG_descripccion(descr);
                     modeGC.setFct_fecha(fecha);
                     modeGC.setFct_precio(precio);
-                    modeGC.setFct_cantidad(cant);
-                    modeGC.setFct_subtotal(subt);
-                    modeGC.setFct_total(total);
                     modeGC.setFctG_estado("ACTIVO");
 
                     if (modeGC.updateGastoC()) {
@@ -274,18 +265,13 @@ public class ControlGastoC {
     private void vaciasCampos() {
         viewGC.getTxtdescripG().setText("");
         viewGC.getTxtprecioG().setText("");
-        viewGC.getTxtCantidadG().setText("");
-
+        viewGC.getLbFotoG().setIcon(null);
     }
 
-    private String FActualSet() {
-        SimpleDateFormat formatoFe = new SimpleDateFormat("dd/mm/yyyy");
-
-        return formatoFe.format(fechaActual);
-    }
-
-    private void examinaFoto() {
+    private void examinaFoto() {        
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPEG, PNG, JPG", "jpeg", "png", "jpg");
         jfc = new JFileChooser();
+        jfc.setFileFilter(filtro);
         jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
         int estado = jfc.showOpenDialog(viewGC);
         if (estado == JFileChooser.APPROVE_OPTION) {
@@ -370,17 +356,15 @@ public class ControlGastoC {
             viewGC.getLboopreciogasto().setText("");
         }
 
-        if (viewGC.getTxtCantidadG().getText().isEmpty()) {
-            c += 1;
-            validado = false;
-            viewGC.getLboocgasto().setText("*");
-        } else {
-            viewGC.getLboocgasto().setText("");
-        }
         if (c > 0) {
             JOptionPane.showMessageDialog(viewGC, " *  Campos Obligatorios");
         }
 
         return validado;
+    }
+
+    private void totalesregisGastos() {
+
+        viewGC.getLbtotalGastos().setText(String.valueOf(viewGC.getTbGastos().getRowCount()));
     }
 }
